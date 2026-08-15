@@ -1,801 +1,623 @@
-const STORAGE_KEY = "envios_ya_envios";
+const STORAGE_KEY = "enviosYa_envios";
+const CLIENTS_KEY = "enviosYa_clientes";
 
-const defaultShipments = [
-    {
-        id: "ENV-00128",
-        client: "Carlos Martínez",
-        phone: "+505 8888 0001",
-        origin: "Miami, USA",
-        destination: "Managua, Nicaragua",
-        weight: 8.5,
-        type: "Importación",
-        status: "transito",
-        statusLabel: "En tránsito",
-        date: "2026-08-15",
-        notes: "Paquete en traslado hacia Nicaragua.",
-        history: [
-            {
-                title: "Envío recibido",
-                description: "Paquete registrado",
-                completed: true
-            },
-            {
-                title: "Procesado",
-                description: "Información verificada",
-                completed: true
-            },
-            {
-                title: "En tránsito",
-                description: "En camino al destino",
-                current: true
-            },
-            {
-                title: "Entregado",
-                description: "Pendiente"
-            }
-        ]
-    },
+let envios = [];
+let clientes = [];
 
-    {
-        id: "ENV-00127",
-        client: "María López",
-        phone: "+505 8888 0002",
-        origin: "Miami, USA",
-        destination: "Managua, Nicaragua",
-        weight: 4.2,
-        type: "Importación",
-        status: "entregado",
-        statusLabel: "Entregado",
-        date: "2026-08-14",
-        notes: "Entrega completada.",
-        history: [
-            {
-                title: "Envío recibido",
-                description: "Paquete registrado",
-                completed: true
-            },
-            {
-                title: "Procesado",
-                description: "Información verificada",
-                completed: true
-            },
-            {
-                title: "En tránsito",
-                description: "En camino al destino",
-                completed: true
-            },
-            {
-                title: "Entregado",
-                description: "Entrega completada",
-                completed: true
-            }
-        ]
-    },
-
-    {
-        id: "ENV-00126",
-        client: "José Rodríguez",
-        phone: "+505 8888 0003",
-        origin: "Panamá",
-        destination: "Managua, Nicaragua",
-        weight: 12.8,
-        type: "Importación",
-        status: "aduana",
-        statusLabel: "En aduana",
-        date: "2026-08-14",
-        notes: "Pendiente de procesamiento aduanero.",
-        history: [
-            {
-                title: "Envío recibido",
-                description: "Paquete registrado",
-                completed: true
-            },
-            {
-                title: "Procesado",
-                description: "Información verificada",
-                completed: true
-            },
-            {
-                title: "En aduana",
-                description: "Pendiente de procesamiento",
-                current: true
-            },
-            {
-                title: "Entregado",
-                description: "Pendiente"
-            }
-        ]
-    },
-
-    {
-        id: "ENV-00125",
-        client: "Ana García",
-        phone: "+505 8888 0004",
-        origin: "Miami, USA",
-        destination: "Managua, Nicaragua",
-        weight: 3.7,
-        type: "Exportación",
-        status: "pendiente",
-        statusLabel: "Pendiente",
-        date: "2026-08-13",
-        notes: "Pendiente de recepción.",
-        history: [
-            {
-                title: "Envío recibido",
-                description: "Pendiente",
-                current: true
-            },
-            {
-                title: "Procesado",
-                description: "Pendiente"
-            },
-            {
-                title: "En tránsito",
-                description: "Pendiente"
-            },
-            {
-                title: "Entregado",
-                description: "Pendiente"
-            }
-        ]
-    }
-];
-
-
-let shipments = loadShipments();
-
-
-const elements = {
-    navItems: document.querySelectorAll(".nav-item"),
-    contentSections: document.querySelectorAll(".content-section"),
-    sectionButtons: document.querySelectorAll("[data-section]"),
-    pageTitle: document.getElementById("pageTitle"),
-    currentDate: document.getElementById("currentDate"),
-
-    totalEnvios: document.getElementById("totalEnvios"),
-    enviosTransito: document.getElementById("enviosTransito"),
-    enviosAduana: document.getElementById("enviosAduana"),
-    enviosEntregados: document.getElementById("enviosEntregados"),
-
-    shipmentsTable: document.getElementById("shipmentsTable"),
-    recentShipments: document.getElementById("recentShipments"),
-
-    shipmentSearch: document.getElementById("shipmentSearch"),
-    statusFilter: document.getElementById("statusFilter"),
-
-    shipmentForm: document.getElementById("shipmentForm"),
-
-    menuToggle: document.getElementById("menuToggle"),
-    sidebar: document.querySelector(".sidebar"),
-
-    shipmentModal: document.getElementById("shipmentModal"),
-    closeModal: document.getElementById("closeModal"),
-    closeModalButton: document.getElementById("closeModalButton"),
-
-    modalShipmentTitle: document.getElementById("modalShipmentTitle"),
-    modalClient: document.getElementById("modalClient"),
-    modalStatus: document.getElementById("modalStatus"),
-    modalOrigin: document.getElementById("modalOrigin"),
-    modalDestination: document.getElementById("modalDestination")
+const estados = {
+    pendiente: "Pendiente",
+    transito: "En tránsito",
+    aduana: "En aduana",
+    entregado: "Entregado"
 };
 
 
-const pageTitles = {
-    dashboard: "Dashboard",
-    envios: "Envíos",
-    registrar: "Registrar envío",
-    clientes: "Clientes",
-    reportes: "Reportes",
-    configuracion: "Configuración"
-};
-
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    initializeDate();
+    cargarDatos();
 
-    initializeFormDate();
+    inicializarFecha();
 
-    renderDashboard();
+    inicializarNavegacion();
 
-    renderShipments();
+    inicializarFormulario();
 
-    renderRecentShipments();
+    inicializarBusqueda();
 
-    setupNavigation();
+    inicializarSeguimiento();
 
-    setupSearch();
+    inicializarModal();
 
-    setupForm();
+    inicializarClientes();
 
-    setupModal();
+    inicializarReportes();
 
-    setupMobileMenu();
+    inicializarConfiguracion();
+
+    generarCodigo();
+
+    actualizarTodo();
 
 });
 
 
-function loadShipments() {
+/* =========================================================
+   DATOS
+========================================================= */
 
-    const savedData = localStorage.getItem(STORAGE_KEY);
+function cargarDatos() {
 
-    if (!savedData) {
+    const datosGuardados = localStorage.getItem(STORAGE_KEY);
+    const clientesGuardados = localStorage.getItem(CLIENTS_KEY);
 
-        const initialData = [...defaultShipments];
+    if (datosGuardados) {
 
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(initialData)
-        );
-
-        return initialData;
-    }
-
-    try {
-
-        const parsedData = JSON.parse(savedData);
-
-        if (Array.isArray(parsedData)) {
-            return parsedData;
+        try {
+            envios = JSON.parse(datosGuardados);
+        } catch {
+            envios = [];
         }
 
-        return [...defaultShipments];
+    } else {
 
-    } catch (error) {
+        envios = crearDatosIniciales();
 
-        console.error(
-            "No se pudieron cargar los envíos:",
-            error
-        );
+        guardarEnvios();
 
-        return [...defaultShipments];
     }
+
+
+    if (clientesGuardados) {
+
+        try {
+            clientes = JSON.parse(clientesGuardados);
+        } catch {
+            clientes = [];
+        }
+
+    } else {
+
+        reconstruirClientes();
+
+    }
+
 }
 
 
-function saveShipments() {
+function guardarEnvios() {
 
     localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(shipments)
+        JSON.stringify(envios)
     );
+
 }
 
 
-function initializeDate() {
+function guardarClientes() {
 
-    if (!elements.currentDate) {
-        return;
-    }
+    localStorage.setItem(
+        CLIENTS_KEY,
+        JSON.stringify(clientes)
+    );
 
-    const today = new Date();
+}
 
-    const formatter = new Intl.DateTimeFormat(
-        "es-NI",
+
+/* =========================================================
+   DATOS DEMO
+========================================================= */
+
+function crearDatosIniciales() {
+
+    return [
+
         {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
+            id: generarId(),
+
+            codigo: "ENV-00128",
+
+            cliente: "Carlos Martínez",
+
+            telefono: "+505 8888 1001",
+
+            origen: "Miami, USA",
+
+            destino: "Managua, Nicaragua",
+
+            tipo: "Importación",
+
+            peso: 8.5,
+
+            estado: "transito",
+
+            fecha: "2026-08-14",
+
+            notas: "Paquete comercial.",
+
+            historial: [
+
+                {
+                    estado: "pendiente",
+                    fecha: "2026-08-10 09:20",
+                    descripcion: "Envío registrado."
+                },
+
+                {
+                    estado: "transito",
+                    fecha: "2026-08-13 14:30",
+                    descripcion: "Envío salió de origen."
+                }
+
+            ]
+
+        },
+
+
+        {
+            id: generarId(),
+
+            codigo: "ENV-00127",
+
+            cliente: "María López",
+
+            telefono: "+505 8888 1002",
+
+            origen: "Miami, USA",
+
+            destino: "Managua, Nicaragua",
+
+            tipo: "Importación",
+
+            peso: 4.2,
+
+            estado: "entregado",
+
+            fecha: "2026-08-13",
+
+            notas: "Entrega completada.",
+
+            historial: [
+
+                {
+                    estado: "pendiente",
+                    fecha: "2026-08-08 10:00",
+                    descripcion: "Envío registrado."
+                },
+
+                {
+                    estado: "transito",
+                    fecha: "2026-08-09 16:20",
+                    descripcion: "En tránsito."
+                },
+
+                {
+                    estado: "aduana",
+                    fecha: "2026-08-11 08:45",
+                    descripcion: "Procesando en aduana."
+                },
+
+                {
+                    estado: "entregado",
+                    fecha: "2026-08-13 15:10",
+                    descripcion: "Entrega completada."
+                }
+
+            ]
+
+        },
+
+
+        {
+            id: generarId(),
+
+            codigo: "ENV-00126",
+
+            cliente: "José Rodríguez",
+
+            telefono: "+505 8888 1003",
+
+            origen: "Panamá",
+
+            destino: "Managua, Nicaragua",
+
+            tipo: "Importación",
+
+            peso: 12.8,
+
+            estado: "aduana",
+
+            fecha: "2026-08-12",
+
+            notas: "Pendiente de revisión.",
+
+            historial: [
+
+                {
+                    estado: "pendiente",
+                    fecha: "2026-08-08 11:10",
+                    descripcion: "Envío registrado."
+                },
+
+                {
+                    estado: "transito",
+                    fecha: "2026-08-09 13:00",
+                    descripcion: "Envío en tránsito."
+                },
+
+                {
+                    estado: "aduana",
+                    fecha: "2026-08-12 09:15",
+                    descripcion: "Envío recibido en aduana."
+                }
+
+            ]
+
+        },
+
+
+        {
+            id: generarId(),
+
+            codigo: "ENV-00125",
+
+            cliente: "Ana González",
+
+            telefono: "+505 8888 1004",
+
+            origen: "Managua, Nicaragua",
+
+            destino: "Miami, USA",
+
+            tipo: "Exportación",
+
+            peso: 6.7,
+
+            estado: "entregado",
+
+            fecha: "2026-08-10",
+
+            notas: "Documentación completa.",
+
+            historial: [
+
+                {
+                    estado: "pendiente",
+                    fecha: "2026-08-05 09:00",
+                    descripcion: "Exportación registrada."
+                },
+
+                {
+                    estado: "transito",
+                    fecha: "2026-08-06 12:00",
+                    descripcion: "Envío despachado."
+                },
+
+                {
+                    estado: "entregado",
+                    fecha: "2026-08-10 16:40",
+                    descripcion: "Envío entregado en destino."
+                }
+
+            ]
+
         }
-    );
 
-    elements.currentDate.textContent = formatter.format(today);
-}
-
-
-function initializeFormDate() {
-
-    const dateInput = document.getElementById(
-        "shipmentDate"
-    );
-
-    if (!dateInput) {
-        return;
-    }
-
-    const today = new Date();
-
-    const year = today.getFullYear();
-
-    const month = String(
-        today.getMonth() + 1
-    ).padStart(2, "0");
-
-    const day = String(
-        today.getDate()
-    ).padStart(2, "0");
-
-    dateInput.value =
-        `${year}-${month}-${day}`;
-}
-
-
-function setupNavigation() {
-
-    elements.sectionButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const sectionId =
-                button.dataset.section;
-
-            if (!sectionId) {
-                return;
-            }
-
-            showSection(sectionId);
-
-        });
-
-    });
-
-}
-
-
-function showSection(sectionId) {
-
-    elements.contentSections.forEach(section => {
-
-        section.classList.remove("active");
-
-    });
-
-
-    const targetSection =
-        document.getElementById(sectionId);
-
-
-    if (!targetSection) {
-        return;
-    }
-
-
-    targetSection.classList.add("active");
-
-
-    elements.navItems.forEach(item => {
-
-        item.classList.toggle(
-            "active",
-            item.dataset.section === sectionId
-        );
-
-    });
-
-
-    if (elements.pageTitle) {
-
-        elements.pageTitle.textContent =
-            pageTitles[sectionId] ||
-            "Envíos Ya";
-
-    }
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    if (elements.sidebar) {
-        elements.sidebar.classList.remove("open");
-    }
-
-
-    if (sectionId === "envios") {
-
-        renderShipments();
-
-    }
-
-
-    if (sectionId === "dashboard") {
-
-        renderDashboard();
-
-        renderRecentShipments();
-
-    }
-
-}
-
-
-function setupSearch() {
-
-    if (elements.shipmentSearch) {
-
-        elements.shipmentSearch.addEventListener(
-            "input",
-            renderShipments
-        );
-
-    }
-
-
-    if (elements.statusFilter) {
-
-        elements.statusFilter.addEventListener(
-            "change",
-            renderShipments
-        );
-
-    }
-
-}
-
-
-function renderDashboard() {
-
-    const total =
-        shipments.length;
-
-
-    const transito =
-        shipments.filter(
-            shipment =>
-                shipment.status === "transito"
-        ).length;
-
-
-    const aduana =
-        shipments.filter(
-            shipment =>
-                shipment.status === "aduana"
-        ).length;
-
-
-    const entregados =
-        shipments.filter(
-            shipment =>
-                shipment.status === "entregado"
-        ).length;
-
-
-    if (elements.totalEnvios) {
-
-        elements.totalEnvios.textContent =
-            total;
-
-    }
-
-
-    if (elements.enviosTransito) {
-
-        elements.enviosTransito.textContent =
-            transito;
-
-    }
-
-
-    if (elements.enviosAduana) {
-
-        elements.enviosAduana.textContent =
-            aduana;
-
-    }
-
-
-    if (elements.enviosEntregados) {
-
-        elements.enviosEntregados.textContent =
-            entregados;
-
-    }
-
-}
-
-
-function renderRecentShipments() {
-
-    if (!elements.recentShipments) {
-        return;
-    }
-
-
-    const recent =
-        [...shipments]
-            .sort(
-                (a, b) =>
-                    new Date(b.date) -
-                    new Date(a.date)
-            )
-            .slice(0, 5);
-
-
-    elements.recentShipments.innerHTML =
-        recent.map(
-            shipment =>
-                createRecentShipmentRow(shipment)
-        ).join("");
-
-
-    attachShipmentButtons(
-        elements.recentShipments
-    );
-
-}
-
-
-function createRecentShipmentRow(shipment) {
-
-    return `
-        <tr>
-
-            <td>
-                <strong>
-                    ${escapeHTML(shipment.id)}
-                </strong>
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.client)}
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.origin)}
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.destination)}
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.type)}
-            </td>
-
-            <td>
-                ${createStatusBadge(shipment)}
-            </td>
-
-            <td>
-                ${formatDate(shipment.date)}
-            </td>
-
-            <td>
-
-                <button
-                    class="table-action"
-                    data-shipment="${escapeHTML(shipment.id)}">
-
-                    Ver
-
-                </button>
-
-            </td>
-
-        </tr>
-    `;
-}
-
-
-function renderShipments() {
-
-    if (!elements.shipmentsTable) {
-        return;
-    }
-
-
-    const search =
-        elements.shipmentSearch
-            ? elements.shipmentSearch.value
-                .trim()
-                .toLowerCase()
-            : "";
-
-
-    const status =
-        elements.statusFilter
-            ? elements.statusFilter.value
-            : "todos";
-
-
-    const filtered =
-        shipments.filter(shipment => {
-
-            const matchesSearch =
-                !search ||
-                shipment.id
-                    .toLowerCase()
-                    .includes(search) ||
-                shipment.client
-                    .toLowerCase()
-                    .includes(search) ||
-                shipment.origin
-                    .toLowerCase()
-                    .includes(search) ||
-                shipment.destination
-                    .toLowerCase()
-                    .includes(search);
-
-
-            const matchesStatus =
-                status === "todos" ||
-                shipment.status === status;
-
-
-            return (
-                matchesSearch &&
-                matchesStatus
-            );
-
-        });
-
-
-    if (filtered.length === 0) {
-
-        elements.shipmentsTable.innerHTML = `
-            <tr>
-
-                <td
-                    colspan="8"
-                    style="text-align:center;padding:40px;">
-
-                    No se encontraron envíos.
-
-                </td>
-
-            </tr>
-        `;
-
-        return;
-    }
-
-
-    elements.shipmentsTable.innerHTML =
-        filtered
-            .sort(
-                (a, b) =>
-                    new Date(b.date) -
-                    new Date(a.date)
-            )
-            .map(
-                shipment =>
-                    createShipmentRow(shipment)
-            )
-            .join("");
-
-
-    attachShipmentButtons(
-        elements.shipmentsTable
-    );
-
-}
-
-
-function createShipmentRow(shipment) {
-
-    return `
-        <tr>
-
-            <td>
-                <strong>
-                    ${escapeHTML(shipment.id)}
-                </strong>
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.client)}
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.origin)}
-            </td>
-
-            <td>
-                ${escapeHTML(shipment.destination)}
-            </td>
-
-            <td>
-                ${Number(shipment.weight).toFixed(2)} kg
-            </td>
-
-            <td>
-                ${createStatusBadge(shipment)}
-            </td>
-
-            <td>
-                ${formatDate(shipment.date)}
-            </td>
-
-            <td>
-
-                <button
-                    class="table-action"
-                    data-shipment="${escapeHTML(shipment.id)}">
-
-                    Ver
-
-                </button>
-
-            </td>
-
-        </tr>
-    `;
-}
-
-
-function createStatusBadge(shipment) {
-
-    const allowedClasses = [
-        "pendiente",
-        "recibido",
-        "transito",
-        "aduana",
-        "entregado"
     ];
 
-
-    const statusClass =
-        allowedClasses.includes(shipment.status)
-            ? shipment.status
-            : "pendiente";
-
-
-    return `
-        <span class="status status-${statusClass}">
-            ${escapeHTML(shipment.statusLabel)}
-        </span>
-    `;
 }
 
 
-function attachShipmentButtons(container) {
+/* =========================================================
+   UTILIDADES
+========================================================= */
 
-    const buttons =
-        container.querySelectorAll(
-            "[data-shipment]"
+function generarId() {
+
+    return Date.now() + Math.floor(Math.random() * 10000);
+
+}
+
+
+function generarCodigo() {
+
+    const input = document.getElementById("shipmentCode");
+
+    if (!input) return;
+
+    const numeros = envios.map(envio => {
+
+        const numero = parseInt(
+            envio.codigo.replace("ENV-", ""),
+            10
         );
 
+        return isNaN(numero) ? 0 : numero;
 
-    buttons.forEach(button => {
+    });
 
-        button.addEventListener(
+    const mayor = numeros.length
+        ? Math.max(...numeros)
+        : 0;
+
+    input.value =
+        "ENV-" +
+        String(mayor + 1).padStart(5, "0");
+
+}
+
+
+function obtenerFechaActual() {
+
+    const fecha = new Date();
+
+    const año = fecha.getFullYear();
+
+    const mes = String(
+        fecha.getMonth() + 1
+    ).padStart(2, "0");
+
+    const dia = String(
+        fecha.getDate()
+    ).padStart(2, "0");
+
+    return `${año}-${mes}-${dia}`;
+
+}
+
+
+function formatearFecha(fecha) {
+
+    if (!fecha) return "—";
+
+    const partes = fecha.split("-");
+
+    if (partes.length !== 3) {
+        return fecha;
+    }
+
+    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+
+}
+
+
+function escaparHTML(texto) {
+
+    if (texto === null || texto === undefined) {
+        return "";
+    }
+
+    return String(texto)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================================
+   FECHA
+========================================================= */
+
+function inicializarFecha() {
+
+    const elemento =
+        document.getElementById("currentDate");
+
+    if (!elemento) return;
+
+    const fecha = new Date();
+
+    elemento.textContent =
+        fecha.toLocaleDateString(
+            "es-NI",
+            {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+}
+
+
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
+
+function inicializarNavegacion() {
+
+    const botones =
+        document.querySelectorAll(
+            "[data-section]"
+        );
+
+    botones.forEach(boton => {
+
+        boton.addEventListener(
             "click",
             () => {
 
-                const shipmentId =
-                    button.dataset.shipment;
+                const seccion =
+                    boton.dataset.section;
 
-                openShipmentModal(
-                    shipmentId
-                );
+                cambiarSeccion(seccion);
 
             }
         );
 
     });
 
+
+    const menuToggle =
+        document.getElementById("menuToggle");
+
+    if (menuToggle) {
+
+        menuToggle.addEventListener(
+            "click",
+            () => {
+
+                const sidebar =
+                    document.querySelector(".sidebar");
+
+                sidebar.classList.toggle("open");
+
+            }
+        );
+
+    }
+
 }
 
 
-function setupForm() {
+function cambiarSeccion(nombre) {
 
-    if (!elements.shipmentForm) {
-        return;
+    const secciones =
+        document.querySelectorAll(
+            ".content-section"
+        );
+
+    secciones.forEach(seccion => {
+
+        seccion.classList.remove("active");
+
+    });
+
+
+    const destino =
+        document.getElementById(nombre);
+
+    if (destino) {
+
+        destino.classList.add("active");
+
     }
 
 
-    elements.shipmentForm.addEventListener(
-        "submit",
-        event => {
+    const botones =
+        document.querySelectorAll(
+            ".nav-item"
+        );
 
-            event.preventDefault();
+    botones.forEach(boton => {
 
-            registerShipment();
+        boton.classList.remove("active");
+
+        if (
+            boton.dataset.section === nombre
+        ) {
+
+            boton.classList.add("active");
 
         }
+
+    });
+
+
+    const titulos = {
+
+        dashboard: "Dashboard",
+
+        envios: "Envíos",
+
+        registrar: "Registrar envío",
+
+        clientes: "Clientes",
+
+        seguimiento: "Seguimiento",
+
+        reportes: "Reportes",
+
+        usuarios: "Usuarios",
+
+        configuracion: "Configuración"
+
+    };
+
+
+    const titulo =
+        document.getElementById("pageTitle");
+
+    if (titulo) {
+
+        titulo.textContent =
+            titulos[nombre] || "Sistema";
+
+    }
+
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    if (sidebar) {
+
+        sidebar.classList.remove("open");
+
+    }
+
+
+    if (nombre === "reportes") {
+        actualizarReportes();
+    }
+
+    if (nombre === "clientes") {
+        renderizarClientes();
+    }
+
+}
+
+
+/* =========================================================
+   FORMULARIO
+========================================================= */
+
+function inicializarFormulario() {
+
+    const formulario =
+        document.getElementById("shipmentForm");
+
+    if (!formulario) return;
+
+
+    const fecha =
+        document.getElementById("shipmentDate");
+
+    if (fecha) {
+
+        fecha.value =
+            obtenerFechaActual();
+
+    }
+
+
+    formulario.addEventListener(
+        "submit",
+        registrarEnvio
     );
 
 
-    elements.shipmentForm.addEventListener(
+    formulario.addEventListener(
         "reset",
         () => {
 
-            setTimeout(
-                initializeFormDate,
-                0
-            );
+            setTimeout(() => {
+
+                generarCodigo();
+
+                if (fecha) {
+                    fecha.value =
+                        obtenerFechaActual();
+                }
+
+            }, 0);
 
         }
     );
@@ -803,446 +625,1004 @@ function setupForm() {
 }
 
 
-function registerShipment() {
+function registrarEnvio(evento) {
 
-    const code =
+    evento.preventDefault();
+
+
+    const codigo =
         document.getElementById(
             "shipmentCode"
-        ).value
-            .trim()
-            .toUpperCase();
+        ).value.trim();
 
+    const cliente =
+        document.getElementById(
+            "clientName"
+        ).value.trim();
 
-    const operationType =
+    const telefono =
+        document.getElementById(
+            "clientPhone"
+        ).value.trim();
+
+    const origen =
+        document.getElementById(
+            "origin"
+        ).value.trim();
+
+    const destino =
+        document.getElementById(
+            "destination"
+        ).value.trim();
+
+    const tipo =
         document.getElementById(
             "operationType"
         ).value;
 
+    const peso =
+        parseFloat(
+            document.getElementById(
+                "weight"
+            ).value
+        );
 
-    const origin =
-        document.getElementById(
-            "origin"
-        ).value
-            .trim();
-
-
-    const destination =
-        document.getElementById(
-            "destination"
-        ).value
-            .trim();
-
-
-    const weight =
-        document.getElementById(
-            "weight"
-        ).value;
-
-
-    const date =
+    const fecha =
         document.getElementById(
             "shipmentDate"
         ).value;
 
-
-    const clientName =
-        document.getElementById(
-            "clientName"
-        ).value
-            .trim();
-
-
-    const clientPhone =
-        document.getElementById(
-            "clientPhone"
-        ).value
-            .trim();
-
-
-    const notes =
+    const notas =
         document.getElementById(
             "notes"
-        ).value
-            .trim();
+        ).value.trim();
 
 
-    if (!code || !clientName) {
+    if (!codigo || !cliente || !origen || !destino) {
 
-        showNotification(
+        mostrarNotificacion(
             "Completa los campos obligatorios.",
             "error"
         );
 
         return;
+
     }
 
 
-    const existingShipment =
-        shipments.some(
-            shipment =>
-                shipment.id.toLowerCase() ===
-                code.toLowerCase()
-        );
+    if (
+        envios.some(
+            envio =>
+                envio.codigo.toLowerCase() ===
+                codigo.toLowerCase()
+        )
+    ) {
 
-
-    if (existingShipment) {
-
-        showNotification(
+        mostrarNotificacion(
             "Ya existe un envío con ese código.",
             "error"
         );
 
         return;
+
     }
 
 
-    const newShipment = {
+    const nuevoEnvio = {
 
-        id: code,
+        id: generarId(),
 
-        client: clientName,
+        codigo,
 
-        phone: clientPhone,
+        cliente,
 
-        origin,
+        telefono,
 
-        destination,
+        origen,
 
-        weight: Number(weight),
+        destino,
 
-        type: operationType,
+        tipo,
 
-        status: "pendiente",
+        peso: peso || 0,
 
-        statusLabel: "Pendiente",
+        estado: "pendiente",
 
-        date,
+        fecha,
 
-        notes,
+        notas,
 
-        history: [
+        historial: [
+
             {
-                title: "Envío recibido",
-                description: "Paquete registrado",
-                current: true
-            },
-            {
-                title: "Procesado",
-                description: "Pendiente"
-            },
-            {
-                title: "En tránsito",
-                description: "Pendiente"
-            },
-            {
-                title: "Entregado",
-                description: "Pendiente"
+                estado: "pendiente",
+
+                fecha:
+                    obtenerFechaHora(),
+
+                descripcion:
+                    "Envío registrado en el sistema."
+
             }
+
         ]
 
     };
 
 
-    shipments.unshift(
-        newShipment
-    );
+    envios.unshift(nuevoEnvio);
 
 
-    saveShipments();
+    guardarEnvios();
 
-    renderDashboard();
+    reconstruirClientes();
 
-    renderRecentShipments();
-
-    renderShipments();
+    actualizarTodo();
 
 
-    elements.shipmentForm.reset();
-
-    initializeFormDate();
-
-
-    showNotification(
-        `El envío ${code} fue registrado correctamente.`,
+    mostrarNotificacion(
+        `Envío ${codigo} registrado correctamente.`,
         "success"
     );
 
 
-    setTimeout(
-        () => showSection("envios"),
-        500
-    );
+    event.target.reset();
+
+
+    setTimeout(() => {
+
+        generarCodigo();
+
+        document.getElementById(
+            "shipmentDate"
+        ).value =
+            obtenerFechaActual();
+
+    }, 0);
+
+
+    cambiarSeccion("envios");
 
 }
 
 
-function openShipmentModal(shipmentId) {
+/* =========================================================
+   FECHA Y HORA
+========================================================= */
 
-    const shipment =
-        shipments.find(
-            item =>
-                item.id === shipmentId
-        );
+function obtenerFechaHora() {
 
+    const fecha = new Date();
 
-    if (!shipment) {
-        return;
-    }
+    const año =
+        fecha.getFullYear();
 
+    const mes =
+        String(
+            fecha.getMonth() + 1
+        ).padStart(2, "0");
 
-    if (elements.modalShipmentTitle) {
+    const dia =
+        String(
+            fecha.getDate()
+        ).padStart(2, "0");
 
-        elements.modalShipmentTitle.textContent =
-            shipment.id;
+    const horas =
+        String(
+            fecha.getHours()
+        ).padStart(2, "0");
 
-    }
+    const minutos =
+        String(
+            fecha.getMinutes()
+        ).padStart(2, "0");
 
-
-    if (elements.modalClient) {
-
-        elements.modalClient.textContent =
-            shipment.client;
-
-    }
-
-
-    if (elements.modalStatus) {
-
-        elements.modalStatus.textContent =
-            shipment.statusLabel;
-
-    }
-
-
-    if (elements.modalOrigin) {
-
-        elements.modalOrigin.textContent =
-            shipment.origin;
-
-    }
-
-
-    if (elements.modalDestination) {
-
-        elements.modalDestination.textContent =
-            shipment.destination;
-
-    }
-
-
-    renderTrackingHistory(
-        shipment
-    );
-
-
-    elements.shipmentModal.classList.add(
-        "active"
-    );
-
-
-    elements.shipmentModal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-
-    document.body.style.overflow =
-        "hidden";
+    return `${año}-${mes}-${dia} ${horas}:${minutos}`;
 
 }
 
 
-function renderTrackingHistory(shipment) {
+/* =========================================================
+   DASHBOARD
+========================================================= */
 
-    const timeline =
-        document.querySelector(
-            ".tracking-timeline"
+function actualizarDashboard() {
+
+    const total =
+        envios.length;
+
+    const transito =
+        envios.filter(
+            envio =>
+                envio.estado === "transito"
+        ).length;
+
+    const aduana =
+        envios.filter(
+            envio =>
+                envio.estado === "aduana"
+        ).length;
+
+    const entregados =
+        envios.filter(
+            envio =>
+                envio.estado === "entregado"
+        ).length;
+
+
+    asignarTexto(
+        "totalEnvios",
+        total
+    );
+
+    asignarTexto(
+        "enviosTransito",
+        transito
+    );
+
+    asignarTexto(
+        "enviosAduana",
+        aduana
+    );
+
+    asignarTexto(
+        "enviosEntregados",
+        entregados
+    );
+
+
+    renderizarUltimosEnvios();
+
+}
+
+
+function asignarTexto(id, valor) {
+
+    const elemento =
+        document.getElementById(id);
+
+    if (elemento) {
+
+        elemento.textContent =
+            valor;
+
+    }
+
+}
+
+
+/* =========================================================
+   ÚLTIMOS ENVÍOS
+========================================================= */
+
+function renderizarUltimosEnvios() {
+
+    const tabla =
+        document.getElementById(
+            "recentShipments"
         );
 
+    if (!tabla) return;
 
-    if (!timeline) {
+
+    const recientes =
+        envios.slice(0, 5);
+
+
+    if (!recientes.length) {
+
+        tabla.innerHTML = `
+            <tr>
+                <td colspan="8">
+                    No hay envíos registrados.
+                </td>
+            </tr>
+        `;
+
         return;
+
     }
 
 
-    const history =
-        shipment.history ||
-        createDefaultHistory(
-            shipment.status
+    tabla.innerHTML =
+        recientes.map(
+            crearFilaEnvioDashboard
+        ).join("");
+
+}
+
+
+function crearFilaEnvioDashboard(envio) {
+
+    return `
+
+        <tr>
+
+            <td>
+                <strong>
+                    ${escaparHTML(envio.codigo)}
+                </strong>
+            </td>
+
+            <td>
+                ${escaparHTML(envio.cliente)}
+            </td>
+
+            <td>
+                ${escaparHTML(envio.origen)}
+            </td>
+
+            <td>
+                ${escaparHTML(envio.destino)}
+            </td>
+
+            <td>
+                ${escaparHTML(envio.tipo)}
+            </td>
+
+            <td>
+                ${crearEstado(envio.estado)}
+            </td>
+
+            <td>
+                ${formatearFecha(envio.fecha)}
+            </td>
+
+            <td>
+
+                <button
+                    class="table-action"
+                    onclick="verEnvio('${envio.id}')"
+                    title="Ver detalle">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                </button>
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ENVÍOS
+========================================================= */
+
+function renderizarEnvios() {
+
+    const tabla =
+        document.getElementById(
+            "shipmentsTable"
         );
 
-
-    timeline.innerHTML =
-        history.map(item => {
-
-            let className =
-                "timeline-item";
+    if (!tabla) return;
 
 
-            if (item.completed) {
-                className += " completed";
-            }
+    const busqueda =
+        document.getElementById(
+            "shipmentSearch"
+        )?.value
+        .toLowerCase()
+        .trim() || "";
 
 
-            if (item.current) {
-                className += " current";
-            }
+    const filtro =
+        document.getElementById(
+            "statusFilter"
+        )?.value || "todos";
 
 
-            const icon =
-                item.completed
-                    ? "✓"
-                    : item.current
-                        ? "●"
-                        : "○";
+    let resultados =
+        [...envios];
 
 
-            return `
-                <div class="${className}">
+    if (busqueda) {
 
-                    <span class="timeline-dot">
-                        ${icon}
-                    </span>
+        resultados =
+            resultados.filter(envio => {
 
-                    <div>
+                return (
 
-                        <strong>
-                            ${escapeHTML(item.title)}
-                        </strong>
+                    envio.codigo
+                        .toLowerCase()
+                        .includes(busqueda)
 
-                        <small>
-                            ${escapeHTML(item.description)}
-                        </small>
+                    ||
+
+                    envio.cliente
+                        .toLowerCase()
+                        .includes(busqueda)
+
+                    ||
+
+                    envio.origen
+                        .toLowerCase()
+                        .includes(busqueda)
+
+                    ||
+
+                    envio.destino
+                        .toLowerCase()
+                        .includes(busqueda)
+
+                );
+
+            });
+
+    }
+
+
+    if (filtro !== "todos") {
+
+        resultados =
+            resultados.filter(
+                envio =>
+                    envio.estado === filtro
+            );
+
+    }
+
+
+    if (!resultados.length) {
+
+        tabla.innerHTML = `
+
+            <tr>
+
+                <td colspan="8">
+
+                    <div class="empty-state">
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-box-open"></i>
+
+                        </div>
+
+                        <h3>
+                            No se encontraron envíos
+                        </h3>
+
+                        <p>
+                            Intenta realizar otra búsqueda.
+                        </p>
 
                     </div>
 
-                </div>
-            `;
+                </td>
 
-        }).join("");
+            </tr>
 
-}
+        `;
 
+        return;
 
-function createDefaultHistory(status) {
-
-    const states = [
-        {
-            key: "recibido",
-            title: "Envío recibido",
-            description: "Paquete registrado"
-        },
-        {
-            key: "procesado",
-            title: "Procesado",
-            description: "Información verificada"
-        },
-        {
-            key: "transito",
-            title: "En tránsito",
-            description: "En camino al destino"
-        },
-        {
-            key: "entregado",
-            title: "Entregado",
-            description: "Entrega completada"
-        }
-    ];
+    }
 
 
-    const statusOrder = {
-        pendiente: 0,
-        recibido: 1,
-        procesado: 2,
-        transito: 3,
-        aduana: 3,
-        entregado: 4
-    };
-
-
-    const currentOrder =
-        statusOrder[status] ?? 0;
-
-
-    return states.map(
-        (state, index) => {
-
-            return {
-
-                title:
-                    state.title,
-
-                description:
-                    index < currentOrder
-                        ? state.description
-                        : "Pendiente",
-
-                completed:
-                    index < currentOrder,
-
-                current:
-                    index === currentOrder
-
-            };
-
-        }
-    );
+    tabla.innerHTML =
+        resultados.map(
+            crearFilaEnvio
+        ).join("");
 
 }
 
 
-function setupModal() {
+function crearFilaEnvio(envio) {
+
+    return `
+
+        <tr>
+
+            <td>
+                <strong>
+                    ${escaparHTML(envio.codigo)}
+                </strong>
+            </td>
+
+            <td>
+                ${escaparHTML(envio.cliente)}
+            </td>
+
+            <td>
+                ${escaparHTML(envio.origen)}
+            </td>
+
+            <td>
+                ${escaparHTML(envio.destino)}
+            </td>
+
+            <td>
+                ${envio.peso} kg
+            </td>
+
+            <td>
+
+                <select
+                    class="shipment-status-select"
+                    data-id="${envio.id}">
+
+                    <option
+                        value="pendiente"
+                        ${envio.estado === "pendiente" ? "selected" : ""}>
+                        Pendiente
+                    </option>
+
+                    <option
+                        value="transito"
+                        ${envio.estado === "transito" ? "selected" : ""}>
+                        En tránsito
+                    </option>
+
+                    <option
+                        value="aduana"
+                        ${envio.estado === "aduana" ? "selected" : ""}>
+                        En aduana
+                    </option>
+
+                    <option
+                        value="entregado"
+                        ${envio.estado === "entregado" ? "selected" : ""}>
+                        Entregado
+                    </option>
+
+                </select>
+
+            </td>
+
+            <td>
+                ${formatearFecha(envio.fecha)}
+            </td>
+
+            <td>
+
+                <button
+                    class="table-action"
+                    onclick="verEnvio('${envio.id}')"
+                    title="Ver">
+
+                    <i class="fa-solid fa-eye"></i>
+
+                </button>
+
+                <button
+                    class="table-action delete"
+                    onclick="eliminarEnvio('${envio.id}')"
+                    title="Eliminar">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        </tr>
+
+    `;
+
+}
+
+
+/* =========================================================
+   ESTADO
+========================================================= */
+
+function crearEstado(estado) {
+
+    const clase = {
+
+        pendiente: "status-pendiente",
+
+        transito: "status-transito",
+
+        aduana: "status-aduana",
+
+        entregado: "status-entregado"
+
+    }[estado] || "status-pendiente";
+
+
+    return `
+
+        <span class="status ${clase}">
+
+            ${estados[estado] || "Desconocido"}
+
+        </span>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CAMBIO DE ESTADO
+========================================================= */
+
+document.addEventListener(
+    "change",
+    evento => {
+
+        if (
+            !evento.target.classList.contains(
+                "shipment-status-select"
+            )
+        ) {
+            return;
+        }
+
+
+        const id =
+            evento.target.dataset.id;
+
+        const nuevoEstado =
+            evento.target.value;
+
+
+        cambiarEstado(
+            id,
+            nuevoEstado
+        );
+
+    }
+);
+
+
+function cambiarEstado(id, nuevoEstado) {
+
+    const envio =
+        envios.find(
+            item =>
+                String(item.id) === String(id)
+        );
+
+
+    if (!envio) return;
+
 
     if (
-        !elements.shipmentModal ||
-        !elements.closeModal ||
-        !elements.closeModalButton
+        envio.estado === nuevoEstado
     ) {
         return;
     }
 
 
-    elements.closeModal.addEventListener(
-        "click",
-        closeShipmentModal
+    envio.estado =
+        nuevoEstado;
+
+
+    if (!envio.historial) {
+        envio.historial = [];
+    }
+
+
+    envio.historial.push({
+
+        estado: nuevoEstado,
+
+        fecha:
+            obtenerFechaHora(),
+
+        descripcion:
+            obtenerDescripcionEstado(
+                nuevoEstado
+            )
+
+    });
+
+
+    guardarEnvios();
+
+    reconstruirClientes();
+
+    actualizarTodo();
+
+
+    mostrarNotificacion(
+        `${envio.codigo} actualizado a "${estados[nuevoEstado]}".`,
+        "success"
+    );
+
+}
+
+
+function obtenerDescripcionEstado(estado) {
+
+    const descripciones = {
+
+        pendiente:
+            "El envío se encuentra pendiente de procesamiento.",
+
+        transito:
+            "El envío se encuentra en tránsito.",
+
+        aduana:
+            "El envío se encuentra en proceso de aduana.",
+
+        entregado:
+            "El envío ha sido entregado correctamente."
+
+    };
+
+
+    return (
+        descripciones[estado] ||
+        "Estado actualizado."
+    );
+
+}
+
+
+/* =========================================================
+   BÚSQUEDA
+========================================================= */
+
+function inicializarBusqueda() {
+
+    const busqueda =
+        document.getElementById(
+            "shipmentSearch"
+        );
+
+    const filtro =
+        document.getElementById(
+            "statusFilter"
+        );
+
+
+    if (busqueda) {
+
+        busqueda.addEventListener(
+            "input",
+            renderizarEnvios
+        );
+
+    }
+
+
+    if (filtro) {
+
+        filtro.addEventListener(
+            "change",
+            renderizarEnvios
+        );
+
+    }
+
+
+    const clientSearch =
+        document.getElementById(
+            "clientSearch"
+        );
+
+
+    if (clientSearch) {
+
+        clientSearch.addEventListener(
+            "input",
+            renderizarClientes
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   DETALLE DEL ENVÍO
+========================================================= */
+
+function verEnvio(id) {
+
+    const envio =
+        envios.find(
+            item =>
+                String(item.id) === String(id)
+        );
+
+
+    if (!envio) return;
+
+
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
+
+
+    if (!modal) return;
+
+
+    asignarTexto(
+        "modalShipmentTitle",
+        envio.codigo
+    );
+
+    asignarTexto(
+        "modalClient",
+        envio.cliente
+    );
+
+    asignarTexto(
+        "modalStatus",
+        estados[envio.estado]
+    );
+
+    asignarTexto(
+        "modalOrigin",
+        envio.origen
+    );
+
+    asignarTexto(
+        "modalDestination",
+        envio.destino
     );
 
 
-    elements.closeModalButton.addEventListener(
-        "click",
-        closeShipmentModal
+    const timeline =
+        modal.querySelector(
+            ".tracking-timeline"
+        );
+
+
+    if (timeline) {
+
+        timeline.innerHTML =
+            crearTimeline(envio);
+
+    }
+
+
+    modal.classList.add("active");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
     );
 
+}
 
-    elements.shipmentModal.addEventListener(
-        "click",
-        event => {
 
-            if (
-                event.target ===
-                elements.shipmentModal
-            ) {
+function crearTimeline(envio) {
 
-                closeShipmentModal();
+    if (
+        !envio.historial ||
+        !envio.historial.length
+    ) {
+
+        return `
+
+            <div class="empty-state">
+
+                <p>
+                    No existe historial.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    return envio.historial
+        .map((evento, indice) => {
+
+            const esUltimo =
+                indice ===
+                envio.historial.length - 1;
+
+
+            return `
+
+                <div class="
+                    timeline-item
+                    ${esUltimo ? "active" : "completed"}
+                ">
+
+                    <div class="timeline-dot"></div>
+
+                    <strong>
+                        ${escaparHTML(
+                            estados[evento.estado]
+                        )}
+                    </strong>
+
+                    <span>
+                        ${escaparHTML(evento.fecha)}
+                    </span>
+
+                    <p>
+                        ${escaparHTML(
+                            evento.descripcion
+                        )}
+                    </p>
+
+                </div>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function inicializarModal() {
+
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
+
+    const cerrar =
+        document.getElementById(
+            "closeModal"
+        );
+
+    const cerrarButton =
+        document.getElementById(
+            "closeModalButton"
+        );
+
+
+    if (cerrar) {
+
+        cerrar.addEventListener(
+            "click",
+            cerrarModal
+        );
+
+    }
+
+
+    if (cerrarButton) {
+
+        cerrarButton.addEventListener(
+            "click",
+            cerrarModal
+        );
+
+    }
+
+
+    if (modal) {
+
+        modal.addEventListener(
+            "click",
+            evento => {
+
+                if (
+                    evento.target === modal
+                ) {
+
+                    cerrarModal();
+
+                }
 
             }
+        );
 
-        }
-    );
+    }
 
 
     document.addEventListener(
         "keydown",
-        event => {
+        evento => {
 
             if (
-                event.key === "Escape" &&
-                elements.shipmentModal.classList.contains(
-                    "active"
-                )
+                evento.key === "Escape"
             ) {
 
-                closeShipmentModal();
+                cerrarModal();
 
             }
 
@@ -1252,171 +1632,1054 @@ function setupModal() {
 }
 
 
-function closeShipmentModal() {
+function cerrarModal() {
 
-    elements.shipmentModal.classList.remove(
-        "active"
-    );
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
 
 
-    elements.shipmentModal.setAttribute(
+    if (!modal) return;
+
+
+    modal.classList.remove("active");
+
+    modal.setAttribute(
         "aria-hidden",
         "true"
     );
 
-
-    document.body.style.overflow =
-        "";
-
 }
 
 
-function setupMobileMenu() {
+/* =========================================================
+   ELIMINAR ENVÍO
+========================================================= */
 
-    if (!elements.menuToggle) {
-        return;
-    }
+function eliminarEnvio(id) {
+
+    const envio =
+        envios.find(
+            item =>
+                String(item.id) === String(id)
+        );
 
 
-    elements.menuToggle.addEventListener(
-        "click",
-        () => {
+    if (!envio) return;
 
-            elements.sidebar.classList.toggle(
-                "open"
-            );
 
-        }
+    const confirmar =
+        confirm(
+            `¿Deseas eliminar el envío ${envio.codigo}?`
+        );
+
+
+    if (!confirmar) return;
+
+
+    envios =
+        envios.filter(
+            item =>
+                String(item.id) !== String(id)
+        );
+
+
+    guardarEnvios();
+
+    reconstruirClientes();
+
+    actualizarTodo();
+
+
+    mostrarNotificacion(
+        `El envío ${envio.codigo} fue eliminado.`,
+        "success"
     );
 
 }
 
 
-function formatDate(dateString) {
+/* =========================================================
+   CLIENTES
+========================================================= */
 
-    if (!dateString) {
-        return "—";
-    }
+function reconstruirClientes() {
 
-
-    const date =
-        new Date(
-            `${dateString}T00:00:00`
-        );
+    const mapa =
+        {};
 
 
-    if (Number.isNaN(date.getTime())) {
-        return dateString;
-    }
+    envios.forEach(envio => {
+
+        const clave =
+            envio.cliente
+                .trim()
+                .toLowerCase();
 
 
-    return new Intl.DateTimeFormat(
-        "es-NI",
-        {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
+        if (!mapa[clave]) {
+
+            mapa[clave] = {
+
+                id: generarId(),
+
+                nombre: envio.cliente,
+
+                telefono:
+                    envio.telefono || "",
+
+                total: 0,
+
+                transito: 0,
+
+                entregados: 0
+
+            };
+
         }
-    ).format(date);
+
+
+        mapa[clave].total++;
+
+
+        if (
+            envio.estado === "transito"
+        ) {
+
+            mapa[clave].transito++;
+
+        }
+
+
+        if (
+            envio.estado === "entregado"
+        ) {
+
+            mapa[clave].entregados++;
+
+        }
+
+    });
+
+
+    clientes =
+        Object.values(mapa);
+
+
+    guardarClientes();
 
 }
 
 
-function showNotification(message, type = "success") {
+function inicializarClientes() {
 
-    const existing =
-        document.querySelector(
-            ".system-notification"
+    const boton =
+        document.getElementById(
+            "newClientButton"
         );
 
 
-    if (existing) {
-        existing.remove();
+    if (boton) {
+
+        boton.addEventListener(
+            "click",
+            () => {
+
+                const nombre =
+                    prompt(
+                        "Nombre del nuevo cliente:"
+                    );
+
+
+                if (!nombre) return;
+
+
+                const telefono =
+                    prompt(
+                        "Teléfono del cliente:"
+                    ) || "";
+
+
+                clientes.push({
+
+                    id: generarId(),
+
+                    nombre,
+
+                    telefono,
+
+                    total: 0,
+
+                    transito: 0,
+
+                    entregados: 0
+
+                });
+
+
+                guardarClientes();
+
+                renderizarClientes();
+
+
+                mostrarNotificacion(
+                    "Cliente agregado correctamente.",
+                    "success"
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+function renderizarClientes() {
+
+    const tabla =
+        document.getElementById(
+            "clientsTable"
+        );
+
+
+    if (!tabla) return;
+
+
+    const busqueda =
+        document.getElementById(
+            "clientSearch"
+        )?.value
+        .toLowerCase()
+        .trim() || "";
+
+
+    let resultados =
+        [...clientes];
+
+
+    if (busqueda) {
+
+        resultados =
+            resultados.filter(
+                cliente => {
+
+                    return (
+
+                        cliente.nombre
+                            .toLowerCase()
+                            .includes(busqueda)
+
+                        ||
+
+                        cliente.telefono
+                            .toLowerCase()
+                            .includes(busqueda)
+
+                    );
+
+                }
+            );
+
     }
 
 
-    const notification =
-        document.createElement("div");
+    if (!resultados.length) {
+
+        tabla.innerHTML = `
+
+            <tr>
+
+                <td colspan="6">
+
+                    <div class="empty-state">
+
+                        <h3>
+                            No hay clientes
+                        </h3>
+
+                        <p>
+                            Los clientes aparecerán al registrar envíos.
+                        </p>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
 
 
-    notification.className =
-        `system-notification ${type}`;
+    tabla.innerHTML =
+        resultados.map(
+            cliente => `
+
+                <tr>
+
+                    <td>
+
+                        <strong>
+                            ${escaparHTML(
+                                cliente.nombre
+                            )}
+                        </strong>
+
+                    </td>
+
+                    <td>
+                        ${escaparHTML(
+                            cliente.telefono || "—"
+                        )}
+                    </td>
+
+                    <td>
+                        ${cliente.total}
+                    </td>
+
+                    <td>
+                        ${cliente.transito}
+                    </td>
+
+                    <td>
+                        ${cliente.entregados}
+                    </td>
+
+                    <td>
+
+                        <button
+                            class="table-action"
+                            onclick="verCliente('${cliente.nombre.replace(/'/g, "\\'")}')">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `
+        ).join("");
+
+}
 
 
-    notification.innerHTML = `
+function verCliente(nombre) {
 
-        <span class="notification-icon">
-            ${type === "success" ? "✓" : "!"}
-        </span>
+    const cliente =
+        clientes.find(
+            item =>
+                item.nombre === nombre
+        );
 
-        <span>
-            ${escapeHTML(message)}
-        </span>
+
+    if (!cliente) return;
+
+
+    const enviosCliente =
+        envios.filter(
+            envio =>
+                envio.cliente === nombre
+        );
+
+
+    alert(
+        `Cliente: ${cliente.nombre}\n\n` +
+
+        `Teléfono: ${
+            cliente.telefono || "No registrado"
+        }\n\n` +
+
+        `Total de envíos: ${
+            enviosCliente.length
+        }\n\n` +
+
+        `Entregados: ${
+            enviosCliente.filter(
+                e =>
+                    e.estado === "entregado"
+            ).length
+        }\n\n` +
+
+        `En tránsito: ${
+            enviosCliente.filter(
+                e =>
+                    e.estado === "transito"
+            ).length
+        }`
+    );
+
+}
+
+
+/* =========================================================
+   SEGUIMIENTO
+========================================================= */
+
+function inicializarSeguimiento() {
+
+    const boton =
+        document.getElementById(
+            "trackingButton"
+        );
+
+    const input =
+        document.getElementById(
+            "trackingCode"
+        );
+
+
+    if (boton) {
+
+        boton.addEventListener(
+            "click",
+            consultarSeguimiento
+        );
+
+    }
+
+
+    if (input) {
+
+        input.addEventListener(
+            "keydown",
+            evento => {
+
+                if (
+                    evento.key === "Enter"
+                ) {
+
+                    consultarSeguimiento();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+function consultarSeguimiento() {
+
+    const input =
+        document.getElementById(
+            "trackingCode"
+        );
+
+
+    if (!input) return;
+
+
+    const codigo =
+        input.value
+            .trim()
+            .toLowerCase();
+
+
+    const envio =
+        envios.find(
+            item =>
+                item.codigo
+                    .toLowerCase() === codigo
+        );
+
+
+    const resultado =
+        document.getElementById(
+            "trackingResult"
+        );
+
+    const vacio =
+        document.getElementById(
+            "trackingEmpty"
+        );
+
+
+    if (!envio) {
+
+        if (resultado) {
+            resultado.style.display = "none";
+        }
+
+        if (vacio) {
+            vacio.style.display = "block";
+        }
+
+
+        mostrarNotificacion(
+            "No se encontró ningún envío con ese código.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    if (resultado) {
+
+        resultado.style.display = "block";
+
+    }
+
+    if (vacio) {
+
+        vacio.style.display = "none";
+
+    }
+
+
+    asignarTexto(
+        "trackingResultTitle",
+        envio.codigo
+    );
+
+    asignarTexto(
+        "trackingResultClient",
+        envio.cliente
+    );
+
+    asignarTexto(
+        "trackingOrigin",
+        envio.origen
+    );
+
+    asignarTexto(
+        "trackingDestination",
+        envio.destino
+    );
+
+    asignarTexto(
+        "trackingType",
+        envio.tipo
+    );
+
+    asignarTexto(
+        "trackingWeight",
+        `${envio.peso} kg`
+    );
+
+
+    const estado =
+        document.getElementById(
+            "trackingResultStatus"
+        );
+
+
+    if (estado) {
+
+        estado.className =
+            `status status-${envio.estado}`;
+
+        estado.textContent =
+            estados[envio.estado];
+
+    }
+
+
+    const timeline =
+        document.getElementById(
+            "trackingTimeline"
+        );
+
+
+    if (timeline) {
+
+        timeline.innerHTML =
+            crearTimeline(envio);
+
+    }
+
+}
+
+
+/* =========================================================
+   REPORTES
+========================================================= */
+
+function inicializarReportes() {
+
+    const boton =
+        document.getElementById(
+            "exportReportButton"
+        );
+
+
+    if (boton) {
+
+        boton.addEventListener(
+            "click",
+            exportarReporte
+        );
+
+    }
+
+}
+
+
+function actualizarReportes() {
+
+    const total =
+        envios.length;
+
+
+    const importaciones =
+        envios.filter(
+            envio =>
+                envio.tipo === "Importación"
+        ).length;
+
+
+    const exportaciones =
+        envios.filter(
+            envio =>
+                envio.tipo === "Exportación"
+        ).length;
+
+
+    const peso =
+        envios.reduce(
+            (total, envio) =>
+                total +
+                Number(envio.peso || 0),
+            0
+        );
+
+
+    asignarTexto(
+        "reportTotal",
+        total
+    );
+
+    asignarTexto(
+        "reportImports",
+        importaciones
+    );
+
+    asignarTexto(
+        "reportExports",
+        exportaciones
+    );
+
+    asignarTexto(
+        "reportWeight",
+        `${peso.toFixed(1)} kg`
+    );
+
+
+    const tabla =
+        document.getElementById(
+            "reportTable"
+        );
+
+
+    if (!tabla) return;
+
+
+    const porcentaje =
+        total > 0
+            ? Math.round(
+                (importaciones / total) * 100
+            )
+            : 0;
+
+
+    const porcentajeExport =
+        total > 0
+            ? Math.round(
+                (exportaciones / total) * 100
+            )
+            : 0;
+
+
+    tabla.innerHTML = `
+
+        <tr>
+
+            <td>
+                Importaciones
+            </td>
+
+            <td>
+                ${importaciones}
+            </td>
+
+            <td>
+                ${porcentaje}%
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Exportaciones
+            </td>
+
+            <td>
+                ${exportaciones}
+            </td>
+
+            <td>
+                ${porcentajeExport}%
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Pendientes
+            </td>
+
+            <td>
+                ${
+                    envios.filter(
+                        e =>
+                            e.estado === "pendiente"
+                    ).length
+                }
+            </td>
+
+            <td>
+                ${
+                    total
+                        ? Math.round(
+                            (
+                                envios.filter(
+                                    e =>
+                                        e.estado === "pendiente"
+                                ).length /
+                                total
+                            ) * 100
+                        )
+                        : 0
+                }%
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                En tránsito
+            </td>
+
+            <td>
+                ${
+                    envios.filter(
+                        e =>
+                            e.estado === "transito"
+                    ).length
+                }
+            </td>
+
+            <td>
+                ${
+                    total
+                        ? Math.round(
+                            (
+                                envios.filter(
+                                    e =>
+                                        e.estado === "transito"
+                                ).length /
+                                total
+                            ) * 100
+                        )
+                        : 0
+                }%
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                En aduana
+            </td>
+
+            <td>
+                ${
+                    envios.filter(
+                        e =>
+                            e.estado === "aduana"
+                    ).length
+                }
+            </td>
+
+            <td>
+                ${
+                    total
+                        ? Math.round(
+                            (
+                                envios.filter(
+                                    e =>
+                                        e.estado === "aduana"
+                                ).length /
+                                total
+                            ) * 100
+                        )
+                        : 0
+                }%
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>
+                Entregados
+            </td>
+
+            <td>
+                ${
+                    envios.filter(
+                        e =>
+                            e.estado === "entregado"
+                    ).length
+                }
+            </td>
+
+            <td>
+                ${
+                    total
+                        ? Math.round(
+                            (
+                                envios.filter(
+                                    e =>
+                                        e.estado === "entregado"
+                                ).length /
+                                total
+                            ) * 100
+                        )
+                        : 0
+                }%
+            </td>
+
+        </tr>
 
     `;
 
+}
 
-    Object.assign(
-        notification.style,
-        {
-            position: "fixed",
-            right: "24px",
-            bottom: "24px",
-            zIndex: "3000",
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            padding: "13px 16px",
-            background: "#ffffff",
-            border: "1px solid #e2e8f0",
-            borderRadius: "10px",
-            boxShadow: "0 12px 35px rgba(15, 23, 42, 0.15)",
-            color: "#0f172a",
-            fontSize: "12px",
-            fontWeight: "600",
-            animation: "sectionIn 0.2s ease"
-        }
-    );
+
+/* =========================================================
+   EXPORTAR REPORTE
+========================================================= */
+
+function exportarReporte() {
+
+    if (!envios.length) {
+
+        mostrarNotificacion(
+            "No existen datos para exportar.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+    let csv =
+        "Código,Cliente,Origen,Destino,Tipo,Peso,Estado,Fecha\n";
+
+
+    envios.forEach(envio => {
+
+        csv += [
+
+            envio.codigo,
+
+            envio.cliente,
+
+            envio.origen,
+
+            envio.destino,
+
+            envio.tipo,
+
+            envio.peso,
+
+            estados[envio.estado],
+
+            envio.fecha
+
+        ]
+        .map(valor =>
+            `"${String(valor).replace(/"/g, '""')}"`
+        )
+        .join(",");
+
+
+        csv += "\n";
+
+    });
+
+
+    const blob =
+        new Blob(
+            [csv],
+            {
+                type: "text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const enlace =
+        document.createElement("a");
+
+
+    enlace.href = url;
+
+    enlace.download =
+        `reporte-envios-ya-${obtenerFechaActual()}.csv`;
 
 
     document.body.appendChild(
-        notification
+        enlace
     );
 
 
-    setTimeout(
+    enlace.click();
+
+
+    enlace.remove();
+
+    URL.revokeObjectURL(url);
+
+
+    mostrarNotificacion(
+        "Reporte exportado correctamente.",
+        "success"
+    );
+
+}
+
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
+function inicializarConfiguracion() {
+
+    const boton =
+        document.getElementById(
+            "saveSettingsButton"
+        );
+
+
+    if (!boton) return;
+
+
+    boton.addEventListener(
+        "click",
         () => {
 
-            notification.style.opacity =
-                "0";
-
-            notification.style.transform =
-                "translateY(5px)";
-
-            notification.style.transition =
-                "0.2s ease";
-
-
-            setTimeout(
-                () => notification.remove(),
-                200
+            mostrarNotificacion(
+                "Configuración guardada correctamente.",
+                "success"
             );
 
-        },
-        3000
+        }
     );
 
 }
 
 
-function escapeHTML(value) {
+/* =========================================================
+   NOTIFICACIONES
+========================================================= */
 
-    const div =
-        document.createElement("div");
+function mostrarNotificacion(
+    mensaje,
+    tipo = "success"
+) {
 
-    div.textContent =
-        value ?? "";
+    const anterior =
+        document.querySelector(
+            ".notification-toast"
+        );
 
-    return div.innerHTML;
+
+    if (anterior) {
+        anterior.remove();
+    }
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+    toast.className =
+        `notification-toast ${tipo}`;
+
+
+    toast.textContent =
+        mensaje;
+
+
+    document.body.appendChild(
+        toast
+    );
+
+
+    setTimeout(() => {
+
+        toast.remove();
+
+    }, 3500);
 
 }
+
+
+/* =========================================================
+   ACTUALIZACIÓN GENERAL
+========================================================= */
+
+function actualizarTodo() {
+
+    actualizarDashboard();
+
+    renderizarEnvios();
+
+    reconstruirClientes();
+
+    renderizarClientes();
+
+    actualizarReportes();
+
+}
+
+
+/* =========================================================
+   EXPOSICIÓN DE FUNCIONES
+========================================================= */
+
+window.verEnvio =
+    verEnvio;
+
+window.eliminarEnvio =
+    eliminarEnvio;
+
+window.verCliente =
+    verCliente;

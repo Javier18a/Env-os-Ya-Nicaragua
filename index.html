@@ -5,31 +5,31 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="description"
-        content="Centro de Control de Envíos Ya">
+    <meta name="description" content="Sistema de gestión y seguimiento de envíos de Envios Ya Nicaragua">
 
-    <title>Envíos Ya | Centro de Control</title>
+    <title>Envios Ya | Sistema de Gestión</title>
 
-    <link
-        rel="stylesheet"
-        href="css/estilos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link rel="stylesheet" href="css/estilos.css">
 
 </head>
 
+
 <body>
+
 
     <div class="app">
 
+
         <!-- =====================================================
-             SIDEBAR
-        ====================================================== -->
+         SIDEBAR
+    ====================================================== -->
 
         <aside class="sidebar">
+
 
             <div class="sidebar-header">
 
@@ -41,9 +41,9 @@
 
                     <div class="brand-info">
 
-                        <h1>Envíos Ya</h1>
+                        <h1>Envios Ya</h1>
 
-                        <span>Centro de Control</span>
+                        <span>Sistema de gestión</span>
 
                     </div>
 
@@ -54,16 +54,16 @@
 
             <nav class="sidebar-nav">
 
+
                 <span class="nav-title">
                     PRINCIPAL
                 </span>
 
-                <button
-                    class="nav-item active"
-                    data-section="dashboard">
+
+                <button class="nav-item active" data-section="dashboard">
 
                     <span class="nav-icon">
-                        ◈
+                        <i class="fa-solid fa-chart-pie"></i>
                     </span>
 
                     <span>
@@ -73,12 +73,10 @@
                 </button>
 
 
-                <button
-                    class="nav-item"
-                    data-section="envios">
+                <button class="nav-item" data-section="envios">
 
                     <span class="nav-icon">
-                        ▣
+                        <i class="fa-solid fa-box"></i>
                     </span>
 
                     <span>
@@ -88,12 +86,10 @@
                 </button>
 
 
-                <button
-                    class="nav-item"
-                    data-section="registrar">
+                <button class="nav-item" data-section="registrar">
 
                     <span class="nav-icon">
-                        ＋
+                        <i class="fa-solid fa-plus"></i>
                     </span>
 
                     <span>
@@ -104,16 +100,14 @@
 
 
                 <span class="nav-title">
-                    GESTIÓN
+                    OPERACIONES
                 </span>
 
 
-                <button
-                    class="nav-item"
-                    data-section="clientes">
+                <button class="nav-item" data-section="clientes">
 
                     <span class="nav-icon">
-                        ◎
+                        <i class="fa-solid fa-users"></i>
                     </span>
 
                     <span>
@@ -123,12 +117,23 @@
                 </button>
 
 
-                <button
-                    class="nav-item"
-                    data-section="reportes">
+                <button class="nav-item" data-section="seguimiento">
 
                     <span class="nav-icon">
-                        ▤
+                        <i class="fa-solid fa-location-dot"></i>
+                    </span>
+
+                    <span>
+                        Seguimiento
+                    </span>
+
+                </button>
+
+
+                <button class="nav-item" data-section="reportes">
+
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-chart-column"></i>
                     </span>
 
                     <span>
@@ -139,16 +144,27 @@
 
 
                 <span class="nav-title">
-                    SISTEMA
+                    ADMINISTRACIÓN
                 </span>
 
 
-                <button
-                    class="nav-item"
-                    data-section="configuracion">
+                <button class="nav-item" data-section="usuarios">
 
                     <span class="nav-icon">
-                        ⚙
+                        <i class="fa-solid fa-user-shield"></i>
+                    </span>
+
+                    <span>
+                        Usuarios
+                    </span>
+
+                </button>
+
+
+                <button class="nav-item" data-section="configuracion">
+
+                    <span class="nav-icon">
+                        <i class="fa-solid fa-gear"></i>
                     </span>
 
                     <span>
@@ -157,16 +173,20 @@
 
                 </button>
 
+
             </nav>
 
 
             <div class="sidebar-footer">
 
+
                 <div class="user-card">
 
+
                     <div class="user-avatar">
-                        A
+                        AD
                     </div>
+
 
                     <div class="user-info">
 
@@ -175,46 +195,50 @@
                         </strong>
 
                         <span>
-                            Panel interno
+                            Acceso completo
                         </span>
 
                     </div>
 
+
                 </div>
 
+
             </div>
+
 
         </aside>
 
 
+
         <!-- =====================================================
-             CONTENIDO PRINCIPAL
-        ====================================================== -->
+         MAIN
+    ====================================================== -->
 
         <main class="main-content">
 
 
             <!-- =================================================
-                 HEADER
-            ================================================== -->
+             TOPBAR
+        ================================================== -->
 
             <header class="topbar">
 
+
                 <div class="topbar-left">
 
-                    <button
-                        class="menu-toggle"
-                        id="menuToggle"
-                        aria-label="Abrir menú">
 
-                        ☰
+                    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+
+                        <i class="fa-solid fa-bars"></i>
 
                     </button>
+
 
                     <div>
 
                         <span class="breadcrumb">
-                            Principal
+                            Envios Ya / Sistema
                         </span>
 
                         <h2 id="pageTitle">
@@ -223,16 +247,16 @@
 
                     </div>
 
+
                 </div>
 
 
                 <div class="topbar-right">
 
-                    <button
-                        class="notification-button"
-                        aria-label="Notificaciones">
 
-                        🔔
+                    <button class="notification-button" aria-label="Notificaciones">
+
+                        <i class="fa-regular fa-bell"></i>
 
                         <span class="notification-count">
                             3
@@ -244,75 +268,78 @@
                     <div class="topbar-date">
 
                         <span>
-                            Hoy
+                            Fecha actual
                         </span>
 
                         <strong id="currentDate">
-                            15 de agosto de 2026
+                            —
                         </strong>
 
                     </div>
 
+
                 </div>
+
 
             </header>
 
 
-            <!-- =================================================
-                 DASHBOARD
-            ================================================== -->
 
-            <section
-                class="content-section active"
-                id="dashboard">
+            <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+            <section class="content-section active" id="dashboard">
 
 
                 <div class="section-header">
 
+
                     <div>
 
                         <span class="section-label">
-                            RESUMEN OPERATIVO
+                            RESUMEN GENERAL
                         </span>
 
                         <h3>
-                            Estado de los envíos
+                            Dashboard
                         </h3>
 
                         <p>
-                            Consulta el movimiento general de las operaciones.
+                            Resumen de las operaciones de Envios Ya.
                         </p>
 
                     </div>
 
 
-                    <button
-                        class="primary-button"
-                        data-section="registrar">
+                    <button class="primary-button" data-section="registrar">
 
-                        <span>＋</span>
+                        <i class="fa-solid fa-plus"></i>
 
-                        Registrar envío
+                        Nuevo envío
 
                     </button>
+
 
                 </div>
 
 
-                <!-- =============================================
-                     ESTADÍSTICAS
-                ============================================== -->
+
+                <!-- ESTADÍSTICAS -->
 
                 <div class="stats-grid">
 
 
-                    <article class="stat-card">
+                    <div class="stat-card">
+
 
                         <div class="stat-card-top">
 
-                            <span class="stat-icon">
-                                📦
-                            </span>
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-box"></i>
+
+                            </div>
 
                             <span class="stat-label">
                                 Total de envíos
@@ -320,26 +347,33 @@
 
                         </div>
 
-                        <strong
-                            class="stat-value"
-                            id="totalEnvios">
-                            128
+
+                        <strong class="stat-value" id="totalEnvios">
+
+                            0
+
                         </strong>
 
+
                         <span class="stat-description">
-                            En el sistema
+                            Operaciones registradas
                         </span>
 
-                    </article>
+
+                    </div>
 
 
-                    <article class="stat-card">
+
+                    <div class="stat-card">
+
 
                         <div class="stat-card-top">
 
-                            <span class="stat-icon">
-                                🚚
-                            </span>
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-truck"></i>
+
+                            </div>
 
                             <span class="stat-label">
                                 En tránsito
@@ -347,26 +381,33 @@
 
                         </div>
 
-                        <strong
-                            class="stat-value"
-                            id="enviosTransito">
-                            37
+
+                        <strong class="stat-value" id="enviosTransito">
+
+                            0
+
                         </strong>
 
+
                         <span class="stat-description">
-                            Actualmente en movimiento
+                            Envíos en movimiento
                         </span>
 
-                    </article>
+
+                    </div>
 
 
-                    <article class="stat-card">
+
+                    <div class="stat-card">
+
 
                         <div class="stat-card-top">
 
-                            <span class="stat-icon">
-                                🛃
-                            </span>
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-building-columns"></i>
+
+                            </div>
 
                             <span class="stat-label">
                                 En aduana
@@ -374,26 +415,33 @@
 
                         </div>
 
-                        <strong
-                            class="stat-value"
-                            id="enviosAduana">
-                            12
+
+                        <strong class="stat-value" id="enviosAduana">
+
+                            0
+
                         </strong>
+
 
                         <span class="stat-description">
                             Pendientes de procesamiento
                         </span>
 
-                    </article>
+
+                    </div>
 
 
-                    <article class="stat-card">
+
+                    <div class="stat-card">
+
 
                         <div class="stat-card-top">
 
-                            <span class="stat-icon">
-                                ✓
-                            </span>
+                            <div class="stat-icon">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                            </div>
 
                             <span class="stat-label">
                                 Entregados
@@ -401,26 +449,30 @@
 
                         </div>
 
-                        <strong
-                            class="stat-value"
-                            id="enviosEntregados">
-                            71
+
+                        <strong class="stat-value" id="enviosEntregados">
+
+                            0
+
                         </strong>
+
 
                         <span class="stat-description">
                             Entregas completadas
                         </span>
 
-                    </article>
+
+                    </div>
+
 
                 </div>
 
 
-                <!-- =============================================
-                     ACCIONES RÁPIDAS
-                ============================================== -->
+
+                <!-- ACCIONES RÁPIDAS -->
 
                 <div class="quick-actions">
+
 
                     <div class="section-header compact">
 
@@ -431,7 +483,7 @@
                             </span>
 
                             <h3>
-                                Acciones frecuentes
+                                Acciones
                             </h3>
 
                         </div>
@@ -442,13 +494,15 @@
                     <div class="quick-actions-grid">
 
 
-                        <button
-                            class="quick-action"
-                            data-section="registrar">
+                        <button class="quick-action" data-section="registrar">
+
 
                             <span class="quick-action-icon">
-                                ＋
+
+                                <i class="fa-solid fa-box"></i>
+
                             </span>
+
 
                             <span>
 
@@ -457,21 +511,25 @@
                                 </strong>
 
                                 <small>
-                                    Agregar una nueva operación
+                                    Crear nueva operación
                                 </small>
 
                             </span>
 
+
                         </button>
 
 
-                        <button
-                            class="quick-action"
-                            data-section="envios">
+
+                        <button class="quick-action" data-section="seguimiento">
+
 
                             <span class="quick-action-icon">
-                                🔎
+
+                                <i class="fa-solid fa-location-crosshairs"></i>
+
                             </span>
+
 
                             <span>
 
@@ -480,99 +538,108 @@
                                 </strong>
 
                                 <small>
-                                    Buscar por código o cliente
+                                    Buscar por código
                                 </small>
 
                             </span>
 
+
                         </button>
 
 
-                        <button
-                            class="quick-action"
-                            data-section="clientes">
+
+                        <button class="quick-action" data-section="clientes">
+
 
                             <span class="quick-action-icon">
-                                ◎
+
+                                <i class="fa-solid fa-user-plus"></i>
+
                             </span>
+
 
                             <span>
 
                                 <strong>
-                                    Ver clientes
+                                    Clientes
                                 </strong>
 
                                 <small>
-                                    Administrar clientes
+                                    Consultar clientes
                                 </small>
 
                             </span>
 
+
                         </button>
 
 
-                        <button
-                            class="quick-action"
-                            data-section="reportes">
+
+                        <button class="quick-action" data-section="reportes">
+
 
                             <span class="quick-action-icon">
-                                ▤
+
+                                <i class="fa-solid fa-file-lines"></i>
+
                             </span>
+
 
                             <span>
 
                                 <strong>
-                                    Generar reporte
+                                    Reportes
                                 </strong>
 
                                 <small>
-                                    Consultar información
+                                    Consultar operaciones
                                 </small>
 
                             </span>
 
+
                         </button>
+
 
                     </div>
+
 
                 </div>
 
 
-                <!-- =============================================
-                     ENVÍOS RECIENTES
-                ============================================== -->
+
+                <!-- ÚLTIMOS ENVÍOS -->
 
                 <div class="panel">
 
+
                     <div class="panel-header">
+
 
                         <div>
 
-                            <span class="section-label">
-                                OPERACIONES
-                            </span>
-
                             <h3>
-                                Envíos recientes
+                                Últimos envíos
                             </h3>
 
                         </div>
 
 
-                        <button
-                            class="text-button"
-                            data-section="envios">
+                        <button class="text-button" data-section="envios">
 
-                            Ver todos →
+                            Ver todos
 
                         </button>
+
 
                     </div>
 
 
                     <div class="table-container">
 
+
                         <table>
+
 
                             <thead>
 
@@ -617,269 +684,73 @@
 
                             <tbody id="recentShipments">
 
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            ENV-00128
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        Carlos Martínez
-                                    </td>
-
-                                    <td>
-                                        Miami, USA
-                                    </td>
-
-                                    <td>
-                                        Managua, Nicaragua
-                                    </td>
-
-                                    <td>
-                                        Importación
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-transit">
-                                            En tránsito
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        15/08/2026
-                                    </td>
-
-                                    <td>
-
-                                        <button
-                                            class="table-action"
-                                            data-shipment="ENV-00128">
-
-                                            Ver
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            ENV-00127
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        María López
-                                    </td>
-
-                                    <td>
-                                        Miami, USA
-                                    </td>
-
-                                    <td>
-                                        Managua, Nicaragua
-                                    </td>
-
-                                    <td>
-                                        Importación
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-delivered">
-                                            Entregado
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        14/08/2026
-                                    </td>
-
-                                    <td>
-
-                                        <button
-                                            class="table-action"
-                                            data-shipment="ENV-00127">
-
-                                            Ver
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            ENV-00126
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        José Rodríguez
-                                    </td>
-
-                                    <td>
-                                        Panamá
-                                    </td>
-
-                                    <td>
-                                        Managua, Nicaragua
-                                    </td>
-
-                                    <td>
-                                        Importación
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-customs">
-                                            En aduana
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        14/08/2026
-                                    </td>
-
-                                    <td>
-
-                                        <button
-                                            class="table-action"
-                                            data-shipment="ENV-00126">
-
-                                            Ver
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            ENV-00125
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        Ana García
-                                    </td>
-
-                                    <td>
-                                        Miami, USA
-                                    </td>
-
-                                    <td>
-                                        Managua, Nicaragua
-                                    </td>
-
-                                    <td>
-                                        Exportación
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-pending">
-                                            Pendiente
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        13/08/2026
-                                    </td>
-
-                                    <td>
-
-                                        <button
-                                            class="table-action"
-                                            data-shipment="ENV-00125">
-
-                                            Ver
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
                             </tbody>
+
 
                         </table>
 
+
                     </div>
 
+
                 </div>
+
 
             </section>
 
 
-            <!-- =================================================
-                 ENVÍOS
-            ================================================== -->
 
-            <section
-                class="content-section"
-                id="envios">
+            <!-- =================================================
+             ENVÍOS
+        ================================================== -->
+
+            <section class="content-section" id="envios">
+
 
                 <div class="section-header">
+
 
                     <div>
 
                         <span class="section-label">
-                            GESTIÓN DE OPERACIONES
+                            OPERACIONES
                         </span>
 
                         <h3>
-                            Envíos
+                            Gestión de envíos
                         </h3>
 
                         <p>
-                            Busca y consulta los envíos registrados.
+                            Consulta y administra las operaciones registradas.
                         </p>
 
                     </div>
 
-                    <button
-                        class="primary-button"
-                        data-section="registrar">
 
-                        ＋ Registrar envío
+                    <button class="primary-button" data-section="registrar">
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Nuevo envío
 
                     </button>
+
 
                 </div>
 
 
+
                 <div class="search-panel">
+
 
                     <div class="search-box">
 
                         <span>
-                            🔎
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
 
-                        <input
-                            type="search"
-                            id="shipmentSearch"
-                            placeholder="Buscar por código, cliente u origen...">
+                        <input type="text" id="shipmentSearch"
+                            placeholder="Buscar por código, cliente, origen o destino...">
 
                     </div>
 
@@ -892,10 +763,6 @@
 
                         <option value="pendiente">
                             Pendiente
-                        </option>
-
-                        <option value="recibido">
-                            Recibido
                         </option>
 
                         <option value="transito">
@@ -912,14 +779,32 @@
 
                     </select>
 
+
                 </div>
+
 
 
                 <div class="panel">
 
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Envíos registrados
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
                     <div class="table-container">
 
+
                         <table>
+
 
                             <thead>
 
@@ -961,28 +846,34 @@
 
                             </thead>
 
+
                             <tbody id="shipmentsTable">
 
                             </tbody>
 
+
                         </table>
+
 
                     </div>
 
+
                 </div>
+
 
             </section>
 
 
-            <!-- =================================================
-                 REGISTRAR ENVÍO
-            ================================================== -->
 
-            <section
-                class="content-section"
-                id="registrar">
+            <!-- =================================================
+             REGISTRAR ENVÍO
+        ================================================== -->
+
+            <section class="content-section" id="registrar">
+
 
                 <div class="section-header">
+
 
                     <div>
 
@@ -995,302 +886,609 @@
                         </h3>
 
                         <p>
-                            Ingresa la información correspondiente al nuevo envío.
+                            Registra una nueva importación o exportación.
                         </p>
 
                     </div>
 
+
                 </div>
 
 
-                <div class="form-panel">
 
-                    <form id="shipmentForm">
-
-
-                        <div class="form-section">
-
-                            <div class="form-section-header">
-
-                                <h4>
-                                    Información del envío
-                                </h4>
-
-                                <span>
-                                    Datos generales
-                                </span>
-
-                            </div>
+                <form class="form-panel" id="shipmentForm">
 
 
-                            <div class="form-grid">
+                    <!-- INFORMACIÓN DEL ENVÍO -->
+
+                    <div class="form-section">
 
 
-                                <div class="form-group">
+                        <div class="form-section-header">
 
-                                    <label for="shipmentCode">
-                                        Código de envío
-                                    </label>
+                            <h4>
+                                Información del envío
+                            </h4>
 
-                                    <input
-                                        type="text"
-                                        id="shipmentCode"
-                                        name="shipmentCode"
-                                        placeholder="Ej. ENV-00129"
-                                        required>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="operationType">
-                                        Tipo de operación
-                                    </label>
-
-                                    <select
-                                        id="operationType"
-                                        name="operationType"
-                                        required>
-
-                                        <option value="">
-                                            Seleccionar
-                                        </option>
-
-                                        <option value="Importación">
-                                            Importación
-                                        </option>
-
-                                        <option value="Exportación">
-                                            Exportación
-                                        </option>
-
-                                    </select>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="origin">
-                                        País / ciudad de origen
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="origin"
-                                        name="origin"
-                                        placeholder="Ej. Miami, USA"
-                                        required>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="destination">
-                                        País / ciudad de destino
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="destination"
-                                        name="destination"
-                                        placeholder="Ej. Managua, Nicaragua"
-                                        required>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="weight">
-                                        Peso
-                                    </label>
-
-                                    <input
-                                        type="number"
-                                        id="weight"
-                                        name="weight"
-                                        min="0"
-                                        step="0.01"
-                                        placeholder="0.00"
-                                        required>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="shipmentDate">
-                                        Fecha de registro
-                                    </label>
-
-                                    <input
-                                        type="date"
-                                        id="shipmentDate"
-                                        name="shipmentDate"
-                                        required>
-
-                                </div>
-
-                            </div>
+                            <span>
+                                Datos principales
+                            </span>
 
                         </div>
 
 
-                        <div class="form-section">
+                        <div class="form-grid">
 
-                            <div class="form-section-header">
 
-                                <h4>
-                                    Información del cliente
-                                </h4>
+                            <div class="form-group">
 
-                                <span>
-                                    Datos de contacto
-                                </span>
+                                <label for="shipmentCode">
+                                    Código de envío *
+                                </label>
+
+                                <input type="text" id="shipmentCode" placeholder="Ej. ENV-00129" required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="operationType">
+                                    Tipo de operación *
+                                </label>
+
+                                <select id="operationType" required>
+
+                                    <option value="Importación">
+                                        Importación
+                                    </option>
+
+                                    <option value="Exportación">
+                                        Exportación
+                                    </option>
+
+                                </select>
 
                             </div>
 
 
-                            <div class="form-grid">
 
+                            <div class="form-group">
 
-                                <div class="form-group">
+                                <label for="origin">
+                                    Origen *
+                                </label>
 
-                                    <label for="clientName">
-                                        Nombre completo
-                                    </label>
-
-                                    <input
-                                        type="text"
-                                        id="clientName"
-                                        name="clientName"
-                                        placeholder="Nombre del cliente"
-                                        required>
-
-                                </div>
-
-
-                                <div class="form-group">
-
-                                    <label for="clientPhone">
-                                        Teléfono
-                                    </label>
-
-                                    <input
-                                        type="tel"
-                                        id="clientPhone"
-                                        name="clientPhone"
-                                        placeholder="+505 0000 0000">
-
-                                </div>
-
-
-                                <div class="form-group form-group-full">
-
-                                    <label for="notes">
-                                        Observaciones
-                                    </label>
-
-                                    <textarea
-                                        id="notes"
-                                        name="notes"
-                                        rows="4"
-                                        placeholder="Información adicional del envío..."></textarea>
-
-                                </div>
+                                <input type="text" id="origin" placeholder="Ej. Miami, USA" required>
 
                             </div>
 
+
+
+                            <div class="form-group">
+
+                                <label for="destination">
+                                    Destino *
+                                </label>
+
+                                <input type="text" id="destination" placeholder="Ej. Managua, Nicaragua" required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="weight">
+                                    Peso (kg) *
+                                </label>
+
+                                <input type="number" id="weight" min="0.1" step="0.1" placeholder="0.0" required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="shipmentDate">
+                                    Fecha de registro *
+                                </label>
+
+                                <input type="date" id="shipmentDate" required>
+
+                            </div>
+
+
                         </div>
 
 
-                        <div class="form-actions">
+                    </div>
 
-                            <button
-                                type="reset"
-                                class="secondary-button">
 
-                                Cancelar
 
-                            </button>
+                    <!-- CLIENTE -->
 
-                            <button
-                                type="submit"
-                                class="primary-button">
+                    <div class="form-section">
 
-                                Registrar envío
 
-                            </button>
+                        <div class="form-section-header">
+
+                            <h4>
+                                Información del cliente
+                            </h4>
+
+                            <span>
+                                Datos de contacto
+                            </span>
 
                         </div>
 
-                    </form>
 
-                </div>
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="clientName">
+                                    Nombre completo *
+                                </label>
+
+                                <input type="text" id="clientName" placeholder="Nombre del cliente" required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="clientPhone">
+                                    Teléfono
+                                </label>
+
+                                <input type="tel" id="clientPhone" placeholder="+505 8888 8888">
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- OBSERVACIONES -->
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Observaciones
+                            </h4>
+
+                            <span>
+                                Información adicional
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="notes">
+                                    Notas del envío
+                                </label>
+
+                                <textarea id="notes"
+                                    placeholder="Agrega información adicional sobre el envío..."></textarea>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-actions">
+
+
+                        <button type="reset" class="secondary-button">
+
+                            <i class="fa-solid fa-rotate-left"></i>
+
+                            Limpiar
+
+                        </button>
+
+
+                        <button type="submit" class="primary-button">
+
+                            <i class="fa-solid fa-save"></i>
+
+                            Registrar envío
+
+                        </button>
+
+
+                    </div>
+
+
+                </form>
+
 
             </section>
 
 
-            <!-- =================================================
-                 CLIENTES
-            ================================================== -->
 
-            <section
-                class="content-section"
-                id="clientes">
+            <!-- =================================================
+             CLIENTES
+        ================================================== -->
+
+            <section class="content-section" id="clientes">
+
 
                 <div class="section-header">
+
 
                     <div>
 
                         <span class="section-label">
-                            BASE DE CLIENTES
+                            CLIENTES
                         </span>
 
                         <h3>
-                            Clientes
+                            Gestión de clientes
                         </h3>
 
                         <p>
-                            Consulta los clientes registrados en el sistema.
+                            Consulta el historial de operaciones de cada cliente.
                         </p>
 
                     </div>
 
+
+                    <button class="primary-button" id="newClientButton">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Nuevo cliente
+
+                    </button>
+
+
                 </div>
 
 
-                <div class="empty-state">
 
-                    <div class="empty-icon">
-                        ◎
+                <div class="search-panel">
+
+
+                    <div class="search-box">
+
+                        <span>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+
+                        <input type="text" id="clientSearch" placeholder="Buscar cliente...">
+
                     </div>
 
-                    <h3>
-                        Módulo de clientes
-                    </h3>
-
-                    <p>
-                        Esta sección será desarrollada en la siguiente etapa.
-                    </p>
 
                 </div>
+
+
+
+                <div class="panel">
+
+
+                    <div class="panel-header">
+
+                        <h3>
+                            Clientes registrados
+                        </h3>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Cliente
+                                    </th>
+
+                                    <th>
+                                        Teléfono
+                                    </th>
+
+                                    <th>
+                                        Total envíos
+                                    </th>
+
+                                    <th>
+                                        En tránsito
+                                    </th>
+
+                                    <th>
+                                        Entregados
+                                    </th>
+
+                                    <th>
+                                        Acción
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="clientsTable">
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
 
             </section>
 
 
-            <!-- =================================================
-                 REPORTES
-            ================================================== -->
 
-            <section
-                class="content-section"
-                id="reportes">
+            <!-- =================================================
+             SEGUIMIENTO
+        ================================================== -->
+
+            <section class="content-section" id="seguimiento">
+
 
                 <div class="section-header">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            TRACKING
+                        </span>
+
+                        <h3>
+                            Seguimiento de envío
+                        </h3>
+
+                        <p>
+                            Consulta el estado actual de una operación.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="form-panel">
+
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Consultar envío
+                            </h4>
+
+                            <span>
+                                Ingresa el código
+                            </span>
+
+                        </div>
+
+
+                        <div class="search-panel">
+
+
+                            <div class="search-box">
+
+                                <span>
+                                    <i class="fa-solid fa-barcode"></i>
+                                </span>
+
+                                <input type="text" id="trackingCode" placeholder="Ej. ENV-00128">
+
+                            </div>
+
+
+                            <button class="primary-button" id="trackingButton">
+
+                                <i class="fa-solid fa-magnifying-glass"></i>
+
+                                Consultar
+
+                            </button>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div id="trackingResult" style="display:none;">
+
+
+                        <div class="section-header compact">
+
+
+                            <div>
+
+                                <span class="section-label">
+                                    RESULTADO
+                                </span>
+
+                                <h3 id="trackingResultTitle">
+                                    —
+                                </h3>
+
+                                <p id="trackingResultClient">
+                                    —
+                                </p>
+
+                            </div>
+
+
+                            <span id="trackingResultStatus" class="status">
+
+                                —
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <div class="shipment-summary">
+
+
+                            <div>
+
+                                <span>
+                                    Origen
+                                </span>
+
+                                <strong id="trackingOrigin">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Destino
+                                </span>
+
+                                <strong id="trackingDestination">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Tipo
+                                </span>
+
+                                <strong id="trackingType">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Peso
+                                </span>
+
+                                <strong id="trackingWeight">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="tracking">
+
+
+                            <h4>
+                                Historial del envío
+                            </h4>
+
+
+                            <div class="tracking-timeline" id="trackingTimeline">
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div id="trackingEmpty" class="empty-state">
+
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Consulta un envío
+                        </h3>
+
+
+                        <p>
+                            Introduce un código para consultar su estado.
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             REPORTES
+        ================================================== -->
+
+            <section class="content-section" id="reportes">
+
+
+                <div class="section-header">
+
 
                     <div>
 
@@ -1303,42 +1501,408 @@
                         </h3>
 
                         <p>
-                            Consulta estadísticas y reportes operativos.
+                            Consulta estadísticas y comportamiento de las operaciones.
                         </p>
 
                     </div>
 
+
+                    <button class="secondary-button" id="exportReportButton">
+
+                        <i class="fa-solid fa-file-export"></i>
+
+                        Exportar
+
+                    </button>
+
+
                 </div>
 
 
-                <div class="empty-state">
 
-                    <div class="empty-icon">
-                        ▤
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-box"></i>
+                            </div>
+
+                            <span class="stat-label">
+                                Total
+                            </span>
+
+                        </div>
+
+                        <strong class="stat-value" id="reportTotal">
+
+                            0
+
+                        </strong>
+
+                        <span class="stat-description">
+                            Operaciones
+                        </span>
+
                     </div>
 
-                    <h3>
-                        Módulo de reportes
-                    </h3>
 
-                    <p>
-                        Esta sección será desarrollada en la siguiente etapa.
-                    </p>
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-plane-arrival"></i>
+                            </div>
+
+                            <span class="stat-label">
+                                Importaciones
+                            </span>
+
+                        </div>
+
+                        <strong class="stat-value" id="reportImports">
+
+                            0
+
+                        </strong>
+
+                        <span class="stat-description">
+                            Operaciones de entrada
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-plane-departure"></i>
+                            </div>
+
+                            <span class="stat-label">
+                                Exportaciones
+                            </span>
+
+                        </div>
+
+                        <strong class="stat-value" id="reportExports">
+
+                            0
+
+                        </strong>
+
+                        <span class="stat-description">
+                            Operaciones de salida
+                        </span>
+
+                    </div>
+
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                <i class="fa-solid fa-weight-hanging"></i>
+                            </div>
+
+                            <span class="stat-label">
+                                Peso total
+                            </span>
+
+                        </div>
+
+                        <strong class="stat-value" id="reportWeight">
+
+                            0
+
+                        </strong>
+
+                        <span class="stat-description">
+                            Kilogramos registrados
+                        </span>
+
+                    </div>
+
 
                 </div>
+
+
+
+                <div class="panel">
+
+
+                    <div class="panel-header">
+
+                        <h3>
+                            Resumen de operaciones
+                        </h3>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Tipo
+                                    </th>
+
+                                    <th>
+                                        Cantidad
+                                    </th>
+
+                                    <th>
+                                        Porcentaje
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="reportTable">
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
 
             </section>
 
 
-            <!-- =================================================
-                 CONFIGURACIÓN
-            ================================================== -->
 
-            <section
-                class="content-section"
-                id="configuracion">
+            <!-- =================================================
+             USUARIOS
+        ================================================== -->
+
+            <section class="content-section" id="usuarios">
+
 
                 <div class="section-header">
+
+
+                    <div>
+
+                        <span class="section-label">
+                            ADMINISTRACIÓN
+                        </span>
+
+                        <h3>
+                            Usuarios del sistema
+                        </h3>
+
+                        <p>
+                            Administra los accesos de los empleados.
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" id="newUserButton">
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Nuevo usuario
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="panel">
+
+
+                    <div class="panel-header">
+
+                        <h3>
+                            Usuarios registrados
+                        </h3>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+
+                        <table>
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Usuario
+                                    </th>
+
+                                    <th>
+                                        Nombre
+                                    </th>
+
+                                    <th>
+                                        Rol
+                                    </th>
+
+                                    <th>
+                                        Estado
+                                    </th>
+
+                                    <th>
+                                        Último acceso
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="usersTable">
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            admin
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Administrador
+                                    </td>
+
+                                    <td>
+                                        Administrador
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status status-entregado">
+                                            Activo
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+                                        Hoy
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            operador
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Operador principal
+                                    </td>
+
+                                    <td>
+                                        Operador
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status status-entregado">
+                                            Activo
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+                                        Hoy
+                                    </td>
+
+                                </tr>
+
+
+                                <tr>
+
+                                    <td>
+                                        <strong>
+                                            recepcion
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        Recepción
+                                    </td>
+
+                                    <td>
+                                        Recepción
+                                    </td>
+
+                                    <td>
+
+                                        <span class="status status-pending">
+                                            Inactivo
+                                        </span>
+
+                                    </td>
+
+                                    <td>
+                                        Hace 3 días
+                                    </td>
+
+                                </tr>
+
+
+                            </tbody>
+
+
+                        </table>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+             CONFIGURACIÓN
+        ================================================== -->
+
+            <section class="content-section" id="configuracion">
+
+
+                <div class="section-header">
+
 
                     <div>
 
@@ -1356,50 +1920,212 @@
 
                     </div>
 
+
                 </div>
 
 
-                <div class="empty-state">
 
-                    <div class="empty-icon">
-                        ⚙
+                <div class="form-panel">
+
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Información de la empresa
+                            </h4>
+
+                            <span>
+                                Datos generales
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Nombre de la empresa
+                                </label>
+
+                                <input type="text" value="Envios Ya Nicaragua">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    País
+                                </label>
+
+                                <input type="text" value="Nicaragua">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Tipo de servicio
+                                </label>
+
+                                <input type="text" value="Importación y Exportación">
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Moneda
+                                </label>
+
+                                <select>
+
+                                    <option>
+                                        USD - Dólar estadounidense
+                                    </option>
+
+                                    <option>
+                                        NIO - Córdoba nicaragüense
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+
                     </div>
 
-                    <h3>
-                        Configuración
-                    </h3>
 
-                    <p>
-                        Las opciones del sistema estarán disponibles posteriormente.
-                    </p>
+
+                    <div class="form-section">
+
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Estados de envío
+                            </h4>
+
+                            <span>
+                                Flujo operativo
+                            </span>
+
+                        </div>
+
+
+                        <div class="shipment-summary">
+
+
+                            <div>
+
+                                <span>
+                                    Estado 1
+                                </span>
+
+                                <strong>
+                                    Pendiente
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Estado 2
+                                </span>
+
+                                <strong>
+                                    En tránsito
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Estado 3
+                                </span>
+
+                                <strong>
+                                    En aduana
+                                </strong>
+
+                            </div>
+
+
+                            <div>
+
+                                <span>
+                                    Estado 4
+                                </span>
+
+                                <strong>
+                                    Entregado
+                                </strong>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="form-actions">
+
+
+                        <button class="primary-button" id="saveSettingsButton">
+
+                            <i class="fa-solid fa-save"></i>
+
+                            Guardar cambios
+
+                        </button>
+
+
+                    </div>
+
 
                 </div>
+
 
             </section>
 
 
         </main>
 
+
     </div>
 
 
+
     <!-- =========================================================
-         MODAL — DETALLE DEL ENVÍO
-    ========================================================== -->
+     MODAL — DETALLE DEL ENVÍO
+========================================================== -->
 
-    <div
-        class="modal-overlay"
-        id="shipmentModal"
-        aria-hidden="true">
+    <div class="modal-overlay" id="shipmentModal" aria-hidden="true">
 
-        <div
-            class="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modalShipmentTitle">
+
+        <div class="modal">
 
 
             <div class="modal-header">
+
 
                 <div>
 
@@ -1408,27 +2134,28 @@
                     </span>
 
                     <h3 id="modalShipmentTitle">
-                        ENV-00128
+                        —
                     </h3>
 
                 </div>
 
 
-                <button
-                    class="modal-close"
-                    id="closeModal"
-                    aria-label="Cerrar">
+                <button class="modal-close" id="closeModal" aria-label="Cerrar">
 
                     ×
 
                 </button>
 
+
             </div>
+
 
 
             <div class="modal-body">
 
+
                 <div class="shipment-summary">
+
 
                     <div>
 
@@ -1437,7 +2164,7 @@
                         </span>
 
                         <strong id="modalClient">
-                            Carlos Martínez
+                            —
                         </strong>
 
                     </div>
@@ -1450,7 +2177,7 @@
                         </span>
 
                         <strong id="modalStatus">
-                            En tránsito
+                            —
                         </strong>
 
                     </div>
@@ -1463,7 +2190,7 @@
                         </span>
 
                         <strong id="modalOrigin">
-                            Miami, USA
+                            —
                         </strong>
 
                     </div>
@@ -1476,15 +2203,18 @@
                         </span>
 
                         <strong id="modalDestination">
-                            Managua, Nicaragua
+                            —
                         </strong>
 
                     </div>
 
+
                 </div>
 
 
+
                 <div class="tracking">
+
 
                     <h4>
                         Historial del envío
@@ -1493,118 +2223,39 @@
 
                     <div class="tracking-timeline">
 
-                        <div class="timeline-item completed">
-
-                            <span class="timeline-dot">
-                                ✓
-                            </span>
-
-                            <div>
-
-                                <strong>
-                                    Envío recibido
-                                </strong>
-
-                                <small>
-                                    Paquete registrado
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="timeline-item completed">
-
-                            <span class="timeline-dot">
-                                ✓
-                            </span>
-
-                            <div>
-
-                                <strong>
-                                    Procesado
-                                </strong>
-
-                                <small>
-                                    Información verificada
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="timeline-item current">
-
-                            <span class="timeline-dot">
-                                ●
-                            </span>
-
-                            <div>
-
-                                <strong>
-                                    En tránsito
-                                </strong>
-
-                                <small>
-                                    En camino al destino
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="timeline-item">
-
-                            <span class="timeline-dot">
-                                ○
-                            </span>
-
-                            <div>
-
-                                <strong>
-                                    Entregado
-                                </strong>
-
-                                <small>
-                                    Pendiente
-                                </small>
-
-                            </div>
-
-                        </div>
-
                     </div>
 
+
                 </div>
+
 
             </div>
 
 
+
             <div class="modal-footer">
 
-                <button
-                    class="secondary-button"
-                    id="closeModalButton">
+
+                <button class="secondary-button" id="closeModalButton">
 
                     Cerrar
 
                 </button>
 
+
             </div>
 
+
         </div>
+
 
     </div>
 
 
-    <!-- =========================================================
-         JAVASCRIPT
-    ========================================================== -->
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js">
+    </script>
+
 
 </body>
 
