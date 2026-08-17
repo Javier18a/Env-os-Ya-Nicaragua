@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="frm.css">
+</head>
+
+<body>
+
+    <main>
+        <form id="clientForm">
+
+            <!-- =====================================================
+         INFORMACIÓN PERSONAL
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">CLIENTE</span>
+                        <h4>Información personal</h4>
+                    </div>
+
+                    <span>Datos principales del cliente</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="clientFullName">
+                            Nombre completo *
+                        </label>
+
+                        <input type="text" id="clientFullName" name="fullName" placeholder="Ej. Carlos Martínez"
+                            required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientType">
+                            Tipo de cliente *
+                        </label>
+
+                        <select id="clientType" name="clientType" required>
+                            <option value="">
+                                Seleccionar tipo
+                            </option>
+
+                            <option value="persona">
+                                Persona natural
+                            </option>
+
+                            <option value="empresa">
+                                Empresa
+                            </option>
+
+                            <option value="emprendimiento">
+                                Emprendimiento
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientIdentification">
+                            Documento de identidad
+                        </label>
+
+                        <input type="text" id="clientIdentification" name="identification" placeholder="Cédula / RUC">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientBirthDate">
+                            Fecha de nacimiento
+                        </label>
+
+                        <input type="date" id="clientBirthDate" name="birthDate">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientGender">
+                            Género
+                        </label>
+
+                        <select id="clientGender" name="gender">
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="masculino">
+                                Masculino
+                            </option>
+
+                            <option value="femenino">
+                                Femenino
+                            </option>
+
+                            <option value="otro">
+                                Otro
+                            </option>
+
+                            <option value="no-especificado">
+                                Prefiero no especificar
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         INFORMACIÓN DE CONTACTO
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">CONTACTO</span>
+                        <h4>Información de contacto</h4>
+                    </div>
+
+                    <span>Medios para comunicarse con el cliente</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="clientPhone">
+                            Teléfono principal *
+                        </label>
+
+                        <input type="tel" id="clientPhone" name="phone" placeholder="+505 8888 8888" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientPhoneSecondary">
+                            Teléfono secundario
+                        </label>
+
+                        <input type="tel" id="clientPhoneSecondary" name="phoneSecondary" placeholder="+505 8888 8888">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientEmail">
+                            Correo electrónico *
+                        </label>
+
+                        <input type="email" id="clientEmail" name="email" placeholder="cliente@correo.com" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientWhatsapp">
+                            WhatsApp
+                        </label>
+
+                        <input type="tel" id="clientWhatsapp" name="whatsapp" placeholder="+505 8888 8888">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         DIRECCIÓN
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">UBICACIÓN</span>
+                        <h4>Dirección del cliente</h4>
+                    </div>
+
+                    <span>Información para entregas</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="clientCountry">
+                            País *
+                        </label>
+
+                        <select id="clientCountry" name="country" required>
+                            <option value="">
+                                Seleccionar país
+                            </option>
+
+                            <option value="nicaragua">
+                                Nicaragua
+                            </option>
+
+                            <option value="usa">
+                                Estados Unidos
+                            </option>
+
+                            <option value="panama">
+                                Panamá
+                            </option>
+
+                            <option value="costa-rica">
+                                Costa Rica
+                            </option>
+
+                            <option value="otro">
+                                Otro
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientDepartment">
+                            Departamento / Estado
+                        </label>
+
+                        <input type="text" id="clientDepartment" name="department" placeholder="Ej. Managua">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientMunicipality">
+                            Municipio / Ciudad
+                        </label>
+
+                        <input type="text" id="clientMunicipality" name="municipality" placeholder="Ej. Managua">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientNeighborhood">
+                            Barrio / Residencial
+                        </label>
+
+                        <input type="text" id="clientNeighborhood" name="neighborhood" placeholder="Ej. Las Américas">
+                    </div>
+
+
+                    <div class="form-group form-group-full">
+                        <label for="clientAddress">
+                            Dirección exacta *
+                        </label>
+
+                        <textarea id="clientAddress" name="address" placeholder="Dirección detallada para entregas..."
+                            required></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientReference">
+                            Punto de referencia
+                        </label>
+
+                        <input type="text" id="clientReference" name="reference" placeholder="Ej. Frente a...">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientPostalCode">
+                            Código postal
+                        </label>
+
+                        <input type="text" id="clientPostalCode" name="postalCode" placeholder="Código postal">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         INFORMACIÓN COMERCIAL
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">COMERCIAL</span>
+                        <h4>Información comercial</h4>
+                    </div>
+
+                    <span>Datos para operaciones y facturación</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="clientCompany">
+                            Empresa / Negocio
+                        </label>
+
+                        <input type="text" id="clientCompany" name="company" placeholder="Nombre de la empresa">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientRuc">
+                            RUC
+                        </label>
+
+                        <input type="text" id="clientRuc" name="ruc" placeholder="Número RUC">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientOccupation">
+                            Ocupación / Actividad económica
+                        </label>
+
+                        <input type="text" id="clientOccupation" name="occupation" placeholder="Ej. Comercio">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientCustomerType">
+                            Clasificación
+                        </label>
+
+                        <select id="clientCustomerType" name="customerClassification">
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="regular">
+                                Cliente regular
+                            </option>
+
+                            <option value="frecuente">
+                                Cliente frecuente
+                            </option>
+
+                            <option value="empresarial">
+                                Cliente empresarial
+                            </option>
+
+                            <option value="mayorista">
+                                Cliente mayorista
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         PREFERENCIAS DE ENVÍO
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">PREFERENCIAS</span>
+                        <h4>Preferencias de envío</h4>
+                    </div>
+
+                    <span>Configuración habitual del cliente</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="clientOperation">
+                            Operación habitual
+                        </label>
+
+                        <select id="clientOperation" name="operation">
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="importacion">
+                                Importación
+                            </option>
+
+                            <option value="exportacion">
+                                Exportación
+                            </option>
+
+                            <option value="ambas">
+                                Ambas
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientDelivery">
+                            Método de entrega preferido
+                        </label>
+
+                        <select id="clientDelivery" name="deliveryMethod">
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="domicilio">
+                                Entrega a domicilio
+                            </option>
+
+                            <option value="sucursal">
+                                Retiro en sucursal
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientNotification">
+                            Método de notificación
+                        </label>
+
+                        <select id="clientNotification" name="notificationMethod">
+                            <option value="">
+                                Seleccionar
+                            </option>
+
+                            <option value="whatsapp">
+                                WhatsApp
+                            </option>
+
+                            <option value="email">
+                                Correo electrónico
+                            </option>
+
+                            <option value="telefono">
+                                Llamada telefónica
+                            </option>
+
+                            <option value="todos">
+                                Todos
+                            </option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="clientPreferredCurrency">
+                            Moneda preferida
+                        </label>
+
+                        <select id="clientPreferredCurrency" name="currency">
+                            <option value="USD">
+                                USD - Dólares
+                            </option>
+
+                            <option value="NIO">
+                                NIO - Córdobas
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         INFORMACIÓN ADICIONAL
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-section-header">
+                    <div>
+                        <span class="section-label">ADICIONAL</span>
+                        <h4>Información adicional</h4>
+                    </div>
+
+                    <span>Observaciones del cliente</span>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="form-group form-group-full">
+
+                        <label for="clientNotes">
+                            Observaciones
+                        </label>
+
+                        <textarea id="clientNotes" name="notes"
+                            placeholder="Información adicional que pueda ser útil para la empresa..."></textarea>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         CONSENTIMIENTO
+    ====================================================== -->
+
+            <div class="form-section">
+
+                <div class="form-group">
+
+                    <label class="checkbox-label">
+
+                        <input type="checkbox" id="clientDataConsent" name="dataConsent" required>
+
+                        <span>
+                            El cliente autoriza el uso de sus datos
+                            para la gestión de envíos, facturación,
+                            comunicación y servicios relacionados.
+                        </span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================================
+         ACCIONES
+    ====================================================== -->
+
+            <div class="form-actions">
+
+                <button type="reset" class="secondary-button">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Limpiar
+                </button>
+
+
+                <button type="submit" class="primary-button">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Registrar cliente
+                </button>
+
+            </div>
+
+        </form>
+    </main>
+
+
+</body>
+
+</html>
