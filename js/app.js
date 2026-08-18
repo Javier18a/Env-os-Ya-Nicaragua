@@ -1,8 +1,17 @@
+/* =========================================================
+   ENVÍOS YA
+   SISTEMA DE GESTIÓN DE ENVÍOS
+========================================================= */
+
+
+/* =========================================================
+   CONFIGURACIÓN
+========================================================= */
+
 const STORAGE_KEY = "enviosYa_envios";
 const CLIENTS_KEY = "enviosYa_clientes";
+const SETTINGS_KEY = "enviosYa_configuracion";
 
-let envios = [];
-let clientes = [];
 
 const estados = {
     pendiente: "Pendiente",
@@ -13,6 +22,16 @@ const estados = {
 
 
 /* =========================================================
+   VARIABLES GLOBALES
+========================================================= */
+
+let envios = [];
+let clientes = [];
+
+let currentShipment = null;
+
+
+/* =========================================================
    INICIALIZACIÓN
 ========================================================= */
 
@@ -20,410 +39,286 @@ document.addEventListener("DOMContentLoaded", () => {
 
     cargarDatos();
 
-    inicializarFecha();
-
     inicializarNavegacion();
-
     inicializarFormulario();
-
-    inicializarBusqueda();
-
+    inicializarBusquedas();
     inicializarSeguimiento();
-
     inicializarModal();
-
     inicializarClientes();
-
-    inicializarReportes();
-
     inicializarConfiguracion();
+    inicializarMenuMovil();
 
-    generarCodigo();
+    establecerFechaActual();
+    prepararFormulario();
 
-    actualizarTodo();
+    renderizarTodo();
 
 });
 
 
 /* =========================================================
-   DATOS
+   CARGAR DATOS
 ========================================================= */
 
 function cargarDatos() {
 
-    const datosGuardados = localStorage.getItem(STORAGE_KEY);
-    const clientesGuardados = localStorage.getItem(CLIENTS_KEY);
+    try {
 
-    if (datosGuardados) {
+        const enviosGuardados =
+            localStorage.getItem(STORAGE_KEY);
 
-        try {
-            envios = JSON.parse(datosGuardados);
-        } catch {
+        const clientesGuardados =
+            localStorage.getItem(CLIENTS_KEY);
+
+
+        envios = enviosGuardados
+            ? JSON.parse(enviosGuardados)
+            : [];
+
+
+        clientes = clientesGuardados
+            ? JSON.parse(clientesGuardados)
+            : [];
+
+
+        if (!Array.isArray(envios)) {
             envios = [];
         }
 
-    } else {
 
-        envios = crearDatosIniciales();
-
-        guardarEnvios();
-
-    }
-
-
-    if (clientesGuardados) {
-
-        try {
-            clientes = JSON.parse(clientesGuardados);
-        } catch {
+        if (!Array.isArray(clientes)) {
             clientes = [];
         }
 
-    } else {
 
-        reconstruirClientes();
+        envios = envios.map(normalizarEnvio);
 
-    }
+        actualizarClientes();
 
-}
+    } catch (error) {
 
-
-function guardarEnvios() {
-
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(envios)
-    );
-
-}
-
-
-function guardarClientes() {
-
-    localStorage.setItem(
-        CLIENTS_KEY,
-        JSON.stringify(clientes)
-    );
-
-}
-
-
-/* =========================================================
-   DATOS DEMO
-========================================================= */
-
-function crearDatosIniciales() {
-
-    return [
-
-        {
-            id: generarId(),
-
-            codigo: "ENV-00128",
-
-            cliente: "Carlos Martínez",
-
-            telefono: "+505 8888 1001",
-
-            origen: "Miami, USA",
-
-            destino: "Managua, Nicaragua",
-
-            tipo: "Importación",
-
-            peso: 8.5,
-
-            estado: "transito",
-
-            fecha: "2026-08-14",
-
-            notas: "Paquete comercial.",
-
-            historial: [
-
-                {
-                    estado: "pendiente",
-                    fecha: "2026-08-10 09:20",
-                    descripcion: "Envío registrado."
-                },
-
-                {
-                    estado: "transito",
-                    fecha: "2026-08-13 14:30",
-                    descripcion: "Envío salió de origen."
-                }
-
-            ]
-
-        },
-
-
-        {
-            id: generarId(),
-
-            codigo: "ENV-00127",
-
-            cliente: "María López",
-
-            telefono: "+505 8888 1002",
-
-            origen: "Miami, USA",
-
-            destino: "Managua, Nicaragua",
-
-            tipo: "Importación",
-
-            peso: 4.2,
-
-            estado: "entregado",
-
-            fecha: "2026-08-13",
-
-            notas: "Entrega completada.",
-
-            historial: [
-
-                {
-                    estado: "pendiente",
-                    fecha: "2026-08-08 10:00",
-                    descripcion: "Envío registrado."
-                },
-
-                {
-                    estado: "transito",
-                    fecha: "2026-08-09 16:20",
-                    descripcion: "En tránsito."
-                },
-
-                {
-                    estado: "aduana",
-                    fecha: "2026-08-11 08:45",
-                    descripcion: "Procesando en aduana."
-                },
-
-                {
-                    estado: "entregado",
-                    fecha: "2026-08-13 15:10",
-                    descripcion: "Entrega completada."
-                }
-
-            ]
-
-        },
-
-
-        {
-            id: generarId(),
-
-            codigo: "ENV-00126",
-
-            cliente: "José Rodríguez",
-
-            telefono: "+505 8888 1003",
-
-            origen: "Panamá",
-
-            destino: "Managua, Nicaragua",
-
-            tipo: "Importación",
-
-            peso: 12.8,
-
-            estado: "aduana",
-
-            fecha: "2026-08-12",
-
-            notas: "Pendiente de revisión.",
-
-            historial: [
-
-                {
-                    estado: "pendiente",
-                    fecha: "2026-08-08 11:10",
-                    descripcion: "Envío registrado."
-                },
-
-                {
-                    estado: "transito",
-                    fecha: "2026-08-09 13:00",
-                    descripcion: "Envío en tránsito."
-                },
-
-                {
-                    estado: "aduana",
-                    fecha: "2026-08-12 09:15",
-                    descripcion: "Envío recibido en aduana."
-                }
-
-            ]
-
-        },
-
-
-        {
-            id: generarId(),
-
-            codigo: "ENV-00125",
-
-            cliente: "Ana González",
-
-            telefono: "+505 8888 1004",
-
-            origen: "Managua, Nicaragua",
-
-            destino: "Miami, USA",
-
-            tipo: "Exportación",
-
-            peso: 6.7,
-
-            estado: "entregado",
-
-            fecha: "2026-08-10",
-
-            notas: "Documentación completa.",
-
-            historial: [
-
-                {
-                    estado: "pendiente",
-                    fecha: "2026-08-05 09:00",
-                    descripcion: "Exportación registrada."
-                },
-
-                {
-                    estado: "transito",
-                    fecha: "2026-08-06 12:00",
-                    descripcion: "Envío despachado."
-                },
-
-                {
-                    estado: "entregado",
-                    fecha: "2026-08-10 16:40",
-                    descripcion: "Envío entregado en destino."
-                }
-
-            ]
-
-        }
-
-    ];
-
-}
-
-
-/* =========================================================
-   UTILIDADES
-========================================================= */
-
-function generarId() {
-
-    return Date.now() + Math.floor(Math.random() * 10000);
-
-}
-
-
-function generarCodigo() {
-
-    const input = document.getElementById("shipmentCode");
-
-    if (!input) return;
-
-    const numeros = envios.map(envio => {
-
-        const numero = parseInt(
-            envio.codigo.replace("ENV-", ""),
-            10
+        console.error(
+            "Error al cargar datos:",
+            error
         );
 
-        return isNaN(numero) ? 0 : numero;
+        envios = [];
+        clientes = [];
 
-    });
-
-    const mayor = numeros.length
-        ? Math.max(...numeros)
-        : 0;
-
-    input.value =
-        "ENV-" +
-        String(mayor + 1).padStart(5, "0");
-
-}
-
-
-function obtenerFechaActual() {
-
-    const fecha = new Date();
-
-    const año = fecha.getFullYear();
-
-    const mes = String(
-        fecha.getMonth() + 1
-    ).padStart(2, "0");
-
-    const dia = String(
-        fecha.getDate()
-    ).padStart(2, "0");
-
-    return `${año}-${mes}-${dia}`;
-
-}
-
-
-function formatearFecha(fecha) {
-
-    if (!fecha) return "—";
-
-    const partes = fecha.split("-");
-
-    if (partes.length !== 3) {
-        return fecha;
     }
-
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
-
-}
-
-
-function escaparHTML(texto) {
-
-    if (texto === null || texto === undefined) {
-        return "";
-    }
-
-    return String(texto)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
 
 }
 
 
 /* =========================================================
-   FECHA
+   NORMALIZAR ENVÍO
 ========================================================= */
 
-function inicializarFecha() {
+function normalizarEnvio(envio) {
 
-    const elemento =
-        document.getElementById("currentDate");
+    if (
+        !envio ||
+        typeof envio !== "object"
+    ) {
 
-    if (!elemento) return;
+        return {};
 
-    const fecha = new Date();
+    }
 
-    elemento.textContent =
-        fecha.toLocaleDateString(
-            "es-NI",
-            {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            }
+
+    const estadoActual =
+        estados[envio.estado]
+            ? envio.estado
+            : "pendiente";
+
+
+    return {
+
+        ...envio,
+
+        id:
+            envio.id ??
+            Date.now(),
+
+
+        codigo:
+            envio.codigo ||
+            `ENV-${String(
+                Date.now()
+            ).slice(-5)}`,
+
+
+        fecha:
+            envio.fecha || "",
+
+
+        operationType:
+            envio.operationType || "",
+
+
+        transportMode:
+            envio.transportMode || "",
+
+
+        packageQuantity:
+            Number(
+                envio.packageQuantity
+            ) || 0,
+
+
+        packageType:
+            envio.packageType || "",
+
+
+        packageCategory:
+            envio.packageCategory || "",
+
+
+        description:
+            envio.description || "",
+
+
+        weight:
+            Number(
+                envio.weight
+            ) || 0,
+
+
+        declaredValue:
+            Number(
+                envio.declaredValue
+            ) || 0,
+
+
+        currency:
+            envio.currency || "",
+
+
+        dimensions: {
+
+            unit:
+                envio.dimensions?.unit || "",
+
+            length:
+                Number(
+                    envio.dimensions?.length
+                ) || 0,
+
+            width:
+                Number(
+                    envio.dimensions?.width
+                ) || 0,
+
+            height:
+                Number(
+                    envio.dimensions?.height
+                ) || 0,
+
+            cubicFeet:
+                Number(
+                    envio.dimensions?.cubicFeet
+                ) || 0
+
+        },
+
+
+        cliente: {
+
+            nombre:
+                envio.cliente?.nombre || "",
+
+            telefono:
+                envio.cliente?.telefono || "",
+
+            email:
+                envio.cliente?.email || "",
+
+            documento:
+                envio.cliente?.documento || "",
+
+            direccion:
+                envio.cliente?.direccion || ""
+
+        },
+
+
+        ruta: {
+
+            origen:
+                envio.ruta?.origen || "",
+
+            destino:
+                envio.ruta?.destino || "",
+
+            remitente:
+                envio.ruta?.remitente || "",
+
+            destinatario:
+                envio.ruta?.destinatario || "",
+
+            direccionEntrega:
+                envio.ruta?.direccionEntrega || ""
+
+        },
+
+
+        specialHandling:
+            envio.specialHandling || "",
+
+
+        insurance:
+            envio.insurance || "",
+
+
+        notes:
+            envio.notes || "",
+
+
+        estado:
+            estadoActual,
+
+
+        estadoLabel:
+            estados[estadoActual],
+
+
+        history:
+            Array.isArray(envio.history)
+                ? envio.history
+                : []
+
+    };
+
+}
+
+
+/* =========================================================
+   GUARDAR DATOS
+========================================================= */
+
+function guardarDatos() {
+
+    try {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(envios)
         );
+
+
+        localStorage.setItem(
+            CLIENTS_KEY,
+            JSON.stringify(clientes)
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error al guardar datos:",
+            error
+        );
+
+    }
 
 }
 
@@ -432,144 +327,428 @@ function inicializarFecha() {
    NAVEGACIÓN
 ========================================================= */
 
+
 function inicializarNavegacion() {
 
-    const botones =
-        document.querySelectorAll(
-            "[data-section]"
-        );
+    document.querySelectorAll("[data-section]")
+        .forEach(elemento => {
 
-    botones.forEach(boton => {
+            elemento.addEventListener("click", event => {
 
-        boton.addEventListener(
-            "click",
-            () => {
+                /*
+                    Evita que un <a href="#"> o <a href="#...">
+                    haga su propia navegación.
+                */
+                event.preventDefault();
 
                 const seccion =
-                    boton.dataset.section;
+                    elemento.dataset.section;
+
+                if (!seccion) return;
 
                 cambiarSeccion(seccion);
 
-            }
-        );
+            });
 
-    });
-
-
-    const menuToggle =
-        document.getElementById("menuToggle");
-
-    if (menuToggle) {
-
-        menuToggle.addEventListener(
-            "click",
-            () => {
-
-                const sidebar =
-                    document.querySelector(".sidebar");
-
-                sidebar.classList.toggle("open");
-
-            }
-        );
-
-    }
+        });
 
 }
 
 
-function cambiarSeccion(nombre) {
+function cambiarSeccion(nombreSeccion) {
 
-    const secciones =
-        document.querySelectorAll(
-            ".content-section"
+    if (!nombreSeccion) return;
+
+
+    const section =
+        document.getElementById(nombreSeccion);
+
+
+    if (!section) {
+
+        console.warn(
+            `No existe la sección: ${nombreSeccion}`
         );
 
-    secciones.forEach(seccion => {
-
-        seccion.classList.remove("active");
-
-    });
-
-
-    const destino =
-        document.getElementById(nombre);
-
-    if (destino) {
-
-        destino.classList.add("active");
+        return;
 
     }
 
 
-    const botones =
-        document.querySelectorAll(
-            ".nav-item"
+    document.querySelectorAll(".content-section")
+        .forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+
+    section.classList.add("active");
+
+
+    document.querySelectorAll(".nav-item")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+            if (
+                item.dataset.section ===
+                nombreSeccion
+            ) {
+
+                item.classList.add("active");
+
+            }
+
+        });
+
+
+    actualizarTitulo(nombreSeccion);
+
+
+    /*
+        Solo renderizamos cuando cambiamos
+        de sección.
+    */
+    renderizarTodo();
+
+}
+
+
+function manejarNavegacion(event) {
+
+    /*
+        Evita que un <a href=""> recargue
+        la página.
+    */
+
+    if (
+        event.currentTarget.tagName ===
+        "A"
+    ) {
+
+        event.preventDefault();
+
+    }
+
+
+    const elemento =
+        event.currentTarget;
+
+
+    const seccion =
+        elemento.dataset.section;
+
+
+    if (!seccion) {
+
+        console.warn(
+            "Elemento de navegación sin data-section:",
+            elemento
         );
 
-    botones.forEach(boton => {
+        return;
 
-        boton.classList.remove("active");
+    }
 
-        if (
-            boton.dataset.section === nombre
-        ) {
 
-            boton.classList.add("active");
+    cambiarSeccion(
+        seccion
+    );
 
-        }
+}
 
+
+function cambiarSeccion(
+    nombreSeccion
+) {
+
+    if (!nombreSeccion) {
+        return;
+    }
+
+
+    const section =
+        document.getElementById(
+            nombreSeccion
+        );
+
+
+    if (!section) {
+
+        console.warn(
+            `No existe la sección #${nombreSeccion}`
+        );
+
+        return;
+
+    }
+
+
+    /*
+        Ocultar todas las secciones
+    */
+
+    document.querySelectorAll(
+        ".content-section"
+    )
+        .forEach(sectionElemento => {
+
+            sectionElemento.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    /*
+        Mostrar sección seleccionada
+    */
+
+    section.classList.add(
+        "active"
+    );
+
+
+    /*
+        Actualizar navegación
+    */
+
+    document.querySelectorAll(
+        ".nav-item"
+    )
+        .forEach(item => {
+
+            item.classList.remove(
+                "active"
+            );
+
+
+            /*
+                Comparamos tanto data-section
+                como href
+            */
+
+            const dataSection =
+                item.dataset.section;
+
+
+            const href =
+                item.getAttribute(
+                    "href"
+                );
+
+
+            if (
+                dataSection ===
+                nombreSeccion
+            ) {
+
+                item.classList.add(
+                    "active"
+                );
+
+            }
+            else if (
+                href ===
+                `#${nombreSeccion}`
+            ) {
+
+                item.classList.add(
+                    "active"
+                );
+
+            }
+
+        });
+
+
+    actualizarTitulo(
+        nombreSeccion
+    );
+
+
+    /*
+        Cerrar menú móvil
+    */
+
+    const sidebar =
+        document.querySelector(
+            ".sidebar"
+        );
+
+
+    if (sidebar) {
+
+        sidebar.classList.remove(
+            "open"
+        );
+
+    }
+
+
+    /*
+        Volver al inicio de la sección
+    */
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
+
+
+    /*
+        Actualizar contenido
+    */
+
+    renderizarTodo();
+
+}
+
+
+function actualizarTitulo(
+    seccion
+) {
+
+    const pageTitle =
+        document.getElementById(
+            "pageTitle"
+        );
+
+
+    if (!pageTitle) {
+        return;
+    }
 
 
     const titulos = {
 
         dashboard: "Dashboard",
-
         envios: "Envíos",
-
         registrar: "Registrar envío",
-
         clientes: "Clientes",
-
         seguimiento: "Seguimiento",
-
         reportes: "Reportes",
-
         usuarios: "Usuarios",
-
         configuracion: "Configuración"
 
     };
 
 
-    const titulo =
-        document.getElementById("pageTitle");
+    pageTitle.textContent =
+        titulos[seccion] ||
+        "Sistema";
 
-    if (titulo) {
+}
 
-        titulo.textContent =
-            titulos[nombre] || "Sistema";
+
+/* =========================================================
+   FECHA ACTUAL
+========================================================= */
+
+function establecerFechaActual() {
+
+    const elemento =
+        document.getElementById(
+            "currentDate"
+        );
+
+
+    if (!elemento) {
+        return;
+    }
+
+
+    const fecha =
+        new Date();
+
+
+    elemento.textContent =
+        fecha.toLocaleDateString(
+            "es-NI",
+            {
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            }
+        );
+
+}
+
+
+/* =========================================================
+   GENERAR CÓDIGO
+========================================================= */
+
+function generarCodigoEnvio() {
+
+    let numero =
+        envios.length + 1;
+
+
+    let codigo =
+        `ENV-${String(numero).padStart(5, "0")}`;
+
+
+    while (
+        envios.some(
+            envio =>
+                envio.codigo === codigo
+        )
+    ) {
+
+        numero++;
+
+
+        codigo =
+            `ENV-${String(numero).padStart(5, "0")}`;
 
     }
 
 
-    const sidebar =
-        document.querySelector(".sidebar");
+    return codigo;
 
-    if (sidebar) {
+}
 
-        sidebar.classList.remove("open");
+
+/* =========================================================
+   PREPARAR FORMULARIO
+========================================================= */
+
+function prepararFormulario() {
+
+    const codigo =
+        document.getElementById(
+            "shipmentCode"
+        );
+
+
+    const fecha =
+        document.getElementById(
+            "shipmentDate"
+        );
+
+
+    if (codigo) {
+
+        codigo.value =
+            generarCodigoEnvio();
 
     }
 
 
-    if (nombre === "reportes") {
-        actualizarReportes();
-    }
+    if (fecha) {
 
-    if (nombre === "clientes") {
-        renderizarClientes();
+        const hoy =
+            new Date()
+                .toISOString()
+                .split("T")[0];
+
+
+        fecha.value =
+            hoy;
+
     }
 
 }
@@ -581,43 +760,124 @@ function cambiarSeccion(nombre) {
 
 function inicializarFormulario() {
 
-    const formulario =
-        document.getElementById("shipmentForm");
+    const form =
+        document.getElementById(
+            "shipmentForm"
+        );
 
-    if (!formulario) return;
 
-
-    const fecha =
-        document.getElementById("shipmentDate");
-
-    if (fecha) {
-
-        fecha.value =
-            obtenerFechaActual();
-
+    if (!form) {
+        return;
     }
 
 
-    formulario.addEventListener(
+    form.addEventListener(
         "submit",
         registrarEnvio
     );
 
 
-    formulario.addEventListener(
+    const packageType =
+        document.getElementById(
+            "packageType"
+        );
+
+
+    if (packageType) {
+
+        packageType.addEventListener(
+            "change",
+            controlarTipoPaquete
+        );
+
+    }
+
+
+    const packageCategory =
+        document.getElementById(
+            "packageCategory"
+        );
+
+
+    if (packageCategory) {
+
+        packageCategory.addEventListener(
+            "change",
+            controlarCategoria
+        );
+
+    }
+
+
+    const length =
+        document.getElementById(
+            "packageLength"
+        );
+
+
+    const width =
+        document.getElementById(
+            "packageWidth"
+        );
+
+
+    const height =
+        document.getElementById(
+            "packageHeight"
+        );
+
+
+    const unit =
+        document.getElementById(
+            "dimensionUnit"
+        );
+
+
+    [
+        length,
+        width,
+        height,
+        unit
+    ]
+        .forEach(elemento => {
+
+            if (!elemento) {
+                return;
+            }
+
+
+            elemento.addEventListener(
+                "input",
+                calcularVolumen
+            );
+
+
+            elemento.addEventListener(
+                "change",
+                calcularVolumen
+            );
+
+        });
+
+
+    form.addEventListener(
         "reset",
         () => {
 
-            setTimeout(() => {
+            setTimeout(
+                () => {
 
-                generarCodigo();
+                    prepararFormulario();
 
-                if (fecha) {
-                    fecha.value =
-                        obtenerFechaActual();
-                }
+                    controlarTipoPaquete();
 
-            }, 0);
+                    controlarCategoria();
+
+                    calcularVolumen();
+
+                },
+                50
+            );
 
         }
     );
@@ -625,123 +885,587 @@ function inicializarFormulario() {
 }
 
 
-function registrarEnvio(evento) {
+/* =========================================================
+   TIPO DE PAQUETE
+========================================================= */
 
-    evento.preventDefault();
+function controlarTipoPaquete() {
 
-
-    const codigo =
+    const select =
         document.getElementById(
-            "shipmentCode"
-        ).value.trim();
-
-    const cliente =
-        document.getElementById(
-            "clientName"
-        ).value.trim();
-
-    const telefono =
-        document.getElementById(
-            "clientPhone"
-        ).value.trim();
-
-    const origen =
-        document.getElementById(
-            "origin"
-        ).value.trim();
-
-    const destino =
-        document.getElementById(
-            "destination"
-        ).value.trim();
-
-    const tipo =
-        document.getElementById(
-            "operationType"
-        ).value;
-
-    const peso =
-        parseFloat(
-            document.getElementById(
-                "weight"
-            ).value
+            "packageType"
         );
 
-    const fecha =
+
+    const group =
         document.getElementById(
-            "shipmentDate"
-        ).value;
-
-    const notas =
-        document.getElementById(
-            "notes"
-        ).value.trim();
-
-
-    if (!codigo || !cliente || !origen || !destino) {
-
-        mostrarNotificacion(
-            "Completa los campos obligatorios.",
-            "error"
+            "otherPackageTypeGroup"
         );
 
+
+    const input =
+        document.getElementById(
+            "otherPackageType"
+        );
+
+
+    if (!select || !group) {
         return;
-
     }
 
 
     if (
-        envios.some(
-            envio =>
-                envio.codigo.toLowerCase() ===
-                codigo.toLowerCase()
-        )
+        select.value === "Otro"
     ) {
 
-        mostrarNotificacion(
-            "Ya existe un envío con ese código.",
-            "error"
+        group.style.display =
+            "block";
+
+
+        if (input) {
+
+            input.required =
+                true;
+
+        }
+
+    }
+    else {
+
+        group.style.display =
+            "none";
+
+
+        if (input) {
+
+            input.required =
+                false;
+
+            input.value =
+                "";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   CATEGORÍA
+========================================================= */
+
+function controlarCategoria() {
+
+    const select =
+        document.getElementById(
+            "packageCategory"
         );
+
+
+    const group =
+        document.getElementById(
+            "otherCategoryGroup"
+        );
+
+
+    const input =
+        document.getElementById(
+            "otherCategory"
+        );
+
+
+    if (!select || !group) {
+        return;
+    }
+
+
+    if (
+        select.value === "Otro"
+    ) {
+
+        group.style.display =
+            "block";
+
+
+        if (input) {
+
+            input.required =
+                true;
+
+        }
+
+    }
+    else {
+
+        group.style.display =
+            "none";
+
+
+        if (input) {
+
+            input.required =
+                false;
+
+            input.value =
+                "";
+
+        }
+
+    }
+
+}
+
+
+/* =========================================================
+   CALCULAR VOLUMEN
+========================================================= */
+
+function calcularVolumen() {
+
+    const length =
+        parseFloat(
+            document.getElementById(
+                "packageLength"
+            )?.value
+        ) || 0;
+
+
+    const width =
+        parseFloat(
+            document.getElementById(
+                "packageWidth"
+            )?.value
+        ) || 0;
+
+
+    const height =
+        parseFloat(
+            document.getElementById(
+                "packageHeight"
+            )?.value
+        ) || 0;
+
+
+    const unit =
+        document.getElementById(
+            "dimensionUnit"
+        )?.value;
+
+
+    const cubicFeet =
+        document.getElementById(
+            "cubicFeet"
+        );
+
+
+    if (!cubicFeet) {
+        return;
+    }
+
+
+    if (
+        length <= 0 ||
+        width <= 0 ||
+        height <= 0
+    ) {
+
+        cubicFeet.value =
+            "";
 
         return;
 
     }
 
 
+    let largo =
+        length;
+
+    let ancho =
+        width;
+
+    let alto =
+        height;
+
+
+    if (
+        unit === "centimetros"
+    ) {
+
+        largo /= 30.48;
+        ancho /= 30.48;
+        alto /= 30.48;
+
+    }
+    else if (
+        unit === "pulgadas"
+    ) {
+
+        largo /= 12;
+        ancho /= 12;
+        alto /= 12;
+
+    }
+
+
+    const volumen =
+        largo *
+        ancho *
+        alto;
+
+
+    cubicFeet.value =
+        volumen.toFixed(2);
+
+}
+
+
+/* =========================================================
+   REGISTRAR ENVÍO
+========================================================= */
+
+function registrarEnvio(
+    event
+) {
+
+    event.preventDefault();
+
+
+    const obtenerValor =
+        id =>
+            document.getElementById(
+                id
+            )?.value || "";
+
+
+    const codigo =
+        obtenerValor(
+            "shipmentCode"
+        );
+
+
+    const fecha =
+        obtenerValor(
+            "shipmentDate"
+        );
+
+
+    const operationType =
+        obtenerValor(
+            "operationType"
+        );
+
+
+    const transportMode =
+        obtenerValor(
+            "transportMode"
+        );
+
+
+    const packageQuantity =
+        Number(
+            obtenerValor(
+                "packageQuantity"
+            )
+        ) || 0;
+
+
+    let packageType =
+        obtenerValor(
+            "packageType"
+        );
+
+
+    if (
+        packageType === "Otro"
+    ) {
+
+        packageType =
+            obtenerValor(
+                "otherPackageType"
+            ).trim();
+
+    }
+
+
+    let packageCategory =
+        obtenerValor(
+            "packageCategory"
+        );
+
+
+    if (
+        packageCategory === "Otro"
+    ) {
+
+        packageCategory =
+            obtenerValor(
+                "otherCategory"
+            ).trim();
+
+    }
+
+
+    const description =
+        obtenerValor(
+            "packageDescription"
+        ).trim();
+
+
+    const weight =
+        Number(
+            obtenerValor(
+                "weight"
+            )
+        ) || 0;
+
+
+    const declaredValue =
+        Number(
+            obtenerValor(
+                "declaredValue"
+            )
+        ) || 0;
+
+
+    const currency =
+        obtenerValor(
+            "currency"
+        );
+
+
+    const dimensionUnit =
+        obtenerValor(
+            "dimensionUnit"
+        );
+
+
+    const length =
+        Number(
+            obtenerValor(
+                "packageLength"
+            )
+        ) || 0;
+
+
+    const width =
+        Number(
+            obtenerValor(
+                "packageWidth"
+            )
+        ) || 0;
+
+
+    const height =
+        Number(
+            obtenerValor(
+                "packageHeight"
+            )
+        ) || 0;
+
+
+    const cubicFeet =
+        Number(
+            obtenerValor(
+                "cubicFeet"
+            )
+        ) || 0;
+
+
+    const clientName =
+        obtenerValor(
+            "clientName"
+        ).trim();
+
+
+    const clientPhone =
+        obtenerValor(
+            "clientPhone"
+        ).trim();
+
+
+    const clientEmail =
+        obtenerValor(
+            "clientEmail"
+        ).trim();
+
+
+    const clientDocument =
+        obtenerValor(
+            "clientDocument"
+        ).trim();
+
+
+    const clientAddress =
+        obtenerValor(
+            "clientAddress"
+        ).trim();
+
+
+    const origin =
+        obtenerValor(
+            "origin"
+        ).trim();
+
+
+    const destination =
+        obtenerValor(
+            "destination"
+        ).trim();
+
+
+    const senderName =
+        obtenerValor(
+            "senderName"
+        ).trim();
+
+
+    const recipientName =
+        obtenerValor(
+            "recipientName"
+        ).trim();
+
+
+    const deliveryAddress =
+        obtenerValor(
+            "deliveryAddress"
+        ).trim();
+
+
+    const specialHandling =
+        obtenerValor(
+            "specialHandling"
+        );
+
+
+    const insurance =
+        obtenerValor(
+            "insurance"
+        );
+
+
+    const notes =
+        obtenerValor(
+            "notes"
+        ).trim();
+
+
     const nuevoEnvio = {
 
-        id: generarId(),
+        id:
+            Date.now(),
+
 
         codigo,
 
-        cliente,
-
-        telefono,
-
-        origen,
-
-        destino,
-
-        tipo,
-
-        peso: peso || 0,
-
-        estado: "pendiente",
-
         fecha,
 
-        notas,
+        operationType,
 
-        historial: [
+        transportMode,
+
+        packageQuantity,
+
+        packageType,
+
+        packageCategory,
+
+        description,
+
+        weight,
+
+        declaredValue,
+
+        currency,
+
+
+        dimensions: {
+
+            unit:
+                dimensionUnit,
+
+            length,
+
+            width,
+
+            height,
+
+            cubicFeet
+
+        },
+
+
+        cliente: {
+
+            nombre:
+                clientName,
+
+            telefono:
+                clientPhone,
+
+            email:
+                clientEmail,
+
+            documento:
+                clientDocument,
+
+            direccion:
+                clientAddress
+
+        },
+
+
+        ruta: {
+
+            origen:
+                origin,
+
+            destino:
+                destination,
+
+            remitente:
+                senderName,
+
+            destinatario:
+                recipientName,
+
+            direccionEntrega:
+                deliveryAddress
+
+        },
+
+
+        specialHandling,
+
+        insurance,
+
+        notes,
+
+
+        estado:
+            "pendiente",
+
+
+        estadoLabel:
+            estados.pendiente,
+
+
+        history: [
 
             {
-                estado: "pendiente",
+
+                estado:
+                    "pendiente",
+
+                label:
+                    estados.pendiente,
 
                 fecha:
-                    obtenerFechaHora(),
+                    new Date()
+                        .toISOString(),
 
                 descripcion:
-                    "Envío registrado en el sistema."
+                    "Envío registrado correctamente."
 
             }
 
@@ -750,74 +1474,198 @@ function registrarEnvio(evento) {
     };
 
 
-    envios.unshift(nuevoEnvio);
-
-
-    guardarEnvios();
-
-    reconstruirClientes();
-
-    actualizarTodo();
-
-
-    mostrarNotificacion(
-        `Envío ${codigo} registrado correctamente.`,
-        "success"
+    envios.push(
+        nuevoEnvio
     );
 
 
-    event.target.reset();
+    actualizarClientes();
+
+    guardarDatos();
 
 
-    setTimeout(() => {
-
-        generarCodigo();
-
-        document.getElementById(
-            "shipmentDate"
-        ).value =
-            obtenerFechaActual();
-
-    }, 0);
+    mostrarNotificacion(
+        "Envío registrado correctamente."
+    );
 
 
-    cambiarSeccion("envios");
+    formatearFormularioDespuesDeRegistro();
+
+
+    renderizarTodo();
+
+
+    cambiarSeccion(
+        "envios"
+    );
 
 }
 
 
 /* =========================================================
-   FECHA Y HORA
+   LIMPIAR FORMULARIO
 ========================================================= */
 
-function obtenerFechaHora() {
+function formatearFormularioDespuesDeRegistro() {
 
-    const fecha = new Date();
+    const form =
+        document.getElementById(
+            "shipmentForm"
+        );
 
-    const año =
-        fecha.getFullYear();
 
-    const mes =
-        String(
-            fecha.getMonth() + 1
-        ).padStart(2, "0");
+    if (!form) {
+        return;
+    }
 
-    const dia =
-        String(
-            fecha.getDate()
-        ).padStart(2, "0");
 
-    const horas =
-        String(
-            fecha.getHours()
-        ).padStart(2, "0");
+    form.reset();
 
-    const minutos =
-        String(
-            fecha.getMinutes()
-        ).padStart(2, "0");
 
-    return `${año}-${mes}-${dia} ${horas}:${minutos}`;
+    setTimeout(
+        () => {
+
+            prepararFormulario();
+
+            controlarTipoPaquete();
+
+            controlarCategoria();
+
+            calcularVolumen();
+
+        },
+        50
+    );
+
+}
+
+
+/* =========================================================
+   CLIENTES
+========================================================= */
+
+function actualizarClientes() {
+
+    const mapaClientes = {};
+
+
+    envios.forEach(
+        envio => {
+
+            if (!envio.cliente) {
+                return;
+            }
+
+
+            const nombre =
+                envio.cliente.nombre;
+
+
+            if (!nombre) {
+                return;
+            }
+
+
+            const key = (
+                envio.cliente.telefono ||
+                nombre
+            )
+                .toLowerCase()
+                .trim();
+
+
+            if (
+                !mapaClientes[key]
+            ) {
+
+                mapaClientes[key] = {
+
+                    nombre,
+
+                    telefono:
+                        envio.cliente.telefono ||
+                        "",
+
+                    email:
+                        envio.cliente.email ||
+                        "",
+
+                    documento:
+                        envio.cliente.documento ||
+                        "",
+
+                    direccion:
+                        envio.cliente.direccion ||
+                        "",
+
+                    total:
+                        0,
+
+                    transito:
+                        0,
+
+                    entregados:
+                        0
+
+                };
+
+            }
+
+
+            mapaClientes[key].total++;
+
+
+            if (
+                envio.estado ===
+                    "transito" ||
+
+                envio.estado ===
+                    "aduana"
+            ) {
+
+                mapaClientes[key].transito++;
+
+            }
+
+
+            if (
+                envio.estado ===
+                "entregado"
+            ) {
+
+                mapaClientes[key].entregados++;
+
+            }
+
+        }
+    );
+
+
+    clientes =
+        Object.values(
+            mapaClientes
+        );
+
+}
+
+
+/* =========================================================
+   RENDERIZAR TODO
+========================================================= */
+
+function renderizarTodo() {
+
+    actualizarClientes();
+
+    renderizarDashboard();
+
+    renderizarEnvios();
+
+    renderizarUltimosEnvios();
+
+    renderizarClientes();
+
+    renderizarReportes();
 
 }
 
@@ -826,269 +1674,184 @@ function obtenerFechaHora() {
    DASHBOARD
 ========================================================= */
 
-function actualizarDashboard() {
+function renderizarDashboard() {
 
     const total =
         envios.length;
 
+
     const transito =
         envios.filter(
-            envio =>
-                envio.estado === "transito"
+            e =>
+                e.estado ===
+                "transito"
         ).length;
+
 
     const aduana =
         envios.filter(
-            envio =>
-                envio.estado === "aduana"
+            e =>
+                e.estado ===
+                "aduana"
         ).length;
+
 
     const entregados =
         envios.filter(
-            envio =>
-                envio.estado === "entregado"
+            e =>
+                e.estado ===
+                "entregado"
         ).length;
 
 
-    asignarTexto(
+    establecerTexto(
         "totalEnvios",
         total
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "enviosTransito",
         transito
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "enviosAduana",
         aduana
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "enviosEntregados",
         entregados
     );
 
-
-    renderizarUltimosEnvios();
-
-}
-
-
-function asignarTexto(id, valor) {
-
-    const elemento =
-        document.getElementById(id);
-
-    if (elemento) {
-
-        elemento.textContent =
-            valor;
-
-    }
-
 }
 
 
 /* =========================================================
-   ÚLTIMOS ENVÍOS
-========================================================= */
-
-function renderizarUltimosEnvios() {
-
-    const tabla =
-        document.getElementById(
-            "recentShipments"
-        );
-
-    if (!tabla) return;
-
-
-    const recientes =
-        envios.slice(0, 5);
-
-
-    if (!recientes.length) {
-
-        tabla.innerHTML = `
-            <tr>
-                <td colspan="8">
-                    No hay envíos registrados.
-                </td>
-            </tr>
-        `;
-
-        return;
-
-    }
-
-
-    tabla.innerHTML =
-        recientes.map(
-            crearFilaEnvioDashboard
-        ).join("");
-
-}
-
-
-function crearFilaEnvioDashboard(envio) {
-
-    return `
-
-        <tr>
-
-            <td>
-                <strong>
-                    ${escaparHTML(envio.codigo)}
-                </strong>
-            </td>
-
-            <td>
-                ${escaparHTML(envio.cliente)}
-            </td>
-
-            <td>
-                ${escaparHTML(envio.origen)}
-            </td>
-
-            <td>
-                ${escaparHTML(envio.destino)}
-            </td>
-
-            <td>
-                ${escaparHTML(envio.tipo)}
-            </td>
-
-            <td>
-                ${crearEstado(envio.estado)}
-            </td>
-
-            <td>
-                ${formatearFecha(envio.fecha)}
-            </td>
-
-            <td>
-
-                <button
-                    class="table-action"
-                    onclick="verEnvio('${envio.id}')"
-                    title="Ver detalle">
-
-                    <i class="fa-solid fa-eye"></i>
-
-                </button>
-
-            </td>
-
-        </tr>
-
-    `;
-
-}
-
-
-/* =========================================================
-   ENVÍOS
+   TABLA DE ENVÍOS
 ========================================================= */
 
 function renderizarEnvios() {
 
-    const tabla =
+    const tbody =
         document.getElementById(
             "shipmentsTable"
         );
 
-    if (!tabla) return;
 
-
-    const busqueda =
-        document.getElementById(
-            "shipmentSearch"
-        )?.value
-        .toLowerCase()
-        .trim() || "";
-
-
-    const filtro =
-        document.getElementById(
-            "statusFilter"
-        )?.value || "todos";
-
-
-    let resultados =
-        [...envios];
-
-
-    if (busqueda) {
-
-        resultados =
-            resultados.filter(envio => {
-
-                return (
-
-                    envio.codigo
-                        .toLowerCase()
-                        .includes(busqueda)
-
-                    ||
-
-                    envio.cliente
-                        .toLowerCase()
-                        .includes(busqueda)
-
-                    ||
-
-                    envio.origen
-                        .toLowerCase()
-                        .includes(busqueda)
-
-                    ||
-
-                    envio.destino
-                        .toLowerCase()
-                        .includes(busqueda)
-
-                );
-
-            });
-
+    if (!tbody) {
+        return;
     }
 
 
-    if (filtro !== "todos") {
+    const search = (
+        document.getElementById(
+            "shipmentSearch"
+        )?.value || ""
+    )
+        .toLowerCase()
+        .trim();
 
-        resultados =
-            resultados.filter(
-                envio =>
-                    envio.estado === filtro
+
+    const filtroEstado =
+        document.getElementById(
+            "statusFilter"
+        )?.value ||
+        "todos";
+
+
+    let lista =
+        [...envios];
+
+
+    if (search) {
+
+        lista =
+            lista.filter(
+                envio => {
+
+                    const valores = [
+
+                        envio.codigo,
+
+                        envio.cliente?.nombre,
+
+                        envio.cliente?.telefono,
+
+                        envio.operationType,
+
+                        envio.transportMode,
+
+                        envio.packageType,
+
+                        envio.packageCategory,
+
+                        envio.ruta?.origen,
+
+                        envio.ruta?.destino
+
+                    ];
+
+
+                    return valores.some(
+                        valor =>
+                            String(
+                                valor || ""
+                            )
+                                .toLowerCase()
+                                .includes(
+                                    search
+                                )
+                    );
+
+                }
             );
 
     }
 
 
-    if (!resultados.length) {
+    if (
+        filtroEstado !==
+        "todos"
+    ) {
 
-        tabla.innerHTML = `
+        lista =
+            lista.filter(
+                envio =>
+                    envio.estado ===
+                    filtroEstado
+            );
+
+    }
+
+
+    tbody.innerHTML =
+        "";
+
+
+    if (!lista.length) {
+
+        tbody.innerHTML = `
 
             <tr>
 
-                <td colspan="8">
+                <td colspan="10">
 
                     <div class="empty-state">
 
                         <div class="empty-icon">
-
                             <i class="fa-solid fa-box-open"></i>
-
                         </div>
 
                         <h3>
-                            No se encontraron envíos
+                            No hay envíos
                         </h3>
 
                         <p>
-                            Intenta realizar otra búsqueda.
+                            No se encontraron registros.
                         </p>
 
                     </div>
@@ -1104,597 +1867,390 @@ function renderizarEnvios() {
     }
 
 
-    tabla.innerHTML =
-        resultados.map(
-            crearFilaEnvio
-        ).join("");
+    lista.forEach(
+        envio => {
 
-}
-
-
-function crearFilaEnvio(envio) {
-
-    return `
-
-        <tr>
-
-            <td>
-                <strong>
-                    ${escaparHTML(envio.codigo)}
-                </strong>
-            </td>
-
-            <td>
-                ${escaparHTML(envio.cliente)}
-            </td>
-
-            <td>
-                ${escaparHTML(envio.origen)}
-            </td>
-
-            <td>
-                ${escaparHTML(envio.destino)}
-            </td>
-
-            <td>
-                ${envio.peso} kg
-            </td>
-
-            <td>
-
-                <select
-                    class="shipment-status-select"
-                    data-id="${envio.id}">
-
-                    <option
-                        value="pendiente"
-                        ${envio.estado === "pendiente" ? "selected" : ""}>
-                        Pendiente
-                    </option>
-
-                    <option
-                        value="transito"
-                        ${envio.estado === "transito" ? "selected" : ""}>
-                        En tránsito
-                    </option>
-
-                    <option
-                        value="aduana"
-                        ${envio.estado === "aduana" ? "selected" : ""}>
-                        En aduana
-                    </option>
-
-                    <option
-                        value="entregado"
-                        ${envio.estado === "entregado" ? "selected" : ""}>
-                        Entregado
-                    </option>
-
-                </select>
-
-            </td>
-
-            <td>
-                ${formatearFecha(envio.fecha)}
-            </td>
-
-            <td>
-
-                <button
-                    class="table-action"
-                    onclick="verEnvio('${envio.id}')"
-                    title="Ver">
-
-                    <i class="fa-solid fa-eye"></i>
-
-                </button>
-
-                <button
-                    class="table-action delete"
-                    onclick="eliminarEnvio('${envio.id}')"
-                    title="Eliminar">
-
-                    <i class="fa-solid fa-trash"></i>
-
-                </button>
-
-            </td>
-
-        </tr>
-
-    `;
-
-}
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
 
-/* =========================================================
-   ESTADO
-========================================================= */
+            tr.innerHTML = `
 
-function crearEstado(estado) {
+                <td>
 
-    const clase = {
+                    <strong>
+                        ${escaparHTML(
+                            envio.codigo
+                        )}
+                    </strong>
 
-        pendiente: "status-pendiente",
-
-        transito: "status-transito",
-
-        aduana: "status-aduana",
-
-        entregado: "status-entregado"
-
-    }[estado] || "status-pendiente";
+                </td>
 
 
-    return `
+                <td>
 
-        <span class="status ${clase}">
+                    ${escaparHTML(
+                        envio.cliente?.nombre ||
+                        "—"
+                    )}
 
-            ${estados[estado] || "Desconocido"}
-
-        </span>
-
-    `;
-
-}
+                </td>
 
 
-/* =========================================================
-   CAMBIO DE ESTADO
-========================================================= */
+                <td>
 
-document.addEventListener(
-    "change",
-    evento => {
+                    <strong>
 
-        if (
-            !evento.target.classList.contains(
-                "shipment-status-select"
-            )
-        ) {
-            return;
+                        ${escaparHTML(
+                            envio.operationType ||
+                            "—"
+                        )}
+
+                    </strong>
+
+
+                    <small class="table-subtext">
+
+                        ${escaparHTML(
+                            envio.ruta?.origen ||
+                            "—"
+                        )}
+
+                        →
+
+                        ${escaparHTML(
+                            envio.ruta?.destino ||
+                            "—"
+                        )}
+
+                    </small>
+
+                </td>
+
+
+                <td>
+
+                    ${escaparHTML(
+                        envio.transportMode ||
+                        "—"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <strong>
+                        ${envio.packageQuantity || 0}
+                    </strong>
+
+
+                    <small class="table-subtext">
+
+                        ${escaparHTML(
+                            envio.packageType ||
+                            "—"
+                        )}
+
+                    </small>
+
+                </td>
+
+
+                <td>
+
+                    ${formatearPeso(
+                        envio.weight
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${
+                        envio.dimensions?.cubicFeet
+                            ? `${envio.dimensions.cubicFeet} pie³`
+                            : "—"
+                    }
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="status status-${escaparHTML(
+                            envio.estado
+                        )}">
+
+                        ${escaparHTML(
+                            envio.estadoLabel ||
+                            estados[envio.estado] ||
+                            envio.estado
+                        )}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    ${formatearFecha(
+                        envio.fecha
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <div class="table-actions">
+
+                        <button
+                            type="button"
+                            class="table-action"
+                            title="Ver detalle"
+                            onclick="verDetalleEnvio(${Number(
+                                envio.id
+                            )})">
+
+                            <i class="fa-solid fa-eye"></i>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="table-action"
+                            title="Cambiar estado"
+                            onclick="cambiarEstadoEnvio(${Number(
+                                envio.id
+                            )})">
+
+                            <i class="fa-solid fa-rotate"></i>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="table-action danger"
+                            title="Eliminar"
+                            onclick="eliminarEnvio(${Number(
+                                envio.id
+                            )})">
+
+                            <i class="fa-solid fa-trash"></i>
+
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
         }
+    );
+
+}
 
 
-        const id =
-            evento.target.dataset.id;
+/* =========================================================
+   ÚLTIMOS ENVÍOS
+========================================================= */
 
-        const nuevoEstado =
-            evento.target.value;
+function renderizarUltimosEnvios() {
 
-
-        cambiarEstado(
-            id,
-            nuevoEstado
-        );
-
-    }
-);
-
-
-function cambiarEstado(id, nuevoEstado) {
-
-    const envio =
-        envios.find(
-            item =>
-                String(item.id) === String(id)
+    const tbody =
+        document.getElementById(
+            "recentShipments"
         );
 
 
-    if (!envio) return;
-
-
-    if (
-        envio.estado === nuevoEstado
-    ) {
+    if (!tbody) {
         return;
     }
 
 
-    envio.estado =
-        nuevoEstado;
+    tbody.innerHTML =
+        "";
 
 
-    if (!envio.historial) {
-        envio.historial = [];
-    }
-
-
-    envio.historial.push({
-
-        estado: nuevoEstado,
-
-        fecha:
-            obtenerFechaHora(),
-
-        descripcion:
-            obtenerDescripcionEstado(
-                nuevoEstado
+    const recientes =
+        [...envios]
+            .sort(
+                (a, b) =>
+                    new Date(
+                        b.fecha
+                    ) -
+                    new Date(
+                        a.fecha
+                    )
             )
+            .slice(
+                0,
+                5
+            );
 
-    });
 
+    if (!recientes.length) {
 
-    guardarEnvios();
+        tbody.innerHTML = `
 
-    reconstruirClientes();
+            <tr>
 
-    actualizarTodo();
+                <td colspan="8">
 
+                    <div class="empty-state">
 
-    mostrarNotificacion(
-        `${envio.codigo} actualizado a "${estados[nuevoEstado]}".`,
-        "success"
-    );
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-box-open"></i>
+                        </div>
 
-}
+                        <h3>
+                            No hay envíos registrados
+                        </h3>
 
+                        <p>
+                            Los nuevos envíos aparecerán aquí.
+                        </p>
 
-function obtenerDescripcionEstado(estado) {
+                    </div>
 
-    const descripciones = {
+                </td>
 
-        pendiente:
-            "El envío se encuentra pendiente de procesamiento.",
-
-        transito:
-            "El envío se encuentra en tránsito.",
-
-        aduana:
-            "El envío se encuentra en proceso de aduana.",
-
-        entregado:
-            "El envío ha sido entregado correctamente."
-
-    };
-
-
-    return (
-        descripciones[estado] ||
-        "Estado actualizado."
-    );
-
-}
-
-
-/* =========================================================
-   BÚSQUEDA
-========================================================= */
-
-function inicializarBusqueda() {
-
-    const busqueda =
-        document.getElementById(
-            "shipmentSearch"
-        );
-
-    const filtro =
-        document.getElementById(
-            "statusFilter"
-        );
-
-
-    if (busqueda) {
-
-        busqueda.addEventListener(
-            "input",
-            renderizarEnvios
-        );
-
-    }
-
-
-    if (filtro) {
-
-        filtro.addEventListener(
-            "change",
-            renderizarEnvios
-        );
-
-    }
-
-
-    const clientSearch =
-        document.getElementById(
-            "clientSearch"
-        );
-
-
-    if (clientSearch) {
-
-        clientSearch.addEventListener(
-            "input",
-            renderizarClientes
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   DETALLE DEL ENVÍO
-========================================================= */
-
-function verEnvio(id) {
-
-    const envio =
-        envios.find(
-            item =>
-                String(item.id) === String(id)
-        );
-
-
-    if (!envio) return;
-
-
-    const modal =
-        document.getElementById(
-            "shipmentModal"
-        );
-
-
-    if (!modal) return;
-
-
-    asignarTexto(
-        "modalShipmentTitle",
-        envio.codigo
-    );
-
-    asignarTexto(
-        "modalClient",
-        envio.cliente
-    );
-
-    asignarTexto(
-        "modalStatus",
-        estados[envio.estado]
-    );
-
-    asignarTexto(
-        "modalOrigin",
-        envio.origen
-    );
-
-    asignarTexto(
-        "modalDestination",
-        envio.destino
-    );
-
-
-    const timeline =
-        modal.querySelector(
-            ".tracking-timeline"
-        );
-
-
-    if (timeline) {
-
-        timeline.innerHTML =
-            crearTimeline(envio);
-
-    }
-
-
-    modal.classList.add("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "false"
-    );
-
-}
-
-
-function crearTimeline(envio) {
-
-    if (
-        !envio.historial ||
-        !envio.historial.length
-    ) {
-
-        return `
-
-            <div class="empty-state">
-
-                <p>
-                    No existe historial.
-                </p>
-
-            </div>
+            </tr>
 
         `;
 
+        return;
+
     }
 
 
-    return envio.historial
-        .map((evento, indice) => {
+    recientes.forEach(
+        envio => {
 
-            const esUltimo =
-                indice ===
-                envio.historial.length - 1;
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
 
-            return `
+            tr.innerHTML = `
 
-                <div class="
-                    timeline-item
-                    ${esUltimo ? "active" : "completed"}
-                ">
-
-                    <div class="timeline-dot"></div>
+                <td>
 
                     <strong>
                         ${escaparHTML(
-                            estados[evento.estado]
+                            envio.codigo
                         )}
                     </strong>
 
-                    <span>
-                        ${escaparHTML(evento.fecha)}
+                </td>
+
+
+                <td>
+
+                    ${escaparHTML(
+                        envio.cliente?.nombre ||
+                        "—"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escaparHTML(
+                        envio.ruta?.origen ||
+                        "—"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escaparHTML(
+                        envio.ruta?.destino ||
+                        "—"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    ${escaparHTML(
+                        envio.operationType ||
+                        "—"
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <span
+                        class="status status-${escaparHTML(
+                            envio.estado
+                        )}">
+
+                        ${escaparHTML(
+                            envio.estadoLabel ||
+                            estados[envio.estado] ||
+                            envio.estado
+                        )}
+
                     </span>
 
-                    <p>
-                        ${escaparHTML(
-                            evento.descripcion
-                        )}
-                    </p>
+                </td>
 
-                </div>
+
+                <td>
+
+                    ${formatearFecha(
+                        envio.fecha
+                    )}
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="table-action"
+                        onclick="verDetalleEnvio(${Number(
+                            envio.id
+                        )})"
+                        title="Ver detalle">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </td>
 
             `;
 
-        })
-        .join("");
 
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-function inicializarModal() {
-
-    const modal =
-        document.getElementById(
-            "shipmentModal"
-        );
-
-    const cerrar =
-        document.getElementById(
-            "closeModal"
-        );
-
-    const cerrarButton =
-        document.getElementById(
-            "closeModalButton"
-        );
-
-
-    if (cerrar) {
-
-        cerrar.addEventListener(
-            "click",
-            cerrarModal
-        );
-
-    }
-
-
-    if (cerrarButton) {
-
-        cerrarButton.addEventListener(
-            "click",
-            cerrarModal
-        );
-
-    }
-
-
-    if (modal) {
-
-        modal.addEventListener(
-            "click",
-            evento => {
-
-                if (
-                    evento.target === modal
-                ) {
-
-                    cerrarModal();
-
-                }
-
-            }
-        );
-
-    }
-
-
-    document.addEventListener(
-        "keydown",
-        evento => {
-
-            if (
-                evento.key === "Escape"
-            ) {
-
-                cerrarModal();
-
-            }
+            tbody.appendChild(
+                tr
+            );
 
         }
-    );
-
-}
-
-
-function cerrarModal() {
-
-    const modal =
-        document.getElementById(
-            "shipmentModal"
-        );
-
-
-    if (!modal) return;
-
-
-    modal.classList.remove("active");
-
-    modal.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-/* =========================================================
-   ELIMINAR ENVÍO
-========================================================= */
-
-function eliminarEnvio(id) {
-
-    const envio =
-        envios.find(
-            item =>
-                String(item.id) === String(id)
-        );
-
-
-    if (!envio) return;
-
-
-    const confirmar =
-        confirm(
-            `¿Deseas eliminar el envío ${envio.codigo}?`
-        );
-
-
-    if (!confirmar) return;
-
-
-    envios =
-        envios.filter(
-            item =>
-                String(item.id) !== String(id)
-        );
-
-
-    guardarEnvios();
-
-    reconstruirClientes();
-
-    actualizarTodo();
-
-
-    mostrarNotificacion(
-        `El envío ${envio.codigo} fue eliminado.`,
-        "success"
     );
 
 }
@@ -1704,178 +2260,53 @@ function eliminarEnvio(id) {
    CLIENTES
 ========================================================= */
 
-function reconstruirClientes() {
-
-    const mapa =
-        {};
-
-
-    envios.forEach(envio => {
-
-        const clave =
-            envio.cliente
-                .trim()
-                .toLowerCase();
-
-
-        if (!mapa[clave]) {
-
-            mapa[clave] = {
-
-                id: generarId(),
-
-                nombre: envio.cliente,
-
-                telefono:
-                    envio.telefono || "",
-
-                total: 0,
-
-                transito: 0,
-
-                entregados: 0
-
-            };
-
-        }
-
-
-        mapa[clave].total++;
-
-
-        if (
-            envio.estado === "transito"
-        ) {
-
-            mapa[clave].transito++;
-
-        }
-
-
-        if (
-            envio.estado === "entregado"
-        ) {
-
-            mapa[clave].entregados++;
-
-        }
-
-    });
-
-
-    clientes =
-        Object.values(mapa);
-
-
-    guardarClientes();
-
-}
-
-
-function inicializarClientes() {
-
-    const boton =
-        document.getElementById(
-            "newClientButton"
-        );
-
-
-    if (boton) {
-
-        boton.addEventListener(
-            "click",
-            () => {
-
-                const nombre =
-                    prompt(
-                        "Nombre del nuevo cliente:"
-                    );
-
-
-                if (!nombre) return;
-
-
-                const telefono =
-                    prompt(
-                        "Teléfono del cliente:"
-                    ) || "";
-
-
-                clientes.push({
-
-                    id: generarId(),
-
-                    nombre,
-
-                    telefono,
-
-                    total: 0,
-
-                    transito: 0,
-
-                    entregados: 0
-
-                });
-
-
-                guardarClientes();
-
-                renderizarClientes();
-
-
-                mostrarNotificacion(
-                    "Cliente agregado correctamente.",
-                    "success"
-                );
-
-            }
-        );
-
-    }
-
-}
-
-
 function renderizarClientes() {
 
-    const tabla =
+    const tbody =
         document.getElementById(
             "clientsTable"
         );
 
 
-    if (!tabla) return;
+    if (!tbody) {
+        return;
+    }
 
 
-    const busqueda =
+    const search = (
         document.getElementById(
             "clientSearch"
-        )?.value
+        )?.value || ""
+    )
         .toLowerCase()
-        .trim() || "";
+        .trim();
 
 
-    let resultados =
+    let lista =
         [...clientes];
 
 
-    if (busqueda) {
+    if (search) {
 
-        resultados =
-            resultados.filter(
+        lista =
+            lista.filter(
                 cliente => {
 
                     return (
 
                         cliente.nombre
-                            .toLowerCase()
-                            .includes(busqueda)
+                            ?.toLowerCase()
+                            .includes(
+                                search
+                            )
 
                         ||
 
                         cliente.telefono
-                            .toLowerCase()
-                            .includes(busqueda)
+                            ?.toLowerCase()
+                            .includes(
+                                search
+                            )
 
                     );
 
@@ -1885,15 +2316,25 @@ function renderizarClientes() {
     }
 
 
-    if (!resultados.length) {
+    tbody.innerHTML =
+        "";
 
-        tabla.innerHTML = `
+
+    if (!lista.length) {
+
+        tbody.innerHTML = `
 
             <tr>
 
                 <td colspan="6">
 
                     <div class="empty-state">
+
+                        <div class="empty-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
 
                         <h3>
                             No hay clientes
@@ -1916,104 +2357,134 @@ function renderizarClientes() {
     }
 
 
-    tabla.innerHTML =
-        resultados.map(
-            cliente => `
+    lista.forEach(
+        cliente => {
 
-                <tr>
+            const tr =
+                document.createElement(
+                    "tr"
+                );
 
-                    <td>
 
-                        <strong>
-                            ${escaparHTML(
-                                cliente.nombre
-                            )}
-                        </strong>
+            tr.innerHTML = `
 
-                    </td>
+                <td>
 
-                    <td>
+                    <strong>
                         ${escaparHTML(
-                            cliente.telefono || "—"
+                            cliente.nombre
                         )}
-                    </td>
+                    </strong>
 
-                    <td>
-                        ${cliente.total}
-                    </td>
+                </td>
 
-                    <td>
-                        ${cliente.transito}
-                    </td>
 
-                    <td>
-                        ${cliente.entregados}
-                    </td>
+                <td>
 
-                    <td>
+                    ${escaparHTML(
+                        cliente.telefono ||
+                        "—"
+                    )}
 
-                        <button
-                            class="table-action"
-                            onclick="verCliente('${cliente.nombre.replace(/'/g, "\\'")}')">
+                </td>
 
-                            <i class="fa-solid fa-eye"></i>
 
-                        </button>
+                <td>
+                    ${cliente.total || 0}
+                </td>
 
-                    </td>
 
-                </tr>
+                <td>
+                    ${cliente.transito || 0}
+                </td>
 
-            `
-        ).join("");
+
+                <td>
+                    ${cliente.entregados || 0}
+                </td>
+
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="table-action"
+                        title="Ver cliente"
+                        onclick="verCliente('${escaparAtributo(
+                            cliente.nombre
+                        )}')">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                    </button>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
 
 }
 
 
-function verCliente(nombre) {
+/* =========================================================
+   BÚSQUEDAS
+========================================================= */
 
-    const cliente =
-        clientes.find(
-            item =>
-                item.nombre === nombre
+function inicializarBusquedas() {
+
+    const shipmentSearch =
+        document.getElementById(
+            "shipmentSearch"
         );
 
 
-    if (!cliente) return;
-
-
-    const enviosCliente =
-        envios.filter(
-            envio =>
-                envio.cliente === nombre
+    const statusFilter =
+        document.getElementById(
+            "statusFilter"
         );
 
 
-    alert(
-        `Cliente: ${cliente.nombre}\n\n` +
+    const clientSearch =
+        document.getElementById(
+            "clientSearch"
+        );
 
-        `Teléfono: ${
-            cliente.telefono || "No registrado"
-        }\n\n` +
 
-        `Total de envíos: ${
-            enviosCliente.length
-        }\n\n` +
+    if (shipmentSearch) {
 
-        `Entregados: ${
-            enviosCliente.filter(
-                e =>
-                    e.estado === "entregado"
-            ).length
-        }\n\n` +
+        shipmentSearch.addEventListener(
+            "input",
+            renderizarEnvios
+        );
 
-        `En tránsito: ${
-            enviosCliente.filter(
-                e =>
-                    e.estado === "transito"
-            ).length
-        }`
-    );
+    }
+
+
+    if (statusFilter) {
+
+        statusFilter.addEventListener(
+            "change",
+            renderizarEnvios
+        );
+
+    }
+
+
+    if (clientSearch) {
+
+        clientSearch.addEventListener(
+            "input",
+            renderizarClientes
+        );
+
+    }
 
 }
 
@@ -2024,10 +2495,11 @@ function verCliente(nombre) {
 
 function inicializarSeguimiento() {
 
-    const boton =
+    const button =
         document.getElementById(
             "trackingButton"
         );
+
 
     const input =
         document.getElementById(
@@ -2035,9 +2507,9 @@ function inicializarSeguimiento() {
         );
 
 
-    if (boton) {
+    if (button) {
 
-        boton.addEventListener(
+        button.addEventListener(
             "click",
             consultarSeguimiento
         );
@@ -2049,11 +2521,14 @@ function inicializarSeguimiento() {
 
         input.addEventListener(
             "keydown",
-            evento => {
+            event => {
 
                 if (
-                    evento.key === "Enter"
+                    event.key ===
+                    "Enter"
                 ) {
+
+                    event.preventDefault();
 
                     consultarSeguimiento();
 
@@ -2067,6 +2542,10 @@ function inicializarSeguimiento() {
 }
 
 
+/* =========================================================
+   CONSULTAR SEGUIMIENTO
+========================================================= */
+
 function consultarSeguimiento() {
 
     const input =
@@ -2075,21 +2554,10 @@ function consultarSeguimiento() {
         );
 
 
-    if (!input) return;
-
-
     const codigo =
-        input.value
+        input?.value
             .trim()
-            .toLowerCase();
-
-
-    const envio =
-        envios.find(
-            item =>
-                item.codigo
-                    .toLowerCase() === codigo
-        );
+            .toUpperCase();
 
 
     const resultado =
@@ -2097,26 +2565,17 @@ function consultarSeguimiento() {
             "trackingResult"
         );
 
-    const vacio =
+
+    const empty =
         document.getElementById(
             "trackingEmpty"
         );
 
 
-    if (!envio) {
-
-        if (resultado) {
-            resultado.style.display = "none";
-        }
-
-        if (vacio) {
-            vacio.style.display = "block";
-        }
-
+    if (!codigo) {
 
         mostrarNotificacion(
-            "No se encontró ningún envío con ese código.",
-            "error"
+            "Ingresa un código de seguimiento."
         );
 
         return;
@@ -2124,79 +2583,1138 @@ function consultarSeguimiento() {
     }
 
 
+    const envio =
+        envios.find(
+            e =>
+                e.codigo
+                    ?.toUpperCase() ===
+                codigo
+        );
+
+
+    if (!envio) {
+
+        if (resultado) {
+
+            resultado.style.display =
+                "none";
+
+        }
+
+
+        if (empty) {
+
+            empty.style.display =
+                "block";
+
+
+            empty.innerHTML = `
+
+                <div class="empty-icon">
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                </div>
+
+                <h3>
+                    Envío no encontrado
+                </h3>
+
+                <p>
+                    No existe un envío registrado con ese código.
+                </p>
+
+            `;
+
+        }
+
+        return;
+
+    }
+
+
+    if (empty) {
+
+        empty.style.display =
+            "none";
+
+    }
+
+
     if (resultado) {
 
-        resultado.style.display = "block";
-
-    }
-
-    if (vacio) {
-
-        vacio.style.display = "none";
+        resultado.style.display =
+            "block";
 
     }
 
 
-    asignarTexto(
+    establecerTexto(
         "trackingResultTitle",
         envio.codigo
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "trackingResultClient",
-        envio.cliente
-    );
-
-    asignarTexto(
-        "trackingOrigin",
-        envio.origen
-    );
-
-    asignarTexto(
-        "trackingDestination",
-        envio.destino
-    );
-
-    asignarTexto(
-        "trackingType",
-        envio.tipo
-    );
-
-    asignarTexto(
-        "trackingWeight",
-        `${envio.peso} kg`
+        envio.cliente?.nombre ||
+        "—"
     );
 
 
-    const estado =
+    const status =
         document.getElementById(
             "trackingResultStatus"
         );
 
 
-    if (estado) {
+    if (status) {
 
-        estado.className =
+        status.textContent =
+            envio.estadoLabel ||
+            estados[envio.estado] ||
+            envio.estado;
+
+
+        status.className =
             `status status-${envio.estado}`;
-
-        estado.textContent =
-            estados[envio.estado];
 
     }
 
 
+    establecerTexto(
+        "trackingType",
+        envio.operationType ||
+        "—"
+    );
+
+
+    establecerTexto(
+        "trackingOrigin",
+        envio.ruta?.origen ||
+        "—"
+    );
+
+
+    establecerTexto(
+        "trackingDestination",
+        envio.ruta?.destino ||
+        "—"
+    );
+
+
+    establecerTexto(
+        "trackingWeight",
+        formatearPeso(
+            envio.weight
+        )
+    );
+
+
+    renderizarTimeline(
+        envio,
+        "trackingTimeline"
+    );
+
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+function renderizarTimeline(
+    envio,
+    elementoId
+) {
+
     const timeline =
         document.getElementById(
-            "trackingTimeline"
+            elementoId
+        );
+
+
+    if (!timeline) {
+        return;
+    }
+
+
+    timeline.innerHTML =
+        "";
+
+
+    const history =
+        Array.isArray(
+            envio.history
+        )
+            ? envio.history
+            : [];
+
+
+    if (!history.length) {
+
+        timeline.innerHTML = `
+
+            <div class="empty-state">
+
+                <p>
+                    No hay historial disponible.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    history.forEach(
+        (item, index) => {
+
+            const elemento =
+                document.createElement(
+                    "div"
+                );
+
+
+            elemento.className =
+                "timeline-item";
+
+
+            if (
+                index ===
+                history.length - 1
+            ) {
+
+                elemento.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            elemento.innerHTML = `
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <strong>
+
+                        ${escaparHTML(
+                            item.label ||
+                            estados[item.estado] ||
+                            item.estado ||
+                            "—"
+                        )}
+
+                    </strong>
+
+                    <span>
+
+                        ${formatearFechaHora(
+                            item.fecha
+                        )}
+
+                    </span>
+
+                    <p>
+
+                        ${escaparHTML(
+                            item.descripcion ||
+                            ""
+                        )}
+
+                    </p>
+
+                </div>
+
+            `;
+
+
+            timeline.appendChild(
+                elemento
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CAMBIAR ESTADO
+========================================================= */
+
+function cambiarEstadoEnvio(
+    id
+) {
+
+    const envio =
+        envios.find(
+            e =>
+                String(e.id) ===
+                String(id)
+        );
+
+
+    if (!envio) {
+        return;
+    }
+
+
+    const nuevoEstado =
+        prompt(
+
+            "Estado nuevo:\n\n" +
+
+            "pendiente\n" +
+
+            "transito\n" +
+
+            "aduana\n" +
+
+            "entregado",
+
+            envio.estado
+
+        );
+
+
+    if (!nuevoEstado) {
+        return;
+    }
+
+
+    const estado =
+        nuevoEstado
+            .toLowerCase()
+            .trim();
+
+
+    if (!estados[estado]) {
+
+        mostrarNotificacion(
+            "Estado no válido."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        estado ===
+        envio.estado
+    ) {
+
+        mostrarNotificacion(
+            "El envío ya tiene ese estado."
+        );
+
+        return;
+
+    }
+
+
+    envio.estado =
+        estado;
+
+
+    envio.estadoLabel =
+        estados[estado];
+
+
+    if (
+        !Array.isArray(
+            envio.history
+        )
+    ) {
+
+        envio.history =
+            [];
+
+    }
+
+
+    envio.history.push({
+
+        estado,
+
+        label:
+            estados[estado],
+
+        fecha:
+            new Date()
+                .toISOString(),
+
+        descripcion:
+            `El estado cambió a ${estados[estado]}.`
+
+    });
+
+
+    actualizarClientes();
+
+    guardarDatos();
+
+    renderizarTodo();
+
+
+    if (
+        currentShipment &&
+        String(
+            currentShipment.id
+        ) ===
+        String(id)
+    ) {
+
+        verDetalleEnvio(
+            id
+        );
+
+    }
+
+
+    mostrarNotificacion(
+        "Estado actualizado."
+    );
+
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function inicializarModal() {
+
+    const close =
+        document.getElementById(
+            "closeModal"
+        );
+
+
+    const closeButton =
+        document.getElementById(
+            "closeModalButton"
+        );
+
+
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
+
+
+    if (close) {
+
+        close.addEventListener(
+            "click",
+            cerrarModal
+        );
+
+    }
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            cerrarModal
+        );
+
+    }
+
+
+    if (modal) {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    modal
+                ) {
+
+                    cerrarModal();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key ===
+                "Escape"
+            ) {
+
+                cerrarModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VER DETALLE
+========================================================= */
+
+function verDetalleEnvio(id) {
+
+    const envio =
+        envios.find(
+            e => String(e.id) === String(id)
+        );
+
+
+    if (!envio) {
+
+        console.warn(
+            "No se encontró el envío:",
+            id
+        );
+
+        return;
+
+    }
+
+
+    currentShipment = envio;
+
+
+    /* =====================================================
+       INFORMACIÓN GENERAL
+    ===================================================== */
+
+    establecerTexto(
+        "modalShipmentTitle",
+        envio.codigo || "—"
+    );
+
+
+    establecerTexto(
+        "modalClient",
+        envio.cliente?.nombre || "—"
+    );
+
+
+    establecerTexto(
+        "modalOrigin",
+        envio.ruta?.origen || "—"
+    );
+
+
+    establecerTexto(
+        "modalDestination",
+        envio.ruta?.destino || "—"
+    );
+
+
+    establecerTexto(
+        "modalOperation",
+        envio.operationType || "—"
+    );
+
+
+    establecerTexto(
+        "modalTransport",
+        envio.transportMode || "—"
+    );
+
+
+    /* =====================================================
+       PAQUETES
+    ===================================================== */
+
+    establecerTexto(
+        "modalPackageQuantity",
+        envio.packageQuantity || "0"
+    );
+
+
+    establecerTexto(
+        "modalPackageType",
+        envio.packageType || "—"
+    );
+
+
+    establecerTexto(
+        "modalPackageCategory",
+        envio.packageCategory || "—"
+    );
+
+
+    establecerTexto(
+        "modalCategory",
+        envio.packageCategory || "—"
+    );
+
+
+    establecerTexto(
+        "modalDescription",
+        envio.description || "—"
+    );
+
+
+    /* =====================================================
+       PESO
+    ===================================================== */
+
+    establecerTexto(
+        "modalWeight",
+        formatearPeso(envio.weight)
+    );
+
+
+    /* =====================================================
+       VOLUMEN / DIMENSIONES
+    ===================================================== */
+
+    const dimensiones =
+        envio.dimensions || {};
+
+
+    const unidad =
+        dimensiones.unit || "—";
+
+
+    const largo =
+        dimensiones.length || 0;
+
+
+    const ancho =
+        dimensiones.width || 0;
+
+
+    const alto =
+        dimensiones.height || 0;
+
+
+    const volumen =
+        Number(dimensiones.cubicFeet) || 0;
+
+
+    establecerTexto(
+        "modalVolume",
+        volumen > 0
+            ? `${volumen.toFixed(2)} pie³`
+            : "—"
+    );
+
+
+    establecerTexto(
+        "modalCubicFeet",
+        volumen > 0
+            ? `${volumen.toFixed(2)} pie³`
+            : "—"
+    );
+
+
+    establecerTexto(
+        "modalDimensions",
+        largo > 0 &&
+        ancho > 0 &&
+        alto > 0
+            ? `${largo} × ${ancho} × ${alto} ${unidad}`
+            : "—"
+    );
+
+
+    establecerTexto(
+        "modalLength",
+        largo > 0
+            ? `${largo} ${unidad}`
+            : "—"
+    );
+
+
+    establecerTexto(
+        "modalWidth",
+        ancho > 0
+            ? `${ancho} ${unidad}`
+            : "—"
+    );
+
+
+    establecerTexto(
+        "modalHeight",
+        alto > 0
+            ? `${alto} ${unidad}`
+            : "—"
+    );
+
+
+    /* =====================================================
+       VALOR DECLARADO
+    ===================================================== */
+
+    establecerTexto(
+        "modalDeclaredValue",
+        envio.declaredValue > 0
+            ? `${Number(envio.declaredValue).toFixed(2)} ${envio.currency || ""}`
+            : "—"
+    );
+
+
+    /* =====================================================
+       RUTA / PERSONAS
+    ===================================================== */
+
+    establecerTexto(
+        "modalSender",
+        envio.ruta?.remitente || "—"
+    );
+
+
+    establecerTexto(
+        "modalRecipient",
+        envio.ruta?.destinatario || "—"
+    );
+
+
+    establecerTexto(
+        "modalDeliveryAddress",
+        envio.ruta?.direccionEntrega || "—"
+    );
+
+
+    /* =====================================================
+       CLIENTE
+    ===================================================== */
+
+    establecerTexto(
+        "modalClientPhone",
+        envio.cliente?.telefono || "—"
+    );
+
+
+    establecerTexto(
+        "modalClientEmail",
+        envio.cliente?.email || "—"
+    );
+
+
+    establecerTexto(
+        "modalClientDocument",
+        envio.cliente?.documento || "—"
+    );
+
+
+    establecerTexto(
+        "modalClientAddress",
+        envio.cliente?.direccion || "—"
+    );
+
+
+    /* =====================================================
+       MANEJO / SEGURO / OBSERVACIONES
+    ===================================================== */
+
+    establecerTexto(
+        "modalSpecialHandling",
+        envio.specialHandling || "—"
+    );
+
+
+    establecerTexto(
+        "modalInsurance",
+        envio.insurance || "—"
+    );
+
+
+    establecerTexto(
+        "modalNotes",
+        envio.notes || "—"
+    );
+
+
+    /* =====================================================
+       FECHA
+    ===================================================== */
+
+    establecerTexto(
+        "modalDate",
+        formatearFecha(envio.fecha)
+    );
+
+
+    /* =====================================================
+       ESTADO
+    ===================================================== */
+
+    const modalStatus =
+        document.getElementById(
+            "modalStatus"
+        );
+
+
+    if (modalStatus) {
+
+        modalStatus.textContent =
+            envio.estadoLabel ||
+            estados[envio.estado] ||
+            "—";
+
+
+        modalStatus.className =
+            `status status-${envio.estado}`;
+
+    }
+
+
+    /* =====================================================
+       MODAL
+    ===================================================== */
+
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
+
+
+    if (!modal) {
+
+        console.warn(
+            "No existe #shipmentModal en el HTML."
+        );
+
+        return;
+
+    }
+
+
+    modal.classList.add("active");
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    /* =====================================================
+       TIMELINE
+    ===================================================== */
+
+    const timeline =
+        modal.querySelector(
+            ".tracking-timeline"
         );
 
 
     if (timeline) {
 
-        timeline.innerHTML =
-            crearTimeline(envio);
+        renderizarTimelineElemento(
+            envio,
+            timeline
+        );
 
     }
+
+}
+
+
+/* =========================================================
+   TIMELINE DEL MODAL
+========================================================= */
+
+function renderizarTimelineElemento(
+    envio,
+    timeline
+) {
+
+    if (!timeline) {
+        return;
+    }
+
+
+    timeline.innerHTML =
+        "";
+
+
+    const history =
+        Array.isArray(
+            envio.history
+        )
+            ? envio.history
+            : [];
+
+
+    if (!history.length) {
+
+        timeline.innerHTML = `
+
+            <div class="empty-state">
+
+                <p>
+                    No hay historial disponible.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    history.forEach(
+        (item, index) => {
+
+            const elemento =
+                document.createElement(
+                    "div"
+                );
+
+
+            elemento.className =
+                "timeline-item";
+
+
+            if (
+                index ===
+                history.length - 1
+            ) {
+
+                elemento.classList.add(
+                    "active"
+                );
+
+            }
+
+
+            elemento.innerHTML = `
+
+                <div class="timeline-dot"></div>
+
+                <div class="timeline-content">
+
+                    <strong>
+
+                        ${escaparHTML(
+                            item.label ||
+                            estados[item.estado] ||
+                            item.estado ||
+                            "—"
+                        )}
+
+                    </strong>
+
+
+                    <span>
+
+                        ${formatearFechaHora(
+                            item.fecha
+                        )}
+
+                    </span>
+
+
+                    <p>
+
+                        ${escaparHTML(
+                            item.descripcion ||
+                            ""
+                        )}
+
+                    </p>
+
+                </div>
+
+            `;
+
+
+            timeline.appendChild(
+                elemento
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CERRAR MODAL
+========================================================= */
+
+function cerrarModal() {
+
+    const modal =
+        document.getElementById(
+            "shipmentModal"
+        );
+
+
+    if (!modal) {
+        return;
+    }
+
+
+    modal.classList.remove(
+        "active"
+    );
+
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    currentShipment =
+        null;
+
+}
+
+
+/* =========================================================
+   ELIMINAR ENVÍO
+========================================================= */
+
+function eliminarEnvio(
+    id
+) {
+
+    const envio =
+        envios.find(
+            e =>
+                String(e.id) ===
+                String(id)
+        );
+
+
+    if (!envio) {
+        return;
+    }
+
+
+    const confirmar =
+        confirm(
+            `¿Deseas eliminar el envío ${envio.codigo}?`
+        );
+
+
+    if (!confirmar) {
+        return;
+    }
+
+
+    envios =
+        envios.filter(
+            e =>
+                String(e.id) !==
+                String(id)
+        );
+
+
+    actualizarClientes();
+
+    guardarDatos();
+
+    renderizarTodo();
+
+
+    if (
+        currentShipment &&
+        String(
+            currentShipment.id
+        ) ===
+        String(id)
+    ) {
+
+        cerrarModal();
+
+    }
+
+
+    mostrarNotificacion(
+        "Envío eliminado."
+    );
+
+}
+
+
+/* =========================================================
+   VER CLIENTE
+========================================================= */
+
+function verCliente(
+    nombre
+) {
+
+    const cliente =
+        clientes.find(
+            c =>
+                c.nombre ===
+                nombre
+        );
+
+
+    if (!cliente) {
+        return;
+    }
+
+
+    alert(
+
+        `CLIENTE\n\n` +
+
+        `Nombre: ${
+            cliente.nombre
+        }\n` +
+
+        `Teléfono: ${
+            cliente.telefono ||
+            "—"
+        }\n` +
+
+        `Correo: ${
+            cliente.email ||
+            "—"
+        }\n` +
+
+        `Documento: ${
+            cliente.documento ||
+            "—"
+        }\n` +
+
+        `Dirección: ${
+            cliente.direccion ||
+            "—"
+        }\n\n` +
+
+        `Total de envíos: ${
+            cliente.total ||
+            0
+        }\n` +
+
+        `En tránsito: ${
+            cliente.transito ||
+            0
+        }\n` +
+
+        `Entregados: ${
+            cliente.entregados ||
+            0
+        }`
+
+    );
 
 }
 
@@ -2205,288 +3723,201 @@ function consultarSeguimiento() {
    REPORTES
 ========================================================= */
 
-function inicializarReportes() {
-
-    const boton =
-        document.getElementById(
-            "exportReportButton"
-        );
-
-
-    if (boton) {
-
-        boton.addEventListener(
-            "click",
-            exportarReporte
-        );
-
-    }
-
-}
-
-
-function actualizarReportes() {
+function renderizarReportes() {
 
     const total =
         envios.length;
 
 
-    const importaciones =
+    const imports =
         envios.filter(
-            envio =>
-                envio.tipo === "Importación"
+            e =>
+                e.operationType ===
+                "Importación"
         ).length;
 
 
-    const exportaciones =
+    const exports =
         envios.filter(
-            envio =>
-                envio.tipo === "Exportación"
+            e =>
+                e.operationType ===
+                "Exportación"
         ).length;
 
 
-    const peso =
+    const pesoTotal =
         envios.reduce(
-            (total, envio) =>
-                total +
-                Number(envio.peso || 0),
+            (totalActual, envio) =>
+                totalActual +
+                (
+                    Number(
+                        envio.weight
+                    ) || 0
+                ),
             0
         );
 
 
-    asignarTexto(
+    establecerTexto(
         "reportTotal",
         total
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "reportImports",
-        importaciones
+        imports
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "reportExports",
-        exportaciones
+        exports
     );
 
-    asignarTexto(
+
+    establecerTexto(
         "reportWeight",
-        `${peso.toFixed(1)} kg`
+        `${pesoTotal.toFixed(2)} lb`
     );
 
 
-    const tabla =
+    const tbody =
         document.getElementById(
             "reportTable"
         );
 
 
-    if (!tabla) return;
+    if (!tbody) {
+        return;
+    }
 
 
-    const porcentaje =
-        total > 0
-            ? Math.round(
-                (importaciones / total) * 100
-            )
-            : 0;
+    const categorias = {};
 
 
-    const porcentajeExport =
-        total > 0
-            ? Math.round(
-                (exportaciones / total) * 100
-            )
-            : 0;
+    envios.forEach(
+        envio => {
+
+            const categoria =
+                envio.packageCategory ||
+                "Sin categoría";
 
 
-    tabla.innerHTML = `
+            categorias[categoria] =
+                (
+                    categorias[categoria] ||
+                    0
+                ) + 1;
 
-        <tr>
-
-            <td>
-                Importaciones
-            </td>
-
-            <td>
-                ${importaciones}
-            </td>
-
-            <td>
-                ${porcentaje}%
-            </td>
-
-        </tr>
+        }
+    );
 
 
-        <tr>
-
-            <td>
-                Exportaciones
-            </td>
-
-            <td>
-                ${exportaciones}
-            </td>
-
-            <td>
-                ${porcentajeExport}%
-            </td>
-
-        </tr>
+    tbody.innerHTML =
+        "";
 
 
-        <tr>
+    if (!total) {
 
-            <td>
-                Pendientes
-            </td>
+        tbody.innerHTML = `
 
-            <td>
-                ${
-                    envios.filter(
-                        e =>
-                            e.estado === "pendiente"
-                    ).length
-                }
-            </td>
+            <tr>
 
-            <td>
-                ${
-                    total
-                        ? Math.round(
-                            (
-                                envios.filter(
-                                    e =>
-                                        e.estado === "pendiente"
-                                ).length /
-                                total
-                            ) * 100
-                        )
-                        : 0
-                }%
-            </td>
+                <td colspan="3">
 
-        </tr>
+                    No hay información disponible.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
 
 
-        <tr>
+    Object.entries(
+        categorias
+    )
+        .forEach(
+            ([categoria, cantidad]) => {
 
-            <td>
-                En tránsito
-            </td>
-
-            <td>
-                ${
-                    envios.filter(
-                        e =>
-                            e.estado === "transito"
-                    ).length
-                }
-            </td>
-
-            <td>
-                ${
-                    total
-                        ? Math.round(
-                            (
-                                envios.filter(
-                                    e =>
-                                        e.estado === "transito"
-                                ).length /
-                                total
-                            ) * 100
-                        )
-                        : 0
-                }%
-            </td>
-
-        </tr>
+                const porcentaje =
+                    (
+                        cantidad /
+                        total *
+                        100
+                    ).toFixed(1);
 
 
-        <tr>
-
-            <td>
-                En aduana
-            </td>
-
-            <td>
-                ${
-                    envios.filter(
-                        e =>
-                            e.estado === "aduana"
-                    ).length
-                }
-            </td>
-
-            <td>
-                ${
-                    total
-                        ? Math.round(
-                            (
-                                envios.filter(
-                                    e =>
-                                        e.estado === "aduana"
-                                ).length /
-                                total
-                            ) * 100
-                        )
-                        : 0
-                }%
-            </td>
-
-        </tr>
+                const tr =
+                    document.createElement(
+                        "tr"
+                    );
 
 
-        <tr>
+                tr.innerHTML = `
 
-            <td>
-                Entregados
-            </td>
+                    <td>
+                        ${escaparHTML(
+                            categoria
+                        )}
+                    </td>
 
-            <td>
-                ${
-                    envios.filter(
-                        e =>
-                            e.estado === "entregado"
-                    ).length
-                }
-            </td>
+                    <td>
+                        ${cantidad}
+                    </td>
 
-            <td>
-                ${
-                    total
-                        ? Math.round(
-                            (
-                                envios.filter(
-                                    e =>
-                                        e.estado === "entregado"
-                                ).length /
-                                total
-                            ) * 100
-                        )
-                        : 0
-                }%
-            </td>
+                    <td>
+                        ${porcentaje}%
+                    </td>
 
-        </tr>
+                `;
 
-    `;
+
+                tbody.appendChild(
+                    tr
+                );
+
+            }
+        );
 
 }
 
 
 /* =========================================================
-   EXPORTAR REPORTE
+   EXPORTAR CSV
 ========================================================= */
 
-function exportarReporte() {
+document.addEventListener(
+    "click",
+    event => {
+
+        const boton =
+            event.target.closest(
+                "#exportReportButton"
+            );
+
+
+        if (boton) {
+
+            exportarCSV();
+
+        }
+
+    }
+);
+
+
+function exportarCSV() {
 
     if (!envios.length) {
 
         mostrarNotificacion(
-            "No existen datos para exportar.",
-            "error"
+            "No hay envíos para exportar."
         );
 
         return;
@@ -2494,81 +3925,184 @@ function exportarReporte() {
     }
 
 
-    let csv =
-        "Código,Cliente,Origen,Destino,Tipo,Peso,Estado,Fecha\n";
+    const encabezados = [
+
+        "Código",
+        "Fecha",
+        "Operación",
+        "Transporte",
+        "Cliente",
+        "Teléfono",
+        "Correo",
+        "Documento",
+        "Dirección cliente",
+        "Origen",
+        "Destino",
+        "Remitente",
+        "Destinatario",
+        "Dirección de entrega",
+        "Paquetes",
+        "Tipo de paquete",
+        "Categoría",
+        "Descripción",
+        "Peso",
+        "Unidad dimensiones",
+        "Largo",
+        "Ancho",
+        "Alto",
+        "Volumen",
+        "Valor declarado",
+        "Moneda",
+        "Estado",
+        "Manejo especial",
+        "Seguro",
+        "Observaciones"
+
+    ];
 
 
-    envios.forEach(envio => {
+    const filas =
+        envios.map(
+            envio => [
 
-        csv += [
+                envio.codigo,
 
-            envio.codigo,
+                envio.fecha,
 
-            envio.cliente,
+                envio.operationType,
 
-            envio.origen,
+                envio.transportMode,
 
-            envio.destino,
+                envio.cliente?.nombre,
 
-            envio.tipo,
+                envio.cliente?.telefono,
 
-            envio.peso,
+                envio.cliente?.email,
 
-            estados[envio.estado],
+                envio.cliente?.documento,
 
-            envio.fecha
+                envio.cliente?.direccion,
 
-        ]
-        .map(valor =>
-            `"${String(valor).replace(/"/g, '""')}"`
+                envio.ruta?.origen,
+
+                envio.ruta?.destino,
+
+                envio.ruta?.remitente,
+
+                envio.ruta?.destinatario,
+
+                envio.ruta?.direccionEntrega,
+
+                envio.packageQuantity,
+
+                envio.packageType,
+
+                envio.packageCategory,
+
+                envio.description,
+
+                envio.weight,
+
+                envio.dimensions?.unit,
+
+                envio.dimensions?.length,
+
+                envio.dimensions?.width,
+
+                envio.dimensions?.height,
+
+                envio.dimensions?.cubicFeet,
+
+                envio.declaredValue,
+
+                envio.currency,
+
+                envio.estadoLabel,
+
+                envio.specialHandling,
+
+                envio.insurance,
+
+                envio.notes
+
+            ]
+        );
+
+
+    const csv = [
+
+        encabezados,
+
+        ...filas
+
+    ]
+        .map(
+            fila =>
+                fila
+                    .map(
+                        valor =>
+                            `"${String(
+                                valor ?? ""
+                            ).replace(
+                                /"/g,
+                                '""'
+                            )}"`
+                    )
+                    .join(",")
         )
-        .join(",");
-
-
-        csv += "\n";
-
-    });
+        .join("\n");
 
 
     const blob =
         new Blob(
-            [csv],
+            [
+                "\ufeff" +
+                csv
+            ],
             {
-                type: "text/csv;charset=utf-8;"
+                type:
+                    "text/csv;charset=utf-8;"
             }
         );
 
 
     const url =
-        URL.createObjectURL(blob);
+        URL.createObjectURL(
+            blob
+        );
 
 
-    const enlace =
-        document.createElement("a");
+    const link =
+        document.createElement(
+            "a"
+        );
 
 
-    enlace.href = url;
+    link.href =
+        url;
 
-    enlace.download =
-        `reporte-envios-ya-${obtenerFechaActual()}.csv`;
+
+    link.download =
+        `envios-ya-reporte-${
+            new Date()
+                .toISOString()
+                .split("T")[0]
+        }.csv`;
 
 
     document.body.appendChild(
-        enlace
+        link
     );
 
 
-    enlace.click();
+    link.click();
 
 
-    enlace.remove();
-
-    URL.revokeObjectURL(url);
+    link.remove();
 
 
-    mostrarNotificacion(
-        "Reporte exportado correctamente.",
-        "success"
+    URL.revokeObjectURL(
+        url
     );
 
 }
@@ -2580,22 +4114,188 @@ function exportarReporte() {
 
 function inicializarConfiguracion() {
 
-    const boton =
+    const button =
         document.getElementById(
             "saveSettingsButton"
         );
 
 
-    if (!boton) return;
+    cargarConfiguracion();
 
 
-    boton.addEventListener(
+    if (button) {
+
+        button.addEventListener(
+            "click",
+            guardarConfiguracion
+        );
+
+    }
+
+}
+
+
+function cargarConfiguracion() {
+
+    try {
+
+        const data =
+            localStorage.getItem(
+                SETTINGS_KEY
+            );
+
+
+        if (!data) {
+            return;
+        }
+
+
+        const settings =
+            JSON.parse(
+                data
+            );
+
+
+        const campos = [
+
+            "companyName",
+            "companyPhone",
+            "companyEmail",
+            "companyAddress",
+            "defaultOperation",
+            "timezone"
+
+        ];
+
+
+        campos.forEach(
+            id => {
+
+                const elemento =
+                    document.getElementById(
+                        id
+                    );
+
+
+                if (
+                    elemento &&
+                    settings[id] !==
+                    undefined
+                ) {
+
+                    elemento.value =
+                        settings[id];
+
+                }
+
+            }
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error cargando configuración:",
+            error
+        );
+
+    }
+
+}
+
+
+function guardarConfiguracion() {
+
+    const campos = [
+
+        "companyName",
+        "companyPhone",
+        "companyEmail",
+        "companyAddress",
+        "defaultOperation",
+        "timezone"
+
+    ];
+
+
+    const settings = {};
+
+
+    campos.forEach(
+        id => {
+
+            const elemento =
+                document.getElementById(
+                    id
+                );
+
+
+            if (elemento) {
+
+                settings[id] =
+                    elemento.value;
+
+            }
+
+        }
+    );
+
+
+    localStorage.setItem(
+        SETTINGS_KEY,
+        JSON.stringify(settings)
+    );
+
+
+    mostrarNotificacion(
+        "Configuración guardada correctamente."
+    );
+
+}
+
+
+/* =========================================================
+   NUEVO CLIENTE
+========================================================= */
+
+function inicializarClientes() {
+
+    const button =
+        document.getElementById(
+            "newClientButton"
+        );
+
+
+    if (!button) {
+        return;
+    }
+
+
+    button.addEventListener(
         "click",
         () => {
 
-            mostrarNotificacion(
-                "Configuración guardada correctamente.",
-                "success"
+            cambiarSeccion(
+                "registrar"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    const campo =
+                        document.getElementById(
+                            "clientName"
+                        );
+
+
+                    if (campo) {
+
+                        campo.focus();
+
+                    }
+
+                },
+                100
             );
 
         }
@@ -2605,68 +4305,401 @@ function inicializarConfiguracion() {
 
 
 /* =========================================================
-   NOTIFICACIONES
+   MENÚ MÓVIL
 ========================================================= */
 
-function mostrarNotificacion(
-    mensaje,
-    tipo = "success"
-) {
+function inicializarMenuMovil() {
 
-    const anterior =
-        document.querySelector(
-            ".notification-toast"
+    const toggle =
+        document.getElementById(
+            "menuToggle"
         );
 
 
-    if (anterior) {
-        anterior.remove();
+    const sidebar =
+        document.querySelector(
+            ".sidebar"
+        );
+
+
+    if (
+        !toggle ||
+        !sidebar
+    ) {
+
+        return;
+
     }
 
 
-    const toast =
-        document.createElement(
-            "div"
+    toggle.addEventListener(
+        "click",
+        () => {
+
+            sidebar.classList.toggle(
+                "open"
+            );
+
+        }
+    );
+
+
+    document.querySelectorAll(
+        ".nav-item"
+    )
+        .forEach(
+            item => {
+
+                item.addEventListener(
+                    "click",
+                    () => {
+
+                        sidebar.classList.remove(
+                            "open"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   NOTIFICACIÓN
+========================================================= */
+
+function mostrarNotificacion(
+    mensaje
+) {
+
+    let toast =
+        document.getElementById(
+            "toast"
         );
 
 
-    toast.className =
-        `notification-toast ${tipo}`;
+    if (!toast) {
+
+        toast =
+            document.createElement(
+                "div"
+            );
+
+
+        toast.id =
+            "toast";
+
+
+        toast.className =
+            "toast";
+
+
+        document.body.appendChild(
+            toast
+        );
+
+    }
 
 
     toast.textContent =
         mensaje;
 
 
-    document.body.appendChild(
-        toast
+    toast.classList.add(
+        "show"
     );
 
 
-    setTimeout(() => {
+    clearTimeout(
+        mostrarNotificacion.timeout
+    );
 
-        toast.remove();
 
-    }, 3500);
+    mostrarNotificacion.timeout =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            3000
+        );
 
 }
 
 
 /* =========================================================
-   ACTUALIZACIÓN GENERAL
+   UTILIDADES
 ========================================================= */
 
-function actualizarTodo() {
+function establecerTexto(id, texto) {
 
-    actualizarDashboard();
+    const elemento =
+        document.getElementById(id);
 
-    renderizarEnvios();
 
-    reconstruirClientes();
+    if (!elemento) {
 
-    renderizarClientes();
+        /*
+            No mostramos error por cada campo
+            porque algunos modales pueden no
+            tener todos los campos.
+        */
 
-    actualizarReportes();
+        return;
+
+    }
+
+
+    elemento.textContent =
+        texto === undefined ||
+        texto === null ||
+        texto === ""
+            ? "—"
+            : texto;
+
+}
+
+
+/* =========================================================
+   FORMATEAR NÚMERO
+========================================================= */
+
+function formatearNumero(
+    valor
+) {
+
+    const numero =
+        Number(valor);
+
+
+    if (
+        Number.isNaN(numero) ||
+        numero <= 0
+    ) {
+
+        return "—";
+
+    }
+
+
+    return numero.toFixed(2);
+
+}
+
+
+/* =========================================================
+   FORMATEAR VALOR DECLARADO
+========================================================= */
+
+function formatearValorDeclarado(
+    valor,
+    moneda
+) {
+
+    const numero =
+        Number(valor);
+
+
+    if (
+        Number.isNaN(numero) ||
+        numero <= 0
+    ) {
+
+        return "—";
+
+    }
+
+
+    return `${numero.toFixed(2)} ${
+        moneda || ""
+    }`.trim();
+
+}
+
+
+/* =========================================================
+   FORMATEAR FECHA
+========================================================= */
+
+function formatearFecha(
+    fecha
+) {
+
+    if (!fecha) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(fecha);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return fecha;
+
+    }
+
+
+    return date.toLocaleDateString(
+        "es-NI"
+    );
+
+}
+
+
+/* =========================================================
+   FORMATEAR FECHA Y HORA
+========================================================= */
+
+function formatearFechaHora(
+    fecha
+) {
+
+    if (!fecha) {
+        return "—";
+    }
+
+
+    const date =
+        new Date(fecha);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return fecha;
+
+    }
+
+
+    return date.toLocaleString(
+        "es-NI",
+        {
+
+            dateStyle:
+                "short",
+
+            timeStyle:
+                "short"
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORMATEAR PESO
+========================================================= */
+
+function formatearPeso(
+    peso
+) {
+
+    const numero =
+        Number(peso);
+
+
+    if (
+        Number.isNaN(numero) ||
+        numero <= 0
+    ) {
+
+        return "—";
+
+    }
+
+
+    return `${numero.toFixed(2)} lb`;
+
+}
+
+
+/* =========================================================
+   SEGURIDAD HTML
+========================================================= */
+
+function escaparHTML(
+    valor
+) {
+
+    return String(
+        valor ?? ""
+    )
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   SEGURIDAD PARA ATRIBUTOS
+========================================================= */
+
+function escaparAtributo(
+    valor
+) {
+
+    return String(
+        valor ?? ""
+    )
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        )
+
+        .replace(
+            /\r?\n/g,
+            "\\n"
+        );
 
 }
 
@@ -2675,11 +4708,25 @@ function actualizarTodo() {
    EXPOSICIÓN DE FUNCIONES
 ========================================================= */
 
-window.verEnvio =
-    verEnvio;
+window.verDetalleEnvio =
+    verDetalleEnvio;
+
+
+window.cambiarEstadoEnvio =
+    cambiarEstadoEnvio;
+
 
 window.eliminarEnvio =
     eliminarEnvio;
 
+
 window.verCliente =
     verCliente;
+
+
+window.cerrarModal =
+    cerrarModal;
+
+
+window.cambiarSeccion =
+    cambiarSeccion;

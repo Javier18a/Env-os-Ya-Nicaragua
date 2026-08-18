@@ -4,14 +4,12 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Sistema de gestión y seguimiento de envíos de Envios Ya Nicaragua">
+    <title>Envíos Ya | Sistema de Gestión</title>
 
-    <title>Envios Ya | Sistema de Gestión</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <link rel="stylesheet" href="css/styles.css">
 
@@ -20,16 +18,14 @@
 
 <body>
 
-
     <div class="app">
 
 
         <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
+             SIDEBAR
+        ====================================================== -->
 
         <aside class="sidebar">
-
 
             <div class="sidebar-header">
 
@@ -41,9 +37,13 @@
 
                     <div class="brand-info">
 
-                        <h1>Envios Ya</h1>
+                        <h1>
+                            Envíos Ya
+                        </h1>
 
-                        <span>Sistema de gestión</span>
+                        <span>
+                            Gestión de envíos
+                        </span>
 
                     </div>
 
@@ -53,7 +53,6 @@
 
 
             <nav class="sidebar-nav">
-
 
                 <span class="nav-title">
                     PRINCIPAL
@@ -99,11 +98,6 @@
                 </button>
 
 
-                <span class="nav-title">
-                    OPERACIONES
-                </span>
-
-
                 <button class="nav-item" data-section="clientes">
 
                     <span class="nav-icon">
@@ -115,6 +109,11 @@
                     </span>
 
                 </button>
+
+
+                <span class="nav-title">
+                    OPERACIONES
+                </span>
 
 
                 <button class="nav-item" data-section="seguimiento">
@@ -173,20 +172,16 @@
 
                 </button>
 
-
             </nav>
 
 
             <div class="sidebar-footer">
 
-
                 <div class="user-card">
 
-
                     <div class="user-avatar">
-                        AD
+                        JD
                     </div>
-
 
                     <div class="user-info">
 
@@ -195,40 +190,37 @@
                         </strong>
 
                         <span>
-                            Acceso completo
+                            Administrador del sistema
                         </span>
 
                     </div>
 
-
                 </div>
 
-
             </div>
-
 
         </aside>
 
 
 
         <!-- =====================================================
-         MAIN
-    ====================================================== -->
+             MAIN
+        ====================================================== -->
 
         <main class="main-content">
 
 
             <!-- =================================================
-             TOPBAR
-        ================================================== -->
+                 TOPBAR
+            ================================================== -->
 
             <header class="topbar">
 
-
                 <div class="topbar-left">
 
-
-                    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                    <button class="menu-toggle"
+                        id="menuToggle"
+                        aria-label="Abrir menú">
 
                         <i class="fa-solid fa-bars"></i>
 
@@ -238,7 +230,7 @@
                     <div>
 
                         <span class="breadcrumb">
-                            Envios Ya / Sistema
+                            Envíos Ya / Sistema
                         </span>
 
                         <h2 id="pageTitle">
@@ -247,19 +239,18 @@
 
                     </div>
 
-
                 </div>
 
 
                 <div class="topbar-right">
 
-
-                    <button class="notification-button" aria-label="Notificaciones">
+                    <button class="notification-button"
+                        title="Notificaciones">
 
                         <i class="fa-regular fa-bell"></i>
 
                         <span class="notification-count">
-                            3
+                            0
                         </span>
 
                     </button>
@@ -277,23 +268,20 @@
 
                     </div>
 
-
                 </div>
-
 
             </header>
 
 
 
             <!-- =================================================
-             DASHBOARD
-        ================================================== -->
+                 DASHBOARD
+            ================================================== -->
 
             <section class="content-section active" id="dashboard">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -306,13 +294,14 @@
                         </h3>
 
                         <p>
-                            Resumen de las operaciones de Envios Ya.
+                            Consulta el estado general de tus operaciones.
                         </p>
 
                     </div>
 
 
-                    <button class="primary-button" data-section="registrar">
+                    <button class="primary-button"
+                        data-section="registrar">
 
                         <i class="fa-solid fa-plus"></i>
 
@@ -320,25 +309,23 @@
 
                     </button>
 
-
                 </div>
 
 
 
-                <!-- ESTADÍSTICAS -->
+                <!-- =================================================
+                     ESTADÍSTICAS
+                ================================================== -->
 
                 <div class="stats-grid">
 
 
                     <div class="stat-card">
 
-
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-
                                 <i class="fa-solid fa-box"></i>
-
                             </div>
 
                             <span class="stat-label">
@@ -347,18 +334,13 @@
 
                         </div>
 
-
                         <strong class="stat-value" id="totalEnvios">
-
                             0
-
                         </strong>
 
-
                         <span class="stat-description">
-                            Operaciones registradas
+                            Envíos registrados
                         </span>
-
 
                     </div>
 
@@ -366,13 +348,10 @@
 
                     <div class="stat-card">
 
-
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-
                                 <i class="fa-solid fa-truck"></i>
-
                             </div>
 
                             <span class="stat-label">
@@ -381,18 +360,13 @@
 
                         </div>
 
-
                         <strong class="stat-value" id="enviosTransito">
-
                             0
-
                         </strong>
-
 
                         <span class="stat-description">
                             Envíos en movimiento
                         </span>
-
 
                     </div>
 
@@ -400,13 +374,10 @@
 
                     <div class="stat-card">
 
-
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-
-                                <i class="fa-solid fa-building-columns"></i>
-
+                                <i class="fa-solid fa-building-shield"></i>
                             </div>
 
                             <span class="stat-label">
@@ -415,18 +386,13 @@
 
                         </div>
 
-
                         <strong class="stat-value" id="enviosAduana">
-
                             0
-
                         </strong>
 
-
                         <span class="stat-description">
-                            Pendientes de procesamiento
+                            Pendientes de revisión
                         </span>
-
 
                     </div>
 
@@ -434,13 +400,10 @@
 
                     <div class="stat-card">
 
-
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-
                                 <i class="fa-solid fa-circle-check"></i>
-
                             </div>
 
                             <span class="stat-label">
@@ -449,41 +412,32 @@
 
                         </div>
 
-
                         <strong class="stat-value" id="enviosEntregados">
-
                             0
-
                         </strong>
 
-
                         <span class="stat-description">
-                            Entregas completadas
+                            Envíos completados
                         </span>
 
-
                     </div>
-
 
                 </div>
 
 
 
-                <!-- ACCIONES RÁPIDAS -->
+                <!-- =================================================
+                     ACCIONES RÁPIDAS
+                ================================================== -->
 
                 <div class="quick-actions">
-
 
                     <div class="section-header compact">
 
                         <div>
 
-                            <span class="section-label">
-                                ACCESO RÁPIDO
-                            </span>
-
                             <h3>
-                                Acciones
+                                Acciones rápidas
                             </h3>
 
                         </div>
@@ -494,152 +448,129 @@
                     <div class="quick-actions-grid">
 
 
-                        <button class="quick-action" data-section="registrar">
+                        <button class="quick-action"
+                            data-section="registrar">
 
+                            <div class="quick-action-icon">
+                                <i class="fa-solid fa-plus"></i>
+                            </div>
 
-                            <span class="quick-action-icon">
-
-                                <i class="fa-solid fa-box"></i>
-
-                            </span>
-
-
-                            <span>
+                            <div>
 
                                 <strong>
                                     Registrar envío
                                 </strong>
 
                                 <small>
-                                    Crear nueva operación
+                                    Crear un nuevo envío
                                 </small>
 
-                            </span>
-
+                            </div>
 
                         </button>
 
 
 
-                        <button class="quick-action" data-section="seguimiento">
+                        <button class="quick-action"
+                            data-section="seguimiento">
 
+                            <div class="quick-action-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
 
-                            <span class="quick-action-icon">
-
-                                <i class="fa-solid fa-location-crosshairs"></i>
-
-                            </span>
-
-
-                            <span>
+                            <div>
 
                                 <strong>
-                                    Consultar envío
+                                    Seguimiento
                                 </strong>
 
                                 <small>
-                                    Buscar por código
+                                    Consultar un envío
                                 </small>
 
-                            </span>
-
+                            </div>
 
                         </button>
 
 
 
-                        <button class="quick-action" data-section="clientes">
+                        <button class="quick-action"
+                            data-section="clientes">
 
+                            <div class="quick-action-icon">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
 
-                            <span class="quick-action-icon">
-
-                                <i class="fa-solid fa-user-plus"></i>
-
-                            </span>
-
-
-                            <span>
+                            <div>
 
                                 <strong>
                                     Clientes
                                 </strong>
 
                                 <small>
-                                    Consultar clientes
+                                    Administrar clientes
                                 </small>
 
-                            </span>
-
+                            </div>
 
                         </button>
 
 
 
-                        <button class="quick-action" data-section="reportes">
+                        <button class="quick-action"
+                            data-section="reportes">
 
+                            <div class="quick-action-icon">
+                                <i class="fa-solid fa-chart-column"></i>
+                            </div>
 
-                            <span class="quick-action-icon">
-
-                                <i class="fa-solid fa-file-lines"></i>
-
-                            </span>
-
-
-                            <span>
+                            <div>
 
                                 <strong>
                                     Reportes
                                 </strong>
 
                                 <small>
-                                    Consultar operaciones
+                                    Consultar estadísticas
                                 </small>
 
-                            </span>
-
+                            </div>
 
                         </button>
 
-
                     </div>
-
 
                 </div>
 
 
 
-                <!-- ÚLTIMOS ENVÍOS -->
+                <!-- =================================================
+                     ÚLTIMOS ENVÍOS
+                ================================================== -->
 
                 <div class="panel">
 
-
                     <div class="panel-header">
 
+                        <h3>
+                            Últimos envíos
+                        </h3>
 
-                        <div>
-
-                            <h3>
-                                Últimos envíos
-                            </h3>
-
-                        </div>
-
-
-                        <button class="text-button" data-section="envios">
+                        <button class="text-button"
+                            data-section="envios">
 
                             Ver todos
 
-                        </button>
+                            <i class="fa-solid fa-arrow-right"></i>
 
+                        </button>
 
                     </div>
 
 
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
@@ -662,7 +593,7 @@
                                     </th>
 
                                     <th>
-                                        Tipo
+                                        Operación
                                     </th>
 
                                     <th>
@@ -683,32 +614,26 @@
 
 
                             <tbody id="recentShipments">
-
                             </tbody>
-
 
                         </table>
 
-
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             ENVÍOS
-        ================================================== -->
+                 ENVÍOS
+            ================================================== -->
 
             <section class="content-section" id="envios">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -717,31 +642,34 @@
                         </span>
 
                         <h3>
-                            Gestión de envíos
+                            Envíos
                         </h3>
 
                         <p>
-                            Consulta y administra las operaciones registradas.
+                            Administra y actualiza todos los envíos registrados.
                         </p>
 
                     </div>
 
 
-                    <button class="primary-button" data-section="registrar">
+                    <button class="primary-button"
+                        data-section="registrar">
 
                         <i class="fa-solid fa-plus"></i>
 
-                        Nuevo envío
+                        Registrar envío
 
                     </button>
-
 
                 </div>
 
 
 
-                <div class="search-panel">
+                <!-- =================================================
+                     BÚSQUEDA
+                ================================================== -->
 
+                <div class="search-panel">
 
                     <div class="search-box">
 
@@ -749,7 +677,8 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
 
-                        <input type="text" id="shipmentSearch"
+                        <input type="search"
+                            id="shipmentSearch"
                             placeholder="Buscar por código, cliente, origen o destino...">
 
                     </div>
@@ -779,21 +708,27 @@
 
                     </select>
 
-
                 </div>
 
 
 
-                <div class="panel">
+                <!-- =================================================
+                     TABLA PRINCIPAL DE ENVÍOS
+                ================================================== -->
 
+                <div class="panel">
 
                     <div class="panel-header">
 
                         <div>
 
                             <h3>
-                                Envíos registrados
+                                Registro de envíos
                             </h3>
+
+                            <span class="section-label">
+                                GESTIÓN DE ENVÍOS
+                            </span>
 
                         </div>
 
@@ -802,9 +737,7 @@
 
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
@@ -819,15 +752,23 @@
                                     </th>
 
                                     <th>
-                                        Origen
+                                        Operación
                                     </th>
 
                                     <th>
-                                        Destino
+                                        Transporte
+                                    </th>
+
+                                    <th>
+                                        Paquete
                                     </th>
 
                                     <th>
                                         Peso
+                                    </th>
+
+                                    <th>
+                                        Volumen
                                     </th>
 
                                     <th>
@@ -839,7 +780,7 @@
                                     </th>
 
                                     <th>
-                                        Acción
+                                        Acciones
                                     </th>
 
                                 </tr>
@@ -848,32 +789,26 @@
 
 
                             <tbody id="shipmentsTable">
-
                             </tbody>
-
 
                         </table>
 
-
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             REGISTRAR ENVÍO
-        ================================================== -->
+                 REGISTRAR ENVÍO
+            ================================================== -->
 
             <section class="content-section" id="registrar">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -886,32 +821,32 @@
                         </h3>
 
                         <p>
-                            Registra una nueva importación o exportación.
+                            Ingresa la información necesaria para registrar un nuevo envío.
                         </p>
 
                     </div>
-
 
                 </div>
 
 
 
-                <form class="form-panel" id="shipmentForm">
+                <form id="shipmentForm" class="form-panel">
 
 
-                    <!-- INFORMACIÓN DEL ENVÍO -->
+                    <!-- =================================================
+                         INFORMACIÓN GENERAL
+                    ================================================== -->
 
                     <div class="form-section">
-
 
                         <div class="form-section-header">
 
                             <h4>
-                                Información del envío
+                                Información general del envío
                             </h4>
 
                             <span>
-                                Datos principales
+                                Campos obligatorios *
                             </span>
 
                         </div>
@@ -923,10 +858,26 @@
                             <div class="form-group">
 
                                 <label for="shipmentCode">
-                                    Código de envío *
+                                    Código del envío *
                                 </label>
 
-                                <input type="text" id="shipmentCode" placeholder="Ej. ENV-00129" required>
+                                <input type="text"
+                                    id="shipmentCode"
+                                    readonly>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="shipmentDate">
+                                    Fecha de registro *
+                                </label>
+
+                                <input type="date"
+                                    id="shipmentDate"
+                                    required>
 
                             </div>
 
@@ -956,11 +907,25 @@
 
                             <div class="form-group">
 
-                                <label for="origin">
-                                    Origen *
+                                <label for="transportMode">
+                                    Modalidad de transporte *
                                 </label>
 
-                                <input type="text" id="origin" placeholder="Ej. Miami, USA" required>
+                                <select id="transportMode" required>
+
+                                    <option value="">
+                                        Seleccionar modalidad
+                                    </option>
+
+                                    <option value="Aire">
+                                        Aéreo
+                                    </option>
+
+                                    <option value="Mar">
+                                        Marítimo
+                                    </option>
+
+                                </select>
 
                             </div>
 
@@ -968,11 +933,188 @@
 
                             <div class="form-group">
 
-                                <label for="destination">
-                                    Destino *
+                                <label for="packageQuantity">
+                                    Cantidad de paquetes *
                                 </label>
 
-                                <input type="text" id="destination" placeholder="Ej. Managua, Nicaragua" required>
+                                <input type="number"
+                                    id="packageQuantity"
+                                    min="1"
+                                    value="1"
+                                    placeholder="Ej. 2"
+                                    required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="packageType">
+                                    Tipo de paquete *
+                                </label>
+
+                                <select id="packageType" required>
+
+                                    <option value="">
+                                        Seleccionar tipo
+                                    </option>
+
+                                    <option value="Caja">
+                                        Caja
+                                    </option>
+
+                                    <option value="Sobre">
+                                        Sobre
+                                    </option>
+
+                                    <option value="Bolsa">
+                                        Bolsa
+                                    </option>
+
+                                    <option value="Pallet">
+                                        Pallet
+                                    </option>
+
+                                    <option value="Bulto">
+                                        Bulto
+                                    </option>
+
+                                    <option value="Otro">
+                                        Otro
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group"
+                                id="otherPackageTypeGroup"
+                                style="display:none;">
+
+                                <label for="otherPackageType">
+                                    Especifique el tipo de paquete *
+                                </label>
+
+                                <input type="text"
+                                    id="otherPackageType"
+                                    placeholder="Ej. Maleta, tubo, equipo...">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="packageCategory">
+                                    Categoría *
+                                </label>
+
+                                <select id="packageCategory" required>
+
+                                    <option value="">
+                                        Seleccionar categoría
+                                    </option>
+
+                                    <option value="Ropa">
+                                        Ropa
+                                    </option>
+
+                                    <option value="Calzado">
+                                        Calzado
+                                    </option>
+
+                                    <option value="Electrónica">
+                                        Electrónica
+                                    </option>
+
+                                    <option value="Hogar">
+                                        Hogar
+                                    </option>
+
+                                    <option value="Repuestos">
+                                        Repuestos
+                                    </option>
+
+                                    <option value="Alimentos">
+                                        Alimentos
+                                    </option>
+
+                                    <option value="Documentos">
+                                        Documentos
+                                    </option>
+
+                                    <option value="Medicamentos">
+                                        Medicamentos
+                                    </option>
+
+                                    <option value="Mercancía general">
+                                        Mercancía general
+                                    </option>
+
+                                    <option value="Otro">
+                                        Otro
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group"
+                                id="otherCategoryGroup"
+                                style="display:none;">
+
+                                <label for="otherCategory">
+                                    Especifique la categoría *
+                                </label>
+
+                                <input type="text"
+                                    id="otherCategory"
+                                    placeholder="Especifique la categoría">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         INFORMACIÓN DEL CONTENIDO
+                    ================================================== -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Información del contenido
+                            </h4>
+
+                            <span>
+                                Detalle de la mercancía
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="packageDescription">
+                                    Descripción del contenido *
+                                </label>
+
+                                <textarea id="packageDescription"
+                                    placeholder="Describe brevemente el contenido del paquete..."
+                                    required></textarea>
 
                             </div>
 
@@ -981,10 +1123,15 @@
                             <div class="form-group">
 
                                 <label for="weight">
-                                    Peso (kg) *
+                                    Peso total (lb) *
                                 </label>
 
-                                <input type="number" id="weight" min="0.1" step="0.1" placeholder="0.0" required>
+                                <input type="number"
+                                    id="weight"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Ej. 15.50"
+                                    required>
 
                             </div>
 
@@ -992,26 +1139,167 @@
 
                             <div class="form-group">
 
-                                <label for="shipmentDate">
-                                    Fecha de registro *
+                                <label for="declaredValue">
+                                    Valor declarado
                                 </label>
 
-                                <input type="date" id="shipmentDate" required>
+                                <input type="number"
+                                    id="declaredValue"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Ej. 250.00">
 
                             </div>
 
 
-                        </div>
 
+                            <div class="form-group">
+
+                                <label for="currency">
+                                    Moneda
+                                </label>
+
+                                <select id="currency">
+
+                                    <option value="USD">
+                                        USD - Dólares
+                                    </option>
+
+                                    <option value="NIO">
+                                        NIO - Córdobas
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
 
-                    <!-- CLIENTE -->
+                    <!-- =================================================
+                         DIMENSIONES
+                    ================================================== -->
 
                     <div class="form-section">
 
+                        <div class="form-section-header">
+
+                            <h4>
+                                Dimensiones del paquete
+                            </h4>
+
+                            <span>
+                                Medidas y volumen total
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="dimensionUnit">
+                                    Unidad de medida
+                                </label>
+
+                                <select id="dimensionUnit">
+
+                                    <option value="pulgadas">
+                                        Pulgadas (in)
+                                    </option>
+
+                                    <option value="centimetros">
+                                        Centímetros (cm)
+                                    </option>
+
+                                    <option value="pies">
+                                        Pies (ft)
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="packageLength">
+                                    Largo
+                                </label>
+
+                                <input type="number"
+                                    id="packageLength"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Ej. 20">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="packageWidth">
+                                    Ancho
+                                </label>
+
+                                <input type="number"
+                                    id="packageWidth"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Ej. 15">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="packageHeight">
+                                    Alto
+                                </label>
+
+                                <input type="number"
+                                    id="packageHeight"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Ej. 12">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="cubicFeet">
+                                    Volumen total (pie³)
+                                </label>
+
+                                <input type="number"
+                                    id="cubicFeet"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Calculado automáticamente">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         INFORMACIÓN DEL CLIENTE
+                    ================================================== -->
+
+                    <div class="form-section">
 
                         <div class="form-section-header">
 
@@ -1020,7 +1308,7 @@
                             </h4>
 
                             <span>
-                                Datos de contacto
+                                Datos del cliente
                             </span>
 
                         </div>
@@ -1035,7 +1323,10 @@
                                     Nombre completo *
                                 </label>
 
-                                <input type="text" id="clientName" placeholder="Nombre del cliente" required>
+                                <input type="text"
+                                    id="clientName"
+                                    placeholder="Nombre completo"
+                                    required>
 
                             </div>
 
@@ -1044,34 +1335,78 @@
                             <div class="form-group">
 
                                 <label for="clientPhone">
-                                    Teléfono
+                                    Teléfono *
                                 </label>
 
-                                <input type="tel" id="clientPhone" placeholder="+505 8888 8888">
+                                <input type="tel"
+                                    id="clientPhone"
+                                    placeholder="+505 8888 8888"
+                                    required>
 
                             </div>
 
 
-                        </div>
 
+                            <div class="form-group">
+
+                                <label for="clientEmail">
+                                    Correo electrónico
+                                </label>
+
+                                <input type="email"
+                                    id="clientEmail"
+                                    placeholder="cliente@correo.com">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="clientDocument">
+                                    Documento de identidad
+                                </label>
+
+                                <input type="text"
+                                    id="clientDocument"
+                                    placeholder="Número de identificación">
+
+                            </div>
+
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="clientAddress">
+                                    Dirección del cliente
+                                </label>
+
+                                <input type="text"
+                                    id="clientAddress"
+                                    placeholder="Dirección completa">
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
 
-                    <!-- OBSERVACIONES -->
+                    <!-- =================================================
+                         RUTA
+                    ================================================== -->
 
                     <div class="form-section">
-
 
                         <div class="form-section-header">
 
                             <h4>
-                                Observaciones
+                                Ruta del envío
                             </h4>
 
                             <span>
-                                Información adicional
+                                Origen y destino
                             </span>
 
                         </div>
@@ -1080,29 +1415,181 @@
                         <div class="form-grid">
 
 
-                            <div class="form-group form-group-full">
+                            <div class="form-group">
 
-                                <label for="notes">
-                                    Notas del envío
+                                <label for="origin">
+                                    Origen *
                                 </label>
 
-                                <textarea id="notes"
-                                    placeholder="Agrega información adicional sobre el envío..."></textarea>
+                                <input type="text"
+                                    id="origin"
+                                    placeholder="Ej. Miami, USA"
+                                    required>
 
                             </div>
 
 
-                        </div>
 
+                            <div class="form-group">
+
+                                <label for="destination">
+                                    Destino *
+                                </label>
+
+                                <input type="text"
+                                    id="destination"
+                                    placeholder="Ej. Managua, Nicaragua"
+                                    required>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="senderName">
+                                    Remitente
+                                </label>
+
+                                <input type="text"
+                                    id="senderName"
+                                    placeholder="Nombre del remitente">
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="recipientName">
+                                    Destinatario
+                                </label>
+
+                                <input type="text"
+                                    id="recipientName"
+                                    placeholder="Nombre del destinatario">
+
+                            </div>
+
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="deliveryAddress">
+                                    Dirección de entrega
+                                </label>
+
+                                <input type="text"
+                                    id="deliveryAddress"
+                                    placeholder="Dirección donde será entregado el paquete">
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
 
+                    <!-- =================================================
+                         INFORMACIÓN ADICIONAL
+                    ================================================== -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Información adicional
+                            </h4>
+
+                            <span>
+                                Opcional
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="specialHandling">
+                                    Manejo especial
+                                </label>
+
+                                <select id="specialHandling">
+
+                                    <option value="Ninguno">
+                                        Ninguno
+                                    </option>
+
+                                    <option value="Frágil">
+                                        Frágil
+                                    </option>
+
+                                    <option value="Requiere cuidado">
+                                        Requiere cuidado
+                                    </option>
+
+                                    <option value="No apilar">
+                                        No apilar
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group">
+
+                                <label for="insurance">
+                                    Seguro
+                                </label>
+
+                                <select id="insurance">
+
+                                    <option value="No">
+                                        No
+                                    </option>
+
+                                    <option value="Sí">
+                                        Sí
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="notes">
+                                    Observaciones
+                                </label>
+
+                                <textarea id="notes"
+                                    placeholder="Agrega observaciones, instrucciones o información adicional..."></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         ACCIONES
+                    ================================================== -->
+
                     <div class="form-actions">
 
-
-                        <button type="reset" class="secondary-button">
+                        <button type="reset"
+                            class="secondary-button">
 
                             <i class="fa-solid fa-rotate-left"></i>
 
@@ -1111,34 +1598,31 @@
                         </button>
 
 
-                        <button type="submit" class="primary-button">
+                        <button type="submit"
+                            class="primary-button">
 
-                            <i class="fa-solid fa-save"></i>
+                            <i class="fa-solid fa-box"></i>
 
                             Registrar envío
 
                         </button>
 
-
                     </div>
 
-
                 </form>
-
 
             </section>
 
 
 
             <!-- =================================================
-             CLIENTES
-        ================================================== -->
+                 CLIENTES
+            ================================================== -->
 
             <section class="content-section" id="clientes">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -1147,17 +1631,18 @@
                         </span>
 
                         <h3>
-                            Gestión de clientes
+                            Clientes
                         </h3>
 
                         <p>
-                            Consulta el historial de operaciones de cada cliente.
+                            Consulta los clientes asociados a tus envíos.
                         </p>
 
                     </div>
 
 
-                    <button class="primary-button" id="newClientButton">
+                    <button class="primary-button"
+                        id="newClientButton">
 
                         <i class="fa-solid fa-user-plus"></i>
 
@@ -1165,13 +1650,11 @@
 
                     </button>
 
-
                 </div>
 
 
 
                 <div class="search-panel">
-
 
                     <div class="search-box">
 
@@ -1179,10 +1662,11 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </span>
 
-                        <input type="text" id="clientSearch" placeholder="Buscar cliente...">
+                        <input type="search"
+                            id="clientSearch"
+                            placeholder="Buscar cliente o teléfono...">
 
                     </div>
-
 
                 </div>
 
@@ -1190,11 +1674,10 @@
 
                 <div class="panel">
 
-
                     <div class="panel-header">
 
                         <h3>
-                            Clientes registrados
+                            Lista de clientes
                         </h3>
 
                     </div>
@@ -1202,9 +1685,7 @@
 
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
@@ -1240,32 +1721,26 @@
 
 
                             <tbody id="clientsTable">
-
                             </tbody>
-
 
                         </table>
 
-
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             SEGUIMIENTO
-        ================================================== -->
+                 SEGUIMIENTO
+            ================================================== -->
 
             <section class="content-section" id="seguimiento">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -1274,54 +1749,50 @@
                         </span>
 
                         <h3>
-                            Seguimiento de envío
+                            Seguimiento
                         </h3>
 
                         <p>
-                            Consulta el estado actual de una operación.
+                            Consulta el estado y recorrido de un envío.
                         </p>
 
                     </div>
-
 
                 </div>
 
 
 
-                <div class="form-panel">
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h3>
+                            Consultar envío
+                        </h3>
+
+                    </div>
 
 
-                    <div class="form-section">
-
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Consultar envío
-                            </h4>
-
-                            <span>
-                                Ingresa el código
-                            </span>
-
-                        </div>
+                    <div class="modal-body">
 
 
                         <div class="search-panel">
 
-
                             <div class="search-box">
 
                                 <span>
-                                    <i class="fa-solid fa-barcode"></i>
+                                    <i class="fa-solid fa-box"></i>
                                 </span>
 
-                                <input type="text" id="trackingCode" placeholder="Ej. ENV-00128">
+                                <input type="text"
+                                    id="trackingCode"
+                                    placeholder="Ingresa el código. Ej. ENV-00001">
 
                             </div>
 
 
-                            <button class="primary-button" id="trackingButton">
+                            <button class="primary-button"
+                                id="trackingButton">
 
                                 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -1329,171 +1800,228 @@
 
                             </button>
 
+                        </div>
+
+
+
+                        <!-- =================================================
+                             RESULTADO
+                        ================================================== -->
+
+                        <div id="trackingResult"
+                            style="display:none;">
+
+
+                            <div class="shipment-summary">
+
+
+                                <div>
+
+                                    <span>
+                                        Código
+                                    </span>
+
+                                    <strong id="trackingResultTitle">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Cliente
+                                    </span>
+
+                                    <strong id="trackingResultClient">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Estado
+                                    </span>
+
+                                    <strong>
+
+                                        <span id="trackingResultStatus"
+                                            class="status">
+                                            —
+                                        </span>
+
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Operación
+                                    </span>
+
+                                    <strong id="trackingOperation">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Transporte
+                                    </span>
+
+                                    <strong id="trackingTransport">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Paquetes
+                                    </span>
+
+                                    <strong id="trackingPackages">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Peso
+                                    </span>
+
+                                    <strong id="trackingWeight">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Volumen
+                                    </span>
+
+                                    <strong id="trackingVolume">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Origen
+                                    </span>
+
+                                    <strong id="trackingOrigin">
+                                        —
+                                    </strong>
+
+                                </div>
+
+
+
+                                <div>
+
+                                    <span>
+                                        Destino
+                                    </span>
+
+                                    <strong id="trackingDestination">
+                                        —
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="tracking">
+
+                                <h4>
+                                    Historial del envío
+                                </h4>
+
+                                <div class="tracking-timeline"
+                                    id="trackingTimeline">
+                                </div>
+
+                            </div>
 
                         </div>
 
+
+
+                        <!-- =================================================
+                             ESTADO VACÍO
+                        ================================================== -->
+
+                        <div class="empty-state"
+                            id="trackingEmpty">
+
+                            <div class="empty-icon">
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                            </div>
+
+                            <h3>
+                                Consulta un envío
+                            </h3>
+
+                            <p>
+                                Introduce el código de seguimiento para consultar su estado.
+                            </p>
+
+                        </div>
 
                     </div>
-
-
-
-                    <div id="trackingResult" style="display:none;">
-
-
-                        <div class="section-header compact">
-
-
-                            <div>
-
-                                <span class="section-label">
-                                    RESULTADO
-                                </span>
-
-                                <h3 id="trackingResultTitle">
-                                    —
-                                </h3>
-
-                                <p id="trackingResultClient">
-                                    —
-                                </p>
-
-                            </div>
-
-
-                            <span id="trackingResultStatus" class="status">
-
-                                —
-
-                            </span>
-
-
-                        </div>
-
-
-
-                        <div class="shipment-summary">
-
-
-                            <div>
-
-                                <span>
-                                    Origen
-                                </span>
-
-                                <strong id="trackingOrigin">
-                                    —
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Destino
-                                </span>
-
-                                <strong id="trackingDestination">
-                                    —
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Tipo
-                                </span>
-
-                                <strong id="trackingType">
-                                    —
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Peso
-                                </span>
-
-                                <strong id="trackingWeight">
-                                    —
-                                </strong>
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <div class="tracking">
-
-
-                            <h4>
-                                Historial del envío
-                            </h4>
-
-
-                            <div class="tracking-timeline" id="trackingTimeline">
-
-                            </div>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <div id="trackingEmpty" class="empty-state">
-
-
-                        <div class="empty-icon">
-
-                            <i class="fa-solid fa-location-dot"></i>
-
-                        </div>
-
-
-                        <h3>
-                            Consulta un envío
-                        </h3>
-
-
-                        <p>
-                            Introduce un código para consultar su estado.
-                        </p>
-
-
-                    </div>
-
 
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             REPORTES
-        ================================================== -->
+                 REPORTES
+            ================================================== -->
 
             <section class="content-section" id="reportes">
 
 
                 <div class="section-header">
 
-
                     <div>
 
                         <span class="section-label">
-                            INFORMACIÓN
+                            ANÁLISIS
                         </span>
 
                         <h3>
@@ -1501,20 +2029,20 @@
                         </h3>
 
                         <p>
-                            Consulta estadísticas y comportamiento de las operaciones.
+                            Resumen estadístico de las operaciones.
                         </p>
 
                     </div>
 
 
-                    <button class="secondary-button" id="exportReportButton">
+                    <button class="primary-button"
+                        id="exportReportButton">
 
                         <i class="fa-solid fa-file-export"></i>
 
-                        Exportar
+                        Exportar CSV
 
                     </button>
-
 
                 </div>
 
@@ -1537,15 +2065,10 @@
 
                         </div>
 
-                        <strong class="stat-value" id="reportTotal">
-
+                        <strong class="stat-value"
+                            id="reportTotal">
                             0
-
                         </strong>
-
-                        <span class="stat-description">
-                            Operaciones
-                        </span>
 
                     </div>
 
@@ -1556,7 +2079,7 @@
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-                                <i class="fa-solid fa-plane-arrival"></i>
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
                             </div>
 
                             <span class="stat-label">
@@ -1565,15 +2088,10 @@
 
                         </div>
 
-                        <strong class="stat-value" id="reportImports">
-
+                        <strong class="stat-value"
+                            id="reportImports">
                             0
-
                         </strong>
-
-                        <span class="stat-description">
-                            Operaciones de entrada
-                        </span>
 
                     </div>
 
@@ -1584,7 +2102,7 @@
                         <div class="stat-card-top">
 
                             <div class="stat-icon">
-                                <i class="fa-solid fa-plane-departure"></i>
+                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </div>
 
                             <span class="stat-label">
@@ -1593,15 +2111,10 @@
 
                         </div>
 
-                        <strong class="stat-value" id="reportExports">
-
+                        <strong class="stat-value"
+                            id="reportExports">
                             0
-
                         </strong>
-
-                        <span class="stat-description">
-                            Operaciones de salida
-                        </span>
 
                     </div>
 
@@ -1621,25 +2134,18 @@
 
                         </div>
 
-                        <strong class="stat-value" id="reportWeight">
-
-                            0
-
+                        <strong class="stat-value"
+                            id="reportWeight">
+                            0 lb
                         </strong>
 
-                        <span class="stat-description">
-                            Kilogramos registrados
-                        </span>
-
                     </div>
-
 
                 </div>
 
 
 
                 <div class="panel">
-
 
                     <div class="panel-header">
 
@@ -1652,16 +2158,14 @@
 
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
                                 <tr>
 
                                     <th>
-                                        Tipo
+                                        Categoría
                                     </th>
 
                                     <th>
@@ -1678,32 +2182,26 @@
 
 
                             <tbody id="reportTable">
-
                             </tbody>
-
 
                         </table>
 
-
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             USUARIOS
-        ================================================== -->
+                 USUARIOS
+            ================================================== -->
 
             <section class="content-section" id="usuarios">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -1712,17 +2210,18 @@
                         </span>
 
                         <h3>
-                            Usuarios del sistema
+                            Usuarios
                         </h3>
 
                         <p>
-                            Administra los accesos de los empleados.
+                            Administración de usuarios y permisos del sistema.
                         </p>
 
                     </div>
 
 
-                    <button class="primary-button" id="newUserButton">
+                    <button class="primary-button"
+                        id="newUserButton">
 
                         <i class="fa-solid fa-user-plus"></i>
 
@@ -1730,18 +2229,16 @@
 
                     </button>
 
-
                 </div>
 
 
 
                 <div class="panel">
 
-
                     <div class="panel-header">
 
                         <h3>
-                            Usuarios registrados
+                            Usuarios del sistema
                         </h3>
 
                     </div>
@@ -1749,9 +2246,7 @@
 
                     <div class="table-container">
 
-
                         <table>
-
 
                             <thead>
 
@@ -1774,7 +2269,7 @@
                                     </th>
 
                                     <th>
-                                        Último acceso
+                                        Acción
                                     </th>
 
                                 </tr>
@@ -1783,126 +2278,26 @@
 
 
                             <tbody id="usersTable">
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            admin
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        Administrador
-                                    </td>
-
-                                    <td>
-                                        Administrador
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-entregado">
-                                            Activo
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        Hoy
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            operador
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        Operador principal
-                                    </td>
-
-                                    <td>
-                                        Operador
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-entregado">
-                                            Activo
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        Hoy
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        <strong>
-                                            recepcion
-                                        </strong>
-                                    </td>
-
-                                    <td>
-                                        Recepción
-                                    </td>
-
-                                    <td>
-                                        Recepción
-                                    </td>
-
-                                    <td>
-
-                                        <span class="status status-pending">
-                                            Inactivo
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-                                        Hace 3 días
-                                    </td>
-
-                                </tr>
-
-
                             </tbody>
-
 
                         </table>
 
-
                     </div>
 
-
                 </div>
-
 
             </section>
 
 
 
             <!-- =================================================
-             CONFIGURACIÓN
-        ================================================== -->
+                 CONFIGURACIÓN
+            ================================================== -->
 
             <section class="content-section" id="configuracion">
 
 
                 <div class="section-header">
-
 
                     <div>
 
@@ -1915,11 +2310,10 @@
                         </h3>
 
                         <p>
-                            Configuración general del sistema.
+                            Configura los parámetros generales del sistema.
                         </p>
 
                     </div>
-
 
                 </div>
 
@@ -1928,8 +2322,11 @@
                 <div class="form-panel">
 
 
-                    <div class="form-section">
+                    <!-- =================================================
+                         EMPRESA
+                    ================================================== -->
 
+                    <div class="form-section">
 
                         <div class="form-section-header">
 
@@ -1949,51 +2346,100 @@
 
                             <div class="form-group">
 
-                                <label>
+                                <label for="companyName">
                                     Nombre de la empresa
                                 </label>
 
-                                <input type="text" value="Envios Ya Nicaragua">
+                                <input type="text"
+                                    id="companyName"
+                                    value="Envíos Ya">
 
                             </div>
 
 
+
                             <div class="form-group">
 
-                                <label>
-                                    País
+                                <label for="companyPhone">
+                                    Teléfono
                                 </label>
 
-                                <input type="text" value="Nicaragua">
+                                <input type="tel"
+                                    id="companyPhone"
+                                    placeholder="+505">
 
                             </div>
 
 
+
                             <div class="form-group">
 
-                                <label>
-                                    Tipo de servicio
+                                <label for="companyEmail">
+                                    Correo electrónico
                                 </label>
 
-                                <input type="text" value="Importación y Exportación">
+                                <input type="email"
+                                    id="companyEmail"
+                                    placeholder="correo@empresa.com">
 
                             </div>
 
 
+
                             <div class="form-group">
 
-                                <label>
-                                    Moneda
+                                <label for="companyAddress">
+                                    Dirección
                                 </label>
 
-                                <select>
+                                <input type="text"
+                                    id="companyAddress"
+                                    placeholder="Managua, Nicaragua">
 
-                                    <option>
-                                        USD - Dólar estadounidense
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         PREFERENCIAS
+                    ================================================== -->
+
+                    <div class="form-section">
+
+                        <div class="form-section-header">
+
+                            <h4>
+                                Preferencias
+                            </h4>
+
+                            <span>
+                                Configuración general
+                            </span>
+
+                        </div>
+
+
+                        <div class="form-grid">
+
+
+                            <div class="form-group">
+
+                                <label for="defaultOperation">
+                                    Tipo de operación predeterminado
+                                </label>
+
+                                <select id="defaultOperation">
+
+                                    <option value="Importación">
+                                        Importación
                                     </option>
 
-                                    <option>
-                                        NIO - Córdoba nicaragüense
+                                    <option value="Exportación">
+                                        Exportación
                                     </option>
 
                                 </select>
@@ -2001,86 +2447,24 @@
                             </div>
 
 
-                        </div>
 
+                            <div class="form-group">
 
-                    </div>
+                                <label for="timezone">
+                                    Zona horaria
+                                </label>
 
+                                <select id="timezone">
 
+                                    <option value="America/Managua">
+                                        Nicaragua
+                                    </option>
 
-                    <div class="form-section">
+                                </select>
 
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Estados de envío
-                            </h4>
-
-                            <span>
-                                Flujo operativo
-                            </span>
+                            </div>
 
                         </div>
-
-
-                        <div class="shipment-summary">
-
-
-                            <div>
-
-                                <span>
-                                    Estado 1
-                                </span>
-
-                                <strong>
-                                    Pendiente
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Estado 2
-                                </span>
-
-                                <strong>
-                                    En tránsito
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Estado 3
-                                </span>
-
-                                <strong>
-                                    En aduana
-                                </strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>
-                                    Estado 4
-                                </span>
-
-                                <strong>
-                                    Entregado
-                                </strong>
-
-                            </div>
-
-
-                        </div>
-
 
                     </div>
 
@@ -2088,44 +2472,53 @@
 
                     <div class="form-actions">
 
+                        <button type="button"
+                            class="secondary-button">
 
-                        <button class="primary-button" id="saveSettingsButton">
-
-                            <i class="fa-solid fa-save"></i>
-
-                            Guardar cambios
+                            Cancelar
 
                         </button>
 
 
-                    </div>
+                        <button type="button"
+                            class="primary-button"
+                            id="saveSettingsButton">
 
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Guardar configuración
+
+                        </button>
+
+                    </div>
 
                 </div>
 
-
             </section>
 
-
         </main>
-
 
     </div>
 
 
 
     <!-- =========================================================
-     MODAL — DETALLE DEL ENVÍO
-========================================================== -->
+         MODAL DETALLE DEL ENVÍO
+    ========================================================== -->
 
-    <div class="modal-overlay" id="shipmentModal" aria-hidden="true">
+    <div class="modal-overlay"
+        id="shipmentModal"
+        aria-hidden="true">
 
 
         <div class="modal">
 
 
-            <div class="modal-header">
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
 
+            <div class="modal-header">
 
                 <div>
 
@@ -2140,16 +2533,21 @@
                 </div>
 
 
-                <button class="modal-close" id="closeModal" aria-label="Cerrar">
+                <button class="modal-close"
+                    id="closeModal"
+                    aria-label="Cerrar">
 
-                    ×
+                    &times;
 
                 </button>
-
 
             </div>
 
 
+
+            <!-- =================================================
+                 INFORMACIÓN
+            ================================================== -->
 
             <div class="modal-body">
 
@@ -2170,6 +2568,7 @@
                     </div>
 
 
+
                     <div>
 
                         <span>
@@ -2181,6 +2580,105 @@
                         </strong>
 
                     </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Operación
+                        </span>
+
+                        <strong id="modalOperation">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Transporte
+                        </span>
+
+                        <strong id="modalTransport">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Paquetes
+                        </span>
+
+                        <strong id="modalPackageQuantity">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Peso
+                        </span>
+
+                        <strong id="modalWeight">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Volumen
+                        </span>
+
+                        <strong id="modalVolume">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Tipo de paquete
+                        </span>
+
+                        <strong id="modalPackageType">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Categoría
+                        </span>
+
+                        <strong id="modalCategory">
+                            —
+                        </strong>
+
+                    </div>
+
 
 
                     <div>
@@ -2196,6 +2694,7 @@
                     </div>
 
 
+
                     <div>
 
                         <span>
@@ -2209,53 +2708,97 @@
                     </div>
 
 
+
+                    <div>
+
+                        <span>
+                            Remitente
+                        </span>
+
+                        <strong id="modalSender">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Destinatario
+                        </span>
+
+                        <strong id="modalRecipient">
+                            —
+                        </strong>
+
+                    </div>
+
+
+
+                    <div>
+
+                        <span>
+                            Fecha
+                        </span>
+
+                        <strong id="modalDate">
+                            —
+                        </strong>
+
+                    </div>
+
                 </div>
 
 
 
-                <div class="tracking">
+                <!-- =================================================
+                     HISTORIAL
+                ================================================== -->
 
+                <div class="tracking">
 
                     <h4>
                         Historial del envío
                     </h4>
 
-
-                    <div class="tracking-timeline">
-
+                    <div class="tracking-timeline"
+                        id="modalTrackingTimeline">
                     </div>
 
-
                 </div>
-
 
             </div>
 
 
 
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
             <div class="modal-footer">
 
-
-                <button class="secondary-button" id="closeModalButton">
+                <button class="secondary-button"
+                    id="closeModalButton">
 
                     Cerrar
 
                 </button>
 
-
             </div>
 
-
         </div>
-
 
     </div>
 
 
 
-    <script src="js/app.js">
-    </script>
+    <!-- =========================================================
+         JAVASCRIPT
+    ========================================================== -->
 
+    <script src="js/app.js"></script>
 
 </body>
 
