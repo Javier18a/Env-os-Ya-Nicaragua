@@ -1,0 +1,2068 @@
+:root {
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --secondary: #0f172a;
+
+    --text: #334155;
+    --text-light: #64748b;
+
+    --background: #ffffff;
+    --background-soft: #f8fafc;
+
+    --border: #e2e8f0;
+
+    --success: #16a34a;
+    --warning: #d97706;
+    --danger: #dc2626;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+
+    --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 20px 45px rgba(15, 23, 42, 0.12);
+
+    --container: 1180px;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: var(--text);
+
+    background: var(--background);
+
+    line-height: 1.6;
+
+}
+
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* =====================================================
+   CONTENEDORES
+===================================================== */
+
+.section-container,
+.header-container,
+.footer-container,
+.hero-container,
+.cta-container {
+
+    width: min(
+        calc(100% - 40px),
+        var(--container)
+    );
+
+    margin: 0 auto;
+
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.main-header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 1000;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+
+.header-container {
+
+    min-height: 76px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+}
+
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: 800;
+
+    color: var(--primary);
+
+    letter-spacing: -0.7px;
+
+}
+
+
+.main-nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+.main-nav a {
+
+    position: relative;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: var(--text-light);
+
+    padding: 26px 0;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.main-nav a:hover,
+.main-nav a.active {
+
+    color: var(--primary);
+
+}
+
+
+.main-nav a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    bottom: 17px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: var(--primary);
+
+    border-radius: 10px;
+
+}
+
+
+.header-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 11px 20px;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.header-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero-contact {
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eff6ff 0%,
+            #ffffff 60%,
+            #f8fafc 100%
+        );
+
+    padding: 100px 0;
+
+}
+
+
+.hero-contact::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+
+    height: 420px;
+
+    border-radius: 50%;
+
+    background: rgba(37, 99, 235, 0.07);
+
+    top: -180px;
+
+    right: -100px;
+
+}
+
+
+.hero-container {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1.4fr 0.6fr;
+
+    align-items: center;
+
+    gap: 80px;
+
+}
+
+
+.hero-content {
+
+    max-width: 720px;
+
+}
+
+
+.section-tag {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    padding: 7px 16px;
+
+    border-radius: 30px;
+
+    background: #e2e8f0;
+
+    color: #0f172a;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.hero-content h1 {
+
+    color: var(--secondary);
+
+    font-size: clamp(42px, 5vw, 68px);
+
+    line-height: 1.08;
+
+    letter-spacing: -2.5px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.hero-content h1 span {
+
+    display: block;
+
+    color: var(--primary);
+
+}
+
+
+.hero-content > p {
+
+    max-width: 650px;
+
+    color: var(--text-light);
+
+    font-size: 18px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
+   HERO CARD
+===================================================== */
+
+.hero-card {
+
+    position: relative;
+
+    padding: 38px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-lg);
+
+}
+
+
+.hero-card-icon {
+
+    width: 64px;
+
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    border-radius: 16px;
+
+    font-size: 28px;
+
+}
+
+
+.hero-card h3 {
+
+    color: var(--secondary);
+
+    font-size: 22px;
+
+    line-height: 1.3;
+
+    margin-bottom: 12px;
+
+}
+
+
+.hero-card p {
+
+    color: var(--text-light);
+
+    font-size: 15px;
+
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+.primary-button,
+.secondary-button {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 48px;
+
+    padding: 0 22px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.primary-button {
+
+    background: var(--primary);
+
+    color: white;
+
+}
+
+
+.primary-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+}
+
+
+.secondary-button {
+
+    background: white;
+
+    color: var(--secondary);
+
+    border: 1px solid var(--border);
+
+}
+
+
+.secondary-button:hover {
+
+    border-color: var(--primary);
+
+    color: var(--primary);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   CONTACT SECTION
+===================================================== */
+
+.contact-section {
+
+    padding: 100px 0;
+
+    background: var(--background);
+
+}
+
+
+.contact-grid {
+
+    display: grid;
+
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 80px;
+
+    align-items: start;
+
+}
+
+
+/* =====================================================
+   SECTION HEADING
+===================================================== */
+
+.section-heading {
+
+    max-width: 700px;
+
+    margin-bottom: 45px;
+
+}
+
+
+.section-heading h2 {
+
+    color: var(--secondary);
+
+    font-size: clamp(32px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.section-heading p {
+
+    color: var(--text-light);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   SOCIAL SECTION
+===================================================== */
+
+.social-section {
+
+    margin-top: 10px;
+
+}
+
+
+.social-section h3 {
+
+    color: var(--secondary);
+
+    font-size: 20px;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =====================================================
+   SOCIAL LINKS
+===================================================== */
+
+.social-links {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.social-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 16px 18px;
+
+    background: var(--background-soft);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.social-link:hover {
+
+    transform: translateX(5px);
+
+    border-color: #cbd5e1;
+
+    box-shadow: var(--shadow-sm);
+
+}
+
+
+.social-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: var(--secondary);
+
+    border: 1px solid var(--border);
+
+    font-size: 20px;
+
+}
+
+
+.social-content {
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+
+}
+
+
+.social-content strong {
+
+    color: var(--secondary);
+
+    font-size: 14px;
+
+}
+
+
+.social-content small {
+
+    color: var(--text-light);
+
+    font-size: 12px;
+
+}
+
+
+.social-link > i {
+
+    color: #94a3b8;
+
+    font-size: 12px;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.social-link:hover > i {
+
+    color: var(--primary);
+
+}
+
+
+/* =====================================================
+   SOCIAL ICON STATES
+===================================================== */
+
+.instagram .social-icon {
+
+    color: #d946ef;
+
+}
+
+
+.tiktok .social-icon {
+
+    color: #0f172a;
+
+}
+
+
+.whatsapp .social-icon {
+
+    color: #16a34a;
+
+}
+
+
+.facebook .social-icon {
+
+    color: #2563eb;
+
+}
+
+
+/* =====================================================
+   CONTACT NOTE
+===================================================== */
+
+.contact-note {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 16px;
+
+    margin-top: 30px;
+
+    padding: 22px;
+
+    background: var(--primary-light);
+
+    border: 1px solid #dbeafe;
+
+    border-radius: var(--radius-md);
+
+}
+
+
+.contact-note-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: white;
+
+    color: var(--primary);
+
+    border-radius: 11px;
+
+    font-size: 18px;
+
+}
+
+
+.contact-note h3 {
+
+    color: var(--secondary);
+
+    font-size: 15px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.contact-note p {
+
+    color: var(--text-light);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+/* =====================================================
+   FORMULARIO
+===================================================== */
+
+.contact-form-wrapper {
+
+    padding: 42px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+.form-header {
+
+    margin-bottom: 32px;
+
+}
+
+
+.form-header .section-tag {
+
+    margin-bottom: 12px;
+
+}
+
+
+.form-header h2 {
+
+    color: var(--secondary);
+
+    font-size: 30px;
+
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+}
+
+
+.form-header p {
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.contact-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.form-group label {
+
+    color: var(--secondary);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+
+}
+
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+
+    border-color: #cbd5e1;
+
+}
+
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+
+}
+
+
+.form-group textarea {
+
+    min-height: 145px;
+
+    resize: vertical;
+
+    line-height: 1.6;
+
+}
+
+
+.form-group select {
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   FORM BUTTON
+===================================================== */
+
+.form-button {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 5px;
+
+    padding: 0 24px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.form-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-md);
+
+}
+
+
+.form-button:active {
+
+    transform: translateY(0);
+
+}
+
+
+.form-button i {
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   FORM DISCLAIMER
+===================================================== */
+
+.form-disclaimer {
+
+    margin-top: 2px;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    line-height: 1.6;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta-section {
+
+    padding: 80px 0;
+
+    background: var(--secondary);
+
+}
+
+
+.cta-container {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 50px;
+
+}
+
+
+.cta-content {
+
+    max-width: 700px;
+
+}
+
+
+.cta-content .section-tag {
+
+    background: #1e293b;
+
+    color: #93c5fd;
+
+}
+
+
+.cta-content h2 {
+
+    color: white;
+
+    font-size: clamp(32px, 4vw, 46px);
+
+    line-height: 1.15;
+
+    letter-spacing: -1.5px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.cta-content p {
+
+    color: #cbd5e1;
+
+    font-size: 16px;
+
+}
+
+
+.cta-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-shrink: 0;
+
+}
+
+
+.cta-section .secondary-button {
+
+    background: transparent;
+
+    border-color: #475569;
+
+    color: white;
+
+}
+
+
+.cta-section .secondary-button:hover {
+
+    border-color: white;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.main-footer {
+
+    background: #020617;
+
+    color: white;
+
+}
+
+
+.footer-container {
+
+    display: grid;
+
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+
+    gap: 50px;
+
+    padding: 70px 0;
+
+}
+
+
+.footer-brand .logo {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+}
+
+
+.footer-brand p {
+
+    max-width: 300px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+}
+
+
+.footer-links,
+.footer-contact {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+}
+
+
+.footer-links h3,
+.footer-contact h3 {
+
+    margin-bottom: 18px;
+
+    font-size: 15px;
+
+}
+
+
+.footer-links a {
+
+    margin-bottom: 10px;
+
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    transition: color 0.2s ease;
+
+}
+
+
+.footer-links a:hover {
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   FOOTER SOCIALS
+===================================================== */
+
+.footer-socials {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.footer-socials a {
+
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: 1px solid #1e293b;
+
+    border-radius: 10px;
+
+    color: #94a3b8;
+
+    font-size: 15px;
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.footer-socials a:hover {
+
+    color: white;
+
+    border-color: #475569;
+
+    background: #0f172a;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-bottom {
+
+    border-top: 1px solid #1e293b;
+
+    padding: 22px 20px;
+
+    text-align: center;
+
+}
+
+
+.footer-bottom p {
+
+    color: #64748b;
+
+    font-size: 12px;
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    .hero-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+
+    }
+
+
+    .hero-card {
+
+        max-width: 600px;
+
+    }
+
+
+    .contact-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+
+    }
+
+
+    .contact-info {
+
+        max-width: 800px;
+
+    }
+
+
+    .footer-container {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    .cta-container {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 750px) {
+
+    .header-container {
+
+        min-height: 68px;
+
+    }
+
+
+    .main-nav {
+
+        display: none;
+
+    }
+
+
+    .header-button {
+
+        padding: 10px 15px;
+
+        font-size: 13px;
+
+    }
+
+
+    .hero-contact {
+
+        padding: 75px 0;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 42px;
+
+        letter-spacing: -1.8px;
+
+    }
+
+
+    .hero-content > p {
+
+        font-size: 16px;
+
+    }
+
+
+    .section-container,
+    .header-container,
+    .footer-container,
+    .hero-container,
+    .cta-container {
+
+        width: min(
+            calc(100% - 30px),
+            var(--container)
+        );
+
+    }
+
+
+    .contact-section {
+
+        padding: 70px 0;
+
+    }
+
+
+    .contact-form-wrapper {
+
+        padding: 30px 25px;
+
+    }
+
+
+    .form-header h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .cta-section {
+
+        padding: 65px 0;
+
+    }
+
+
+    .cta-actions {
+
+        width: 100%;
+
+        flex-direction: column;
+
+    }
+
+
+    .cta-actions a {
+
+        width: 100%;
+
+    }
+
+
+    .footer-container {
+
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        padding: 55px 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE PEQUEÑO
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .logo {
+
+        font-size: 21px;
+
+    }
+
+
+    .header-button {
+
+        font-size: 12px;
+
+        padding: 9px 12px;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 35px;
+
+    }
+
+
+    .hero-card {
+
+        padding: 28px;
+
+    }
+
+
+    .section-heading h2 {
+
+        font-size: 31px;
+
+    }
+
+
+    .contact-form-wrapper {
+
+        padding: 26px 20px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .social-link {
+
+        padding: 14px;
+
+    }
+
+
+    .social-icon {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+    .contact-note {
+
+        padding: 18px;
+
+    }
+
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+
+        font-size: 16px;
+
+    }
+
+
+    .footer-socials a {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+}
+
+/* =====================================================
+   MODAL DE ÉXITO
+===================================================== */
+
+.success-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    visibility: hidden;
+
+    opacity: 0;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+
+}
+
+
+.success-modal.active {
+
+    visibility: visible;
+
+    opacity: 1;
+
+}
+
+
+/* =====================================================
+   OVERLAY
+===================================================== */
+
+.success-modal-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(15, 23, 42, 0.60);
+
+    backdrop-filter: blur(5px);
+
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
+
+.success-modal-content {
+
+    position: relative;
+
+    width: min(
+        100%,
+        470px
+    );
+
+    padding: 45px 40px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 60px rgba(15, 23, 42, 0.20);
+
+    text-align: center;
+
+    transform: translateY(15px) scale(0.97);
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+.success-modal.active .success-modal-content {
+
+    transform: translateY(0) scale(1);
+
+}
+
+
+/* =====================================================
+   BOTÓN CERRAR
+===================================================== */
+
+.success-modal-close {
+
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f8fafc;
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+
+}
+
+
+.success-modal-close:hover {
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+}
+
+
+/* =====================================================
+   ICONO
+===================================================== */
+
+.success-modal-icon {
+
+    width: 72px;
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 22px;
+
+    border-radius: 50%;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 30px;
+
+}
+
+
+.success-modal-icon i {
+
+    animation: successCheck 0.45s ease;
+
+}
+
+
+@keyframes successCheck {
+
+    0% {
+
+        transform: scale(0);
+
+        opacity: 0;
+
+    }
+
+    70% {
+
+        transform: scale(1.15);
+
+    }
+
+    100% {
+
+        transform: scale(1);
+
+        opacity: 1;
+
+    }
+
+}
+
+
+/* =====================================================
+   TAG
+===================================================== */
+
+.success-modal-tag {
+
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #2563eb;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* =====================================================
+   TITULO
+===================================================== */
+
+.success-modal-content h2 {
+
+    margin: 0 0 14px;
+
+    color: #0f172a;
+
+    font-size: 28px;
+
+    line-height: 1.2;
+
+}
+
+
+/* =====================================================
+   TEXTO
+===================================================== */
+
+.success-modal-content p {
+
+    margin: 0 auto 28px;
+
+    max-width: 380px;
+
+    color: #64748b;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   BOTÓN
+===================================================== */
+
+.success-modal-content .primary-button {
+
+    min-width: 150px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .success-modal {
+
+        padding: 15px;
+
+    }
+
+
+    .success-modal-content {
+
+        padding: 40px 25px 30px;
+
+        border-radius: 18px;
+
+    }
+
+
+    .success-modal-icon {
+
+        width: 64px;
+        height: 64px;
+
+        font-size: 26px;
+
+    }
+
+
+    .success-modal-content h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .success-modal-content p {
+
+        font-size: 14px;
+
+    }
+
+}
+
+/* =====================================================
+   BOTÓN FORMULARIO
+===================================================== */
+
+.form-submit {
+
+    width: 100%;
+
+    min-height: 52px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    padding: 10px 24px;
+    margin-top: 20px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: var(--primary);
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.18);
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.form-submit:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(37, 99, 235, 0.25);
+
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.form-submit:active {
+
+    transform: translateY(0);
+
+    box-shadow:
+        0 6px 14px rgba(37, 99, 235, 0.18);
+
+}
+
+
+/* =====================================================
+   DISABLED / ENVIANDO
+===================================================== */
+
+.form-submit:disabled {
+
+    cursor: not-allowed;
+
+    opacity: 0.75;
+
+    transform: none;
+
+    box-shadow: none;
+
+}
+
+
+/* =====================================================
+   ICONO
+===================================================== */
+
+.form-submit i {
+
+    font-size: 13px;
+
+    transition:
+        transform 0.25s ease;
+
+}
+
+
+.form-submit:hover i {
+
+    transform: translateX(3px);
+
+}
+
+
+/* =====================================================
+   SPINNER
+===================================================== */
+
+.form-submit .fa-spinner {
+
+    transform: none !important;
+
+}
