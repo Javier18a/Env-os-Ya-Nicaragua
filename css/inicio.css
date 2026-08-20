@@ -1,14 +1,3 @@
-/* =========================================================
-   ENVIOS YA
-   inicio.css
-   Diseño corporativo - Importación / Exportación / Logística
-========================================================= */
-
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
 :root {
 
     --blue: #1557b0;
@@ -69,6 +58,11 @@ button {
     font-family: inherit;
 }
 
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -78,164 +72,259 @@ img {
     width: min(100% - 40px, var(--container));
     margin: 0 auto;
 }
-
-
 /* =========================================================
    HEADER
 ========================================================= */
 
 .site-header {
+
     position: sticky;
+
     top: 0;
+
     z-index: 1000;
+
+    width: 100%;
 
     background: rgba(255, 255, 255, 0.96);
 
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
     border-bottom: 1px solid var(--border);
 
-    backdrop-filter: blur(12px);
 }
+
 
 .header-container {
-    height: 76px;
+
+    min-height: 76px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
+    gap: 30px;
+
 }
 
 
-/* LOGO */
+/* =========================================================
+   LOGO
+========================================================= */
 
 .brand {
+
     display: inline-flex;
+
     align-items: center;
+
     gap: 10px;
 
     flex-shrink: 0;
+
 }
 
+
 .brand-symbol {
-    width: 38px;
-    height: 38px;
+
+    width: 40px;
+
+    height: 40px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 9px;
 
-    background: var(--blue);
-
-    color: var(--white);
-
     font-size: 17px;
+
 }
+
+
+.brand-symbol img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+}
+
 
 .brand-name {
+
     display: flex;
+
     align-items: baseline;
+
     gap: 2px;
 
-    font-family: "Poppins", sans-serif;
-    font-size: 20px;
-    font-weight: 700;
+    white-space: nowrap;
 
     color: var(--dark);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    letter-spacing: -.5px;
+
 }
+
 
 .brand-name strong {
+
     color: var(--red);
+
 }
 
 
-/* NAVEGACIÓN */
+/* =========================================================
+   NAVEGACIÓN
+========================================================= */
 
 .main-nav {
     display: flex;
     align-items: center;
-    gap: 34px;
-
+    justify-content: center;
+    gap: 28px;
     margin-left: auto;
-    margin-right: 40px;
+    margin-right: 30px;
 }
+
 
 .nav-item {
     position: relative;
-
-    font-size: 14px;
-    font-weight: 500;
-
+    padding: 26px 0;
     color: #66707c;
-
-    transition: var(--transition);
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s ease;
 }
 
-.nav-item:hover {
-    color: var(--blue);
-}
 
+.nav-item:hover,
 .nav-item.active {
+
     color: var(--blue);
-    font-weight: 600;
+
 }
+
 
 .nav-item.active::after {
+
     content: "";
 
     position: absolute;
 
     left: 0;
-    right: 0;
-    bottom: -9px;
+
+    bottom: 17px;
+
+    width: 100%;
 
     height: 2px;
 
     background: var(--blue);
 
     border-radius: 10px;
+
 }
 
 
-/* CONTACTO HEADER */
+/* =========================================================
+   CONTACTO HEADER
+========================================================= */
 
 .header-contact {
+
     display: inline-flex;
+
     align-items: center;
+
+    justify-content: center;
+
     gap: 10px;
 
-    padding: 10px 17px;
+    flex-shrink: 0;
+
+    padding: 11px 17px;
 
     border: 1px solid var(--border);
-    border-radius: 8px;
 
-    font-size: 13px;
-    font-weight: 600;
+    border-radius: 10px;
+
+    background: var(--white);
 
     color: var(--dark);
 
-    transition: var(--transition);
+    font-size: 13px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
 }
+
 
 .header-contact i {
+
     color: var(--blue);
+
 }
+
 
 .header-contact:hover {
+
     border-color: var(--blue);
+
     color: var(--blue);
+
+    transform: translateY(-1px);
+
 }
 
 
-/* MOBILE */
+/* =========================================================
+   MENÚ MÓVIL
+========================================================= */
 
 .mobile-menu {
+
     display: none;
 
     width: 42px;
+
     height: 42px;
 
+    align-items: center;
+
+    justify-content: center;
+
+    flex-shrink: 0;
+
     border: 1px solid var(--border);
+
     border-radius: 8px;
 
     background: var(--white);
@@ -243,6 +332,18 @@ img {
     color: var(--dark);
 
     cursor: pointer;
+
+    font-size: 18px;
+
+}
+
+
+.mobile-menu:hover {
+
+    border-color: var(--blue);
+
+    color: var(--blue);
+
 }
 
 
@@ -252,11 +353,8 @@ img {
 
 .hero {
     position: relative;
-
-    padding: 95px 0 100px;
-
+    padding: 35px 0 100px;
     overflow: hidden;
-
     background:
         linear-gradient(
             180deg,
@@ -268,9 +366,7 @@ img {
 .hero-container {
     display: grid;
     grid-template-columns: 1fr 0.9fr;
-
     align-items: center;
-
     gap: 80px;
 }
 
@@ -308,16 +404,11 @@ img {
 
 .hero h1 {
     max-width: 650px;
-
     margin-bottom: 25px;
-
     font-family: "Poppins", sans-serif;
-
     font-size: clamp(42px, 5vw, 67px);
     line-height: 1.08;
-
     letter-spacing: -2px;
-
     color: var(--dark);
 }
 
@@ -328,15 +419,11 @@ img {
 
 .hero-copy > p {
     max-width: 570px;
-
     margin-bottom: 34px;
-
     color: var(--text);
-
     font-size: 16px;
     line-height: 1.8;
 }
-
 
 /* HERO BUTTONS */
 
@@ -551,12 +638,10 @@ img {
 .package {
     position: relative;
 
-    width: 190px;
-    height: 165px;
+    width: 490px;
+    height: 465px;
 
     z-index: 3;
-
-    transform: rotate(-4deg);
 }
 
 .package-top {
@@ -1765,10 +1850,16 @@ img {
 
 @media (max-width: 1050px) {
 
+    /* HEADER */
+
     .main-nav {
-        gap: 20px;
-        margin-right: 20px;
+        gap: 18px;
     }
+
+    .nav-item {
+        font-size: 13px;
+    }
+
 
     .hero-container {
         gap: 40px;
@@ -1788,6 +1879,8 @@ img {
 
 @media (max-width: 900px) {
 
+    /* HEADER */
+
     .main-nav,
     .header-contact {
         display: none;
@@ -1795,7 +1888,9 @@ img {
 
     .mobile-menu {
         display: flex;
+
         align-items: center;
+
         justify-content: center;
     }
 
@@ -1879,10 +1974,47 @@ img {
     }
 
 
+    /* =====================================================
+       HEADER MOBILE
+    ===================================================== */
+
     .header-container {
-        height: 68px;
+
+        min-height: 68px;
+
+        height: auto;
+
     }
 
+
+    .brand-symbol {
+
+        width: 36px;
+
+        height: 36px;
+
+    }
+
+
+    .brand-name {
+
+        font-size: 18px;
+
+    }
+
+
+    .mobile-menu {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
 
     .hero {
         padding: 60px 0 70px;
@@ -1943,6 +2075,10 @@ img {
     }
 
 
+    /* =====================================================
+       SECCIONES
+    ===================================================== */
+
     .intro-section,
     .company-section,
     .services-section,
@@ -1968,6 +2104,10 @@ img {
         font-size: 32px;
     }
 
+
+    /* =====================================================
+       COMPANY
+    ===================================================== */
 
     .company-visual {
         min-height: 410px;
@@ -1995,6 +2135,10 @@ img {
     }
 
 
+    /* =====================================================
+       SERVICES
+    ===================================================== */
+
     .service {
         grid-template-columns: 35px 1fr 30px;
 
@@ -2006,15 +2150,27 @@ img {
     }
 
 
+    /* =====================================================
+       DIFFERENCE
+    ===================================================== */
+
     .difference-grid {
         grid-template-columns: 1fr;
     }
 
 
+    /* =====================================================
+       PROCESS
+    ===================================================== */
+
     .process-track {
         grid-template-columns: 1fr;
     }
 
+
+    /* =====================================================
+       CTA
+    ===================================================== */
 
     .cta {
         min-height: auto;
@@ -2037,6 +2193,10 @@ img {
         justify-content: center;
     }
 
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
 
     .footer-main {
         grid-template-columns: 1fr;

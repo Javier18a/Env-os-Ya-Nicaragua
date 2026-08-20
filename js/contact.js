@@ -1,5 +1,10 @@
 /* =====================================================
-   FORMULARIO DE CONTACTO
+   FORMULARIO DE CONTACTO - ENVÍOS YA
+===================================================== */
+
+
+/* =====================================================
+   ELEMENTOS
 ===================================================== */
 
 const contactForm = document.getElementById("contactForm");
@@ -11,7 +16,9 @@ const submitIcon = document.getElementById("submitIcon");
 const successModal = document.getElementById("successModal");
 const closeSuccessModal = document.getElementById("closeSuccessModal");
 const successModalButton = document.getElementById("successModalButton");
-const successModalOverlay = document.querySelector(".success-modal-overlay");
+const successModalOverlay = document.querySelector(
+    ".success-modal-overlay"
+);
 
 
 /* =====================================================
@@ -19,6 +26,10 @@ const successModalOverlay = document.querySelector(".success-modal-overlay");
 ===================================================== */
 
 function openSuccessModal() {
+
+    if (!successModal) {
+        return;
+    }
 
     successModal.classList.add("active");
 
@@ -38,6 +49,10 @@ function openSuccessModal() {
 
 function closeModal() {
 
+    if (!successModal) {
+        return;
+    }
+
     successModal.classList.remove("active");
 
     successModal.setAttribute(
@@ -54,26 +69,38 @@ function closeModal() {
    EVENTOS DEL MODAL
 ===================================================== */
 
-closeSuccessModal.addEventListener(
-    "click",
-    closeModal
-);
+if (closeSuccessModal) {
+
+    closeSuccessModal.addEventListener(
+        "click",
+        closeModal
+    );
+
+}
 
 
-successModalButton.addEventListener(
-    "click",
-    closeModal
-);
+if (successModalButton) {
+
+    successModalButton.addEventListener(
+        "click",
+        closeModal
+    );
+
+}
 
 
-successModalOverlay.addEventListener(
-    "click",
-    closeModal
-);
+if (successModalOverlay) {
+
+    successModalOverlay.addEventListener(
+        "click",
+        closeModal
+    );
+
+}
 
 
 /* =====================================================
-   ESC PARA CERRAR
+   ESC PARA CERRAR MODAL
 ===================================================== */
 
 document.addEventListener(
@@ -82,6 +109,7 @@ document.addEventListener(
 
         if (
             event.key === "Escape" &&
+            successModal &&
             successModal.classList.contains("active")
         ) {
 
@@ -97,98 +125,258 @@ document.addEventListener(
    ENVÍO DEL FORMULARIO
 ===================================================== */
 
-contactForm.addEventListener(
-    "submit",
-    async function (event) {
+if (contactForm) {
 
-        event.preventDefault();
+    contactForm.addEventListener(
+        "submit",
+        async function (event) {
 
+            /*
+             * Evita que el navegador envíe el formulario
+             * de la manera tradicional.
+             *
+             * Esto evita la redirección de FormSubmit.
+             */
 
-        /* ---------------------------------------------
-           ESTADO DE ENVÍO
-        --------------------------------------------- */
-
-        submitButton.disabled = true;
-
-        submitText.textContent = "Enviando...";
-
-        submitIcon.className = "fas fa-spinner fa-spin";
+            event.preventDefault();
 
 
-        try {
+            /* =================================================
+               VALIDACIÓN HTML
+            ================================================= */
 
-            const formData = new FormData(contactForm);
+            if (!contactForm.checkValidity()) {
 
+                contactForm.reportValidity();
 
-            const response = await fetch(
-                contactForm.action,
-                {
-                    method: "POST",
-
-                    body: formData,
-
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                }
-            );
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "No se pudo enviar el formulario."
-                );
+                return;
 
             }
 
 
-            /* -----------------------------------------
-               LIMPIAR FORMULARIO
-            ----------------------------------------- */
+            /* =================================================
+               ESTADO: ENVIANDO
+            ================================================= */
 
-            contactForm.reset();
+            submitButton.disabled = true;
 
+            submitText.textContent = "Enviando...";
 
-            /* -----------------------------------------
-               RESTAURAR BOTÓN
-            ----------------------------------------- */
-
-            submitButton.disabled = false;
-
-            submitText.textContent = "Enviar mensaje";
-
-            submitIcon.className = "fas fa-paper-plane";
+            submitIcon.className =
+                "fas fa-spinner fa-spin";
 
 
-            /* -----------------------------------------
-               MOSTRAR MODAL
-            ----------------------------------------- */
+            try {
 
-            openSuccessModal();
+                /* =============================================
+                   OBTENER DATOS DEL FORMULARIO
+                ============================================= */
 
-
-        } catch (error) {
-
-            console.error(
-                "Error al enviar formulario:",
-                error
-            );
+                const formData = new FormData(
+                    contactForm
+                );
 
 
-            submitButton.disabled = false;
+                /* =============================================
+                   OBTENER ACTION
+                ============================================= */
 
-            submitText.textContent = "Intentar nuevamente";
+                const action =
+                    contactForm.getAttribute("action");
 
-            submitIcon.className = "fas fa-paper-plane";
+
+                if (!action) {
+
+                    throw new Error(
+                        "El formulario no tiene configurado un destino."
+                    );
+
+                }
 
 
-            alert(
-                "No pudimos enviar tu información. " +
-                "Por favor, intenta nuevamente."
-            );
+                /* =============================================
+                   CONVERTIR FORM SUBMIT NORMAL
+                   A ENDPOINT AJAX
+                ============================================= */
+
+                let ajaxUrl = action;
+
+
+                if (
+                    ajaxUrl.includes(
+                        "https://formsubmit.co/"
+                    )
+                ) {
+
+                    ajaxUrl =
+                        ajaxUrl.replace(
+                            "https://formsubmit.co/",
+                            "https://formsubmit.co/ajax/"
+                        );
+
+                }
+
+
+                console.log(
+                    "Enviando formulario a:",
+                    ajaxUrl
+                );
+
+
+                /* =============================================
+                   PETICIÓN AJAX
+                ============================================= */
+
+                const response = await fetch(
+                    ajaxUrl,
+                    {
+                        method: "POST",
+
+                        body: formData,
+
+                        headers: {
+                            "Accept": "application/json"
+                        }
+                    }
+                );
+
+
+                /* =============================================
+                   OBTENER RESPUESTA
+                ============================================= */
+
+                let result = null;
+
+
+                try {
+
+                    result = await response.json();
+
+                } catch (jsonError) {
+
+                    console.warn(
+                        "La respuesta no pudo convertirse a JSON."
+                    );
+
+                }
+
+
+                console.log(
+                    "Respuesta de FormSubmit:",
+                    result
+                );
+
+
+                /* =============================================
+                   VERIFICAR RESPUESTA
+                ============================================= */
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result?.message ||
+                        "FormSubmit rechazó el envío."
+                    );
+
+                }
+
+
+                /*
+                 * FormSubmit normalmente devuelve:
+                 *
+                 * {
+                 *     success: true,
+                 *     message: "..."
+                 * }
+                 *
+                 * Si devuelve success === false,
+                 * consideramos que hubo un error.
+                 */
+
+                if (
+                    result &&
+                    result.success === false
+                ) {
+
+                    throw new Error(
+                        result.message ||
+                        "No se pudo enviar la información."
+                    );
+
+                }
+
+
+                /* =================================================
+                   ENVÍO EXITOSO
+                ================================================= */
+
+
+                /* ---------------------------------------------
+                   LIMPIAR FORMULARIO
+                --------------------------------------------- */
+
+                contactForm.reset();
+
+
+                /* ---------------------------------------------
+                   RESTAURAR BOTÓN
+                --------------------------------------------- */
+
+                submitButton.disabled = false;
+
+                submitText.textContent =
+                    "Enviar mensaje";
+
+                submitIcon.className =
+                    "fas fa-paper-plane";
+
+
+                /* ---------------------------------------------
+                   MOSTRAR MODAL
+                --------------------------------------------- */
+
+                openSuccessModal();
+
+
+            } catch (error) {
+
+                /* =================================================
+                   ERROR
+                ================================================= */
+
+                console.error(
+                    "Error al enviar formulario:",
+                    error
+                );
+
+
+                /* ---------------------------------------------
+                   RESTAURAR BOTÓN
+                --------------------------------------------- */
+
+                submitButton.disabled = false;
+
+                submitText.textContent =
+                    "Intentar nuevamente";
+
+                submitIcon.className =
+                    "fas fa-paper-plane";
+
+
+                /*
+                 * Por ahora utilizamos alert.
+                 * Después podemos crear un modal de error
+                 * con exactamente el mismo diseño.
+                 */
+
+                alert(
+                    "No pudimos enviar tu información. " +
+                    "Por favor, intenta nuevamente."
+                );
+
+            }
 
         }
+    );
 
-    }
-);
+}

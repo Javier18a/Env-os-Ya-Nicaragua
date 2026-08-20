@@ -2,22 +2,14 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Contacto | Envíos Ya</title>
-
     <meta name="description"
         content="Contacta con Envíos Ya para solicitar información, cotizaciones y conocer nuestras opciones de envío.">
-
     <link rel="stylesheet" href="css/contact.css">
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
-
 
 <body>
 
@@ -26,30 +18,49 @@
          HEADER
     ====================================================== -->
 
-    <header class="main-header">
+    <header class="site-header">
 
-        <div class="header-container">
+        <div class="container header-container">
 
-            <a href="index.html" class="logo">
-                Envíos Ya
+
+            <!-- LOGO -->
+
+            <a href="#inicio" class="brand">
+
+                <div class="brand-symbol">
+
+                    <img src="img/logo.jpeg" alt="">
+
+                </div>
+
+                <div class="brand-name">
+
+                    <span>Envios</span>
+
+                    <strong>Ya</strong>
+
+                </div>
+
             </a>
 
 
+            <!-- NAVEGACIÓN -->
+
             <nav class="main-nav">
 
-                <a href="index.html#inicio" class="nav-item">
+                <a href="inicio.html#inicio" class="nav-item">
                     Inicio
                 </a>
 
-                <a href="index.html#empresa" class="nav-item">
+                <a href="inicio.html#empresa" class="nav-item ">
                     Nosotros
                 </a>
 
-                <a href="index.html#servicios" class="nav-item">
+                <a href="inicio.html#servicios" class="nav-item">
                     Servicios
                 </a>
 
-                <a href="index.html#proceso" class="nav-item">
+                <a href="inicio.html#proceso" class="nav-item">
                     Cómo trabajamos
                 </a>
 
@@ -61,16 +72,20 @@
                     Exportación
                 </a>
 
-                <a href="contact.html" class="nav-item active">
+                <a href="contact.html" class="nav-item">
                     Contacto
                 </a>
 
             </nav>
 
 
-            <a href="index.html#cotizar" class="header-button">
-                Cotizar envío
-            </a>
+            <!-- MENÚ MÓVIL -->
+
+            <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
 
         </div>
 
@@ -179,7 +194,8 @@
                             <div class="social-links">
 
 
-                                <a href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr" class="social-link instagram" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr"
+                                    class="social-link instagram" target="_blank" rel="noopener noreferrer">
 
                                     <span class="social-icon">
                                         <i class="fab fa-instagram"></i>
@@ -203,7 +219,8 @@
 
 
 
-                                <a href="https://www.tiktok.com/@enviosya_nicaragua?_r=1&_t=ZS-98y91aq6XHV" class="social-link tiktok" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.tiktok.com/@enviosya_nicaragua?_r=1&_t=ZS-98y91aq6XHV"
+                                    class="social-link tiktok" target="_blank" rel="noopener noreferrer">
 
                                     <span class="social-icon">
                                         <i class="fab fa-tiktok"></i>
@@ -227,7 +244,8 @@
 
 
 
-                                <a href="https://wa.me/50557275727" class="social-link whatsapp" target="_blank" rel="noopener noreferrer">
+                                <a href="https://wa.me/50557275727" class="social-link whatsapp" target="_blank"
+                                    rel="noopener noreferrer">
 
                                     <span class="social-icon">
                                         <i class="fab fa-whatsapp"></i>
@@ -251,7 +269,8 @@
 
 
 
-                                <a href="https://www.facebook.com/profile.php?id=61583441199696" class="social-link facebook" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.facebook.com/profile.php?id=61583441199696"
+                                    class="social-link facebook" target="_blank" rel="noopener noreferrer">
 
                                     <span class="social-icon">
                                         <i class="fab fa-facebook-f"></i>
@@ -332,13 +351,15 @@
                         </div>
 
 
-                        <form id="contactForm" action="https://formsubmit.co/ventas@enviosyanicaragua.com" method="POST">
+                        <form id="contactForm" action="https://formsubmit.co/ventas@enviosyanicaragua.com"
+                            method="POST">
 
                             <input type="hidden" name="_subject" value="Nuevo mensaje desde Envíos Ya">
 
                             <input type="hidden" name="_captcha" value="false">
 
                             <input type="hidden" name="_template" value="table">
+
 
                             <div class="form-group">
 
@@ -476,13 +497,13 @@
 
                 <div class="cta-actions">
 
-                    <a href="index.html#cotizar" class="primary-button">
+                    <a href="inicio.html#cotizar" class="primary-button">
 
                         Solicitar cotización
 
                     </a>
 
-                    <a href="index.html" class="secondary-button">
+                    <a href="inicio.html" class="secondary-button">
 
                         Volver al inicio
 
@@ -509,7 +530,7 @@
 
             <div class="footer-brand">
 
-                <a href="index.html" class="logo">
+                <a href="inicio.html" class="logo">
                     Envíos Ya
                 </a>
 
@@ -538,19 +559,17 @@
 
             </div>
 
-
-
             <div class="footer-links">
 
                 <h3>
                     Enlaces
                 </h3>
 
-                <a href="index.html">
+                <a href="inicio.html">
                     Inicio
                 </a>
 
-                <a href="index.html#cotizar">
+                <a href="inicio.html#cotizar">
                     Cotizar envío
                 </a>
 
@@ -570,11 +589,13 @@
 
                 <div class="footer-socials">
 
-                    <a href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr"
+                        target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                     </a>
 
-                    <a href="https://www.tiktok.com/@enviosya_nicaragua?_r=1&_t=ZS-98y91aq6XHV" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.tiktok.com/@enviosya_nicaragua?_r=1&_t=ZS-98y91aq6XHV" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fab fa-tiktok"></i>
                     </a>
 
@@ -582,7 +603,8 @@
                         <i class="fab fa-whatsapp"></i>
                     </a>
 
-                    <a href="https://www.facebook.com/profile.php?id=61583441199696" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/profile.php?id=61583441199696" target="_blank"
+                        rel="noopener noreferrer">
                         <i class="fab fa-facebook-f"></i>
                     </a>
 
