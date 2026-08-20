@@ -1,3 +1,14 @@
+/* =========================================================
+   ENVÍOS YA
+   inicio.css
+   Diseño corporativo - Importación / Exportación / Logística
+========================================================= */
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 :root {
 
     --blue: #1557b0;
@@ -42,6 +53,12 @@ html {
     scroll-behavior: smooth;
 }
 
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 body {
     font-family: "Inter", sans-serif;
     color: var(--text);
@@ -69,19 +86,18 @@ img {
 }
 
 .container {
-    width: min(100% - 40px, var(--container));
+    width: min(calc(100% - 40px), var(--container));
     margin: 0 auto;
 }
+
+
 /* =========================================================
    HEADER
 ========================================================= */
 
 .site-header {
-
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
 
     width: 100%;
@@ -89,26 +105,19 @@ img {
     background: rgba(255, 255, 255, 0.96);
 
     backdrop-filter: blur(12px);
-
     -webkit-backdrop-filter: blur(12px);
 
     border-bottom: 1px solid var(--border);
-
 }
 
-
 .header-container {
-
     min-height: 76px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 30px;
-
 }
 
 
@@ -117,28 +126,20 @@ img {
 ========================================================= */
 
 .brand {
-
     display: inline-flex;
-
     align-items: center;
 
     gap: 10px;
 
     flex-shrink: 0;
-
 }
 
-
 .brand-symbol {
-
     width: 40px;
-
     height: 40px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     flex-shrink: 0;
@@ -146,27 +147,20 @@ img {
     border-radius: 9px;
 
     font-size: 17px;
-
+    overflow: hidden;
 }
 
-
 .brand-symbol img {
-
     width: 100%;
-
     height: 100%;
 
     object-fit: cover;
 
     border-radius: 50%;
-
 }
 
-
 .brand-name {
-
     display: flex;
-
     align-items: baseline;
 
     gap: 2px;
@@ -178,71 +172,63 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 20px;
-
     font-weight: 700;
 
-    letter-spacing: -.5px;
-
+    letter-spacing: -0.5px;
 }
 
-
 .brand-name strong {
-
     color: var(--red);
-
 }
 
 
 /* =========================================================
-   NAVEGACIÓN
+   NAVEGACIÓN DESKTOP
 ========================================================= */
 
 .main-nav {
     display: flex;
     align-items: center;
     justify-content: center;
+
     gap: 28px;
+
     margin-left: auto;
     margin-right: 30px;
 }
 
-
 .nav-item {
     position: relative;
+
     padding: 26px 0;
+
     color: #66707c;
+
     font-size: 14px;
     font-weight: 400;
+
     transition: color 0.2s ease;
 }
 
-
 .nav-item:hover,
 .nav-item.active {
-
     color: var(--blue);
-
 }
 
-
 .nav-item.active::after {
-
     content: "";
 
     position: absolute;
 
     left: 0;
-
     bottom: 17px;
 
     width: 100%;
-
     height: 2px;
 
     background: var(--blue);
 
     border-radius: 10px;
-
 }
 
 
@@ -251,11 +237,8 @@ img {
 ========================================================= */
 
 .header-contact {
-
     display: inline-flex;
-
     align-items: center;
-
     justify-content: center;
 
     gap: 10px;
@@ -265,7 +248,6 @@ img {
     padding: 11px 17px;
 
     border: 1px solid var(--border);
-
     border-radius: 10px;
 
     background: var(--white);
@@ -273,7 +255,6 @@ img {
     color: var(--dark);
 
     font-size: 13px;
-
     font-weight: 700;
 
     white-space: nowrap;
@@ -283,25 +264,17 @@ img {
         border-color 0.2s ease,
         color 0.2s ease,
         transform 0.2s ease;
-
 }
-
 
 .header-contact i {
-
     color: var(--blue);
-
 }
 
-
 .header-contact:hover {
-
     border-color: var(--blue);
-
     color: var(--blue);
 
     transform: translateY(-1px);
-
 }
 
 
@@ -310,40 +283,37 @@ img {
 ========================================================= */
 
 .mobile-menu {
-
     display: none;
 
     width: 42px;
-
     height: 42px;
 
     align-items: center;
-
     justify-content: center;
 
     flex-shrink: 0;
 
     border: 1px solid var(--border);
-
     border-radius: 8px;
 
     background: var(--white);
-
     color: var(--dark);
 
     cursor: pointer;
 
     font-size: 18px;
 
+    transition: var(--transition);
 }
 
-
 .mobile-menu:hover {
-
     border-color: var(--blue);
-
     color: var(--blue);
+}
 
+.mobile-menu:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
 }
 
 
@@ -353,8 +323,11 @@ img {
 
 .hero {
     position: relative;
+
     padding: 35px 0 100px;
+
     overflow: hidden;
+
     background:
         linear-gradient(
             180deg,
@@ -365,21 +338,31 @@ img {
 
 .hero-container {
     display: grid;
-    grid-template-columns: 1fr 0.9fr;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 0.9fr);
+
     align-items: center;
+
     gap: 80px;
 }
 
 
-/* HERO TEXTO */
+/* =========================================================
+   HERO TEXTO
+========================================================= */
 
 .hero-copy {
+    width: 100%;
     max-width: 650px;
+    min-width: 0;
 }
 
 .hero-label {
     display: flex;
     align-items: center;
+
     gap: 11px;
 
     margin-bottom: 24px;
@@ -396,19 +379,26 @@ img {
     width: 28px;
     height: 2px;
 
+    flex-shrink: 0;
+
     background: var(--red);
 
     border-radius: 4px;
 }
 
-
 .hero h1 {
     max-width: 650px;
+
     margin-bottom: 25px;
+
     font-family: "Poppins", sans-serif;
+
     font-size: clamp(42px, 5vw, 67px);
+
     line-height: 1.08;
+
     letter-spacing: -2px;
+
     color: var(--dark);
 }
 
@@ -416,20 +406,27 @@ img {
     color: var(--blue);
 }
 
-
 .hero-copy > p {
     max-width: 570px;
+
     margin-bottom: 34px;
+
     color: var(--text);
+
     font-size: 16px;
+
     line-height: 1.8;
 }
 
-/* HERO BUTTONS */
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
 
 .hero-actions {
     display: flex;
     align-items: center;
+
     gap: 13px;
 
     margin-bottom: 48px;
@@ -439,6 +436,7 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     gap: 11px;
 
     min-height: 48px;
@@ -465,6 +463,7 @@ img {
 
 .btn-secondary {
     border: 1px solid var(--border);
+
     background: var(--white);
 
     color: var(--dark);
@@ -476,10 +475,13 @@ img {
 }
 
 
-/* HERO INFO */
+/* =========================================================
+   HERO INFO
+========================================================= */
 
 .hero-info {
     display: flex;
+
     gap: 35px;
 
     padding-top: 25px;
@@ -490,6 +492,7 @@ img {
 .hero-info-item {
     display: flex;
     align-items: center;
+
     gap: 12px;
 }
 
@@ -500,6 +503,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 8px;
 
@@ -542,11 +547,16 @@ img {
 .hero-visual {
     position: relative;
 
+    width: 100%;
+
+    min-width: 0;
     min-height: 490px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
 }
 
 .visual-background {
@@ -554,6 +564,9 @@ img {
 
     width: 420px;
     height: 420px;
+
+    max-width: 70vw;
+    max-height: 70vw;
 
     border-radius: 50%;
 
@@ -563,13 +576,17 @@ img {
 }
 
 
-/* RUTA */
+/* =========================================================
+   RUTA
+========================================================= */
 
 .route-path {
     position: absolute;
 
     width: 340px;
     height: 280px;
+
+    max-width: 100%;
 
     z-index: 1;
 }
@@ -633,13 +650,17 @@ img {
 }
 
 
-/* PAQUETE */
+/* =========================================================
+   PAQUETE
+========================================================= */
 
 .package {
     position: relative;
 
     width: 490px;
     height: 465px;
+
+    flex-shrink: 0;
 
     z-index: 3;
 }
@@ -679,7 +700,8 @@ img {
 
     border: 1px solid #d7e0ea;
 
-    box-shadow: 0 22px 40px rgba(30, 50, 75, 0.13);
+    box-shadow:
+        0 22px 40px rgba(30, 50, 75, 0.13);
 
     overflow: hidden;
 }
@@ -725,13 +747,16 @@ img {
 }
 
 
-/* LOCATION CARDS */
+/* =========================================================
+   LOCATION CARDS
+========================================================= */
 
 .location-card {
     position: absolute;
 
     display: flex;
     align-items: center;
+
     gap: 10px;
 
     padding: 11px 14px;
@@ -772,6 +797,8 @@ img {
     align-items: center;
     justify-content: center;
 
+    flex-shrink: 0;
+
     border-radius: 7px;
 
     background: var(--red-light);
@@ -797,7 +824,9 @@ img {
 }
 
 
-/* STATUS */
+/* =========================================================
+   STATUS
+========================================================= */
 
 .delivery-status {
     position: absolute;
@@ -807,6 +836,7 @@ img {
 
     display: flex;
     align-items: center;
+
     gap: 10px;
 
     padding: 12px 15px;
@@ -829,6 +859,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    flex-shrink: 0;
 
     border-radius: 50%;
 
@@ -872,6 +904,7 @@ img {
 
 .intro-container {
     display: grid;
+
     grid-template-columns: 70px 1fr 1fr;
 
     gap: 45px;
@@ -884,6 +917,7 @@ img {
 
     font-size: 12px;
     font-weight: 700;
+
     letter-spacing: 1px;
 }
 
@@ -904,6 +938,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 38px;
+
     line-height: 1.2;
 
     color: var(--dark);
@@ -923,6 +958,7 @@ img {
     color: var(--text);
 
     font-size: 14px;
+
     line-height: 1.8;
 }
 
@@ -939,6 +975,7 @@ img {
 
 .company-container {
     display: grid;
+
     grid-template-columns: 0.9fr 1.1fr;
 
     gap: 90px;
@@ -947,7 +984,9 @@ img {
 }
 
 
-/* VISUAL */
+/* =========================================================
+   COMPANY VISUAL
+========================================================= */
 
 .company-visual {
     position: relative;
@@ -1014,11 +1053,14 @@ img {
     color: #b9c2cd;
 
     font-size: 13px;
+
     line-height: 1.75;
 }
 
 
-/* SECONDARY */
+/* =========================================================
+   SECONDARY CARD
+========================================================= */
 
 .secondary-card {
     right: 0;
@@ -1063,7 +1105,9 @@ img {
 }
 
 
-/* DECORACIÓN */
+/* =========================================================
+   DECORACIÓN
+========================================================= */
 
 .company-decoration {
     position: absolute;
@@ -1081,7 +1125,9 @@ img {
 }
 
 
-/* CONTENT */
+/* =========================================================
+   COMPANY CONTENT
+========================================================= */
 
 .company-content .section-label {
     margin-bottom: 22px;
@@ -1090,6 +1136,7 @@ img {
 .section-label {
     display: flex;
     align-items: center;
+
     gap: 12px;
 }
 
@@ -1107,6 +1154,7 @@ img {
     font-weight: 700;
 
     text-transform: uppercase;
+
     letter-spacing: 1.2px;
 }
 
@@ -1116,6 +1164,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 42px;
+
     line-height: 1.15;
 
     color: var(--dark);
@@ -1133,20 +1182,23 @@ img {
     color: var(--text);
 
     font-size: 14px;
+
     line-height: 1.8;
 }
 
 
-/* VALUES */
+/* =========================================================
+   VALUES
+========================================================= */
 
 .company-values {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     gap: 30px;
 
     margin-top: 35px;
-
     padding-top: 30px;
 
     border-top: 1px solid var(--border);
@@ -1154,6 +1206,7 @@ img {
 
 .value {
     display: flex;
+
     gap: 13px;
 }
 
@@ -1195,6 +1248,7 @@ img {
     color: var(--muted);
 
     font-size: 11px;
+
     line-height: 1.6;
 }
 
@@ -1211,6 +1265,7 @@ img {
 
 .services-heading {
     display: grid;
+
     grid-template-columns: 1fr 400px;
 
     gap: 80px;
@@ -1226,6 +1281,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 42px;
+
     line-height: 1.15;
 
     color: var(--dark);
@@ -1239,11 +1295,14 @@ img {
     color: var(--text);
 
     font-size: 14px;
+
     line-height: 1.8;
 }
 
 
-/* SERVICES LIST */
+/* =========================================================
+   SERVICES LIST
+========================================================= */
 
 .services-list {
     border-top: 1px solid var(--border);
@@ -1251,7 +1310,12 @@ img {
 
 .service {
     display: grid;
-    grid-template-columns: 70px 1fr 1.2fr 45px;
+
+    grid-template-columns:
+        70px
+        minmax(0, 1fr)
+        minmax(0, 1.2fr)
+        45px;
 
     gap: 25px;
 
@@ -1281,7 +1345,10 @@ img {
 .service-main {
     display: flex;
     align-items: center;
+
     gap: 17px;
+
+    min-width: 0;
 }
 
 .service-icon {
@@ -1321,6 +1388,7 @@ img {
     color: var(--muted);
 
     font-size: 12px;
+
     line-height: 1.7;
 }
 
@@ -1334,6 +1402,7 @@ img {
 
 .service:hover .service-arrow {
     color: var(--blue);
+
     transform: translate(3px, -3px);
 }
 
@@ -1352,6 +1421,7 @@ img {
 
 .difference-container {
     display: grid;
+
     grid-template-columns: 0.9fr 1.1fr;
 
     gap: 90px;
@@ -1375,6 +1445,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 40px;
+
     line-height: 1.18;
 }
 
@@ -1388,14 +1459,18 @@ img {
     color: #aeb8c4;
 
     font-size: 14px;
+
     line-height: 1.8;
 }
 
 
-/* GRID */
+/* =========================================================
+   DIFFERENCE GRID
+========================================================= */
 
 .difference-grid {
     display: grid;
+
     grid-template-columns: 1fr 1fr;
 
     border-left: 1px solid #303b48;
@@ -1423,6 +1498,8 @@ img {
 }
 
 .difference-item > i {
+    display: block;
+
     margin-bottom: 16px;
 
     color: #9dbde0;
@@ -1440,6 +1517,7 @@ img {
     color: #8d99a7;
 
     font-size: 11px;
+
     line-height: 1.7;
 }
 
@@ -1466,6 +1544,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 42px;
+
     line-height: 1.15;
 
     color: var(--dark);
@@ -1476,11 +1555,21 @@ img {
 }
 
 
-/* PROCESS TRACK */
+/* =========================================================
+   PROCESS TRACK
+========================================================= */
 
 .process-track {
     display: grid;
-    grid-template-columns: 1fr 30px 1fr 30px 1fr 30px 1fr;
+
+    grid-template-columns:
+        1fr
+        30px
+        1fr
+        30px
+        1fr
+        30px
+        1fr;
 
     align-items: stretch;
 }
@@ -1530,6 +1619,7 @@ img {
     color: var(--muted);
 
     font-size: 11px;
+
     line-height: 1.7;
 }
 
@@ -1556,6 +1646,7 @@ img {
     position: relative;
 
     display: grid;
+
     grid-template-columns: 1fr 300px;
 
     min-height: 350px;
@@ -1594,6 +1685,7 @@ img {
     font-family: "Poppins", sans-serif;
 
     font-size: 42px;
+
     line-height: 1.15;
 }
 
@@ -1605,17 +1697,20 @@ img {
     color: #d4e2f2;
 
     font-size: 13px;
+
     line-height: 1.7;
 }
 
 .cta-buttons {
     display: flex;
+
     gap: 10px;
 }
 
 .cta-button {
     display: inline-flex;
     align-items: center;
+
     gap: 9px;
 
     min-height: 43px;
@@ -1641,17 +1736,19 @@ img {
 }
 
 .cta-button.outline {
-    border: 1px solid rgba(255,255,255,0.35);
+    border: 1px solid rgba(255, 255, 255, 0.35);
 
     color: var(--white);
 }
 
 .cta-button.outline:hover {
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 
-/* CTA VISUAL */
+/* =========================================================
+   CTA VISUAL
+========================================================= */
 
 .cta-visual {
     position: relative;
@@ -1664,7 +1761,7 @@ img {
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,0.13);
+    border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .circle-one {
@@ -1700,9 +1797,9 @@ img {
 
     border-radius: 20px;
 
-    background: rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.08);
 
-    border: 1px solid rgba(255,255,255,0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 
     color: var(--white);
 
@@ -1723,7 +1820,11 @@ img {
 .footer-main {
     display: grid;
 
-    grid-template-columns: 1.5fr 1fr 1.2fr 1.2fr;
+    grid-template-columns:
+        1.5fr
+        1fr
+        1.2fr
+        1.2fr;
 
     gap: 70px;
 
@@ -1738,6 +1839,7 @@ img {
     color: #8995a2;
 
     font-size: 12px;
+
     line-height: 1.7;
 }
 
@@ -1746,10 +1848,13 @@ img {
 }
 
 
-/* SOCIAL */
+/* =========================================================
+   SOCIAL
+========================================================= */
 
 .footer-social {
     display: flex;
+
     gap: 8px;
 }
 
@@ -1762,6 +1867,7 @@ img {
     justify-content: center;
 
     border: 1px solid #2a3540;
+
     border-radius: 7px;
 
     color: #aab4bf;
@@ -1773,11 +1879,14 @@ img {
 
 .footer-social a:hover {
     border-color: var(--blue);
+
     color: var(--blue);
 }
 
 
-/* FOOTER COLUMNS */
+/* =========================================================
+   FOOTER COLUMNS
+========================================================= */
 
 .footer-column {
     display: flex;
@@ -1799,6 +1908,7 @@ img {
 .footer-column span {
     display: flex;
     align-items: center;
+
     gap: 8px;
 
     color: #8995a2;
@@ -1821,7 +1931,9 @@ img {
 }
 
 
-/* FOOTER BOTTOM */
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
 
 .footer-bottom {
     border-top: 1px solid #27313b;
@@ -1845,7 +1957,7 @@ img {
 
 
 /* =========================================================
-   RESPONSIVE
+   TABLET / LAPTOP PEQUEÑO
 ========================================================= */
 
 @media (max-width: 1050px) {
@@ -1861,46 +1973,130 @@ img {
     }
 
 
+    /* HERO */
+
     .hero-container {
         gap: 40px;
     }
+
+
+    /* COMPANY / DIFFERENCE */
 
     .company-container,
     .difference-container {
         gap: 50px;
     }
 
+
+    /* FOOTER */
+
     .footer-main {
         gap: 35px;
     }
-
 }
 
 
+/* =========================================================
+   TABLET
+========================================================= */
+
 @media (max-width: 900px) {
 
-    /* HEADER */
+    /* =====================================================
+       HEADER
+    ===================================================== */
 
-    .main-nav,
-    .header-contact {
+    .main-nav {
         display: none;
     }
 
     .mobile-menu {
         display: flex;
-
-        align-items: center;
-
-        justify-content: center;
     }
 
 
+    /*
+       IMPORTANTE:
+       Cuando JS agrega .active,
+       el menú vuelve a aparecer.
+    */
+
+    .main-nav.active {
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        display: flex;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 0;
+
+        margin: 0;
+        padding: 10px 20px 20px;
+
+        background: var(--white);
+
+        border-bottom: 1px solid var(--border);
+
+        box-shadow: 0 12px 30px rgba(20, 35, 55, 0.08);
+
+        animation: mobileMenuOpen 0.25s ease forwards;
+    }
+
+    .main-nav.active .nav-item {
+        width: 100%;
+
+        padding: 15px 5px;
+
+        border-bottom: 1px solid #f0f2f5;
+
+        font-size: 14px;
+    }
+
+    .main-nav.active .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    .main-nav.active .nav-item.active::after {
+        display: none;
+    }
+
+    .main-nav.active .nav-item:hover {
+        color: var(--blue);
+        padding-left: 10px;
+    }
+
+
+    @keyframes mobileMenuOpen {
+
+        from {
+            opacity: 0;
+            transform: translateY(-8px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
     .hero {
-        padding: 75px 0;
+        padding: 70px 0 80px;
     }
 
     .hero-container {
         grid-template-columns: 1fr;
+
+        gap: 45px;
     }
 
     .hero-copy {
@@ -1908,9 +2104,23 @@ img {
     }
 
     .hero-visual {
+        width: 100%;
+        max-width: 620px;
+
         min-height: 430px;
+
+        margin: 0 auto;
     }
 
+    .visual-background {
+        width: min(420px, 70vw);
+        height: min(420px, 70vw);
+    }
+
+
+    /* =====================================================
+       INTRO
+    ===================================================== */
 
     .intro-container {
         grid-template-columns: 50px 1fr;
@@ -1918,27 +2128,42 @@ img {
 
     .intro-description {
         grid-column: 2;
+
         padding-top: 0;
     }
 
+
+    /* =====================================================
+       COMPANY
+    ===================================================== */
 
     .company-container,
     .difference-container {
         grid-template-columns: 1fr;
     }
 
-
     .company-visual {
-        max-width: 600px;
         width: 100%;
+        max-width: 600px;
+
+        margin: 0 auto;
     }
 
+
+    /* =====================================================
+       SERVICES
+    ===================================================== */
 
     .services-heading {
         grid-template-columns: 1fr;
+
         gap: 20px;
     }
 
+
+    /* =====================================================
+       PROCESS
+    ===================================================== */
 
     .process-track {
         grid-template-columns: 1fr 1fr;
@@ -1951,6 +2176,10 @@ img {
     }
 
 
+    /* =====================================================
+       CTA
+    ===================================================== */
+
     .cta {
         grid-template-columns: 1fr;
     }
@@ -1960,55 +2189,63 @@ img {
     }
 
 
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
     .footer-main {
         grid-template-columns: 1fr 1fr;
     }
-
 }
 
 
+/* =========================================================
+   MÓVIL
+========================================================= */
+
 @media (max-width: 600px) {
 
+    /* =====================================================
+       GENERAL
+    ===================================================== */
+
     .container {
-        width: min(100% - 28px, var(--container));
+        width: min(calc(100% - 28px), var(--container));
     }
 
 
     /* =====================================================
-       HEADER MOBILE
+       HEADER
     ===================================================== */
 
     .header-container {
-
         min-height: 68px;
 
         height: auto;
-
     }
-
 
     .brand-symbol {
-
         width: 36px;
-
         height: 36px;
-
     }
-
 
     .brand-name {
-
         font-size: 18px;
+    }
 
+    .mobile-menu {
+        width: 42px;
+        height: 42px;
     }
 
 
-    .mobile-menu {
+    /*
+       Menú móvil ligeramente más ajustado
+    */
 
-        width: 42px;
-
-        height: 42px;
-
+    .main-nav.active {
+        padding-left: 14px;
+        padding-right: 14px;
     }
 
 
@@ -2017,61 +2254,167 @@ img {
     ===================================================== */
 
     .hero {
-        padding: 60px 0 70px;
+        padding: 55px 0 65px;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+    }
+
+    .hero-copy {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .hero-label {
+        margin-bottom: 18px;
+
+        font-size: 10px;
     }
 
     .hero h1 {
-        font-size: 40px;
+        max-width: 100%;
+
+        margin-bottom: 20px;
+
+        font-size: clamp(34px, 10vw, 42px);
+
+        line-height: 1.08;
+
         letter-spacing: -1.5px;
     }
 
     .hero-copy > p {
+        max-width: 100%;
+
+        margin-bottom: 28px;
+
         font-size: 14px;
+
+        line-height: 1.75;
     }
 
 
+    /* =====================================================
+       HERO BUTTONS
+    ===================================================== */
+
     .hero-actions {
         flex-direction: column;
+
         align-items: stretch;
+
+        gap: 10px;
+
+        margin-bottom: 35px;
     }
 
     .btn {
         width: 100%;
+
+        min-height: 48px;
     }
 
+
+    /* =====================================================
+       HERO INFO
+    ===================================================== */
 
     .hero-info {
         flex-direction: column;
-        gap: 18px;
+
+        gap: 16px;
+
+        padding-top: 20px;
     }
 
+    .hero-info-item {
+        gap: 10px;
+    }
+
+
+    /* =====================================================
+       HERO VISUAL
+    ===================================================== */
 
     .hero-visual {
-        min-height: 360px;
+        width: 100%;
+
+        max-width: 100%;
+
+        min-height: 350px;
+
+        margin: 0 auto;
+
+        overflow: hidden;
     }
+
+
+    /* =====================================================
+       CÍRCULO
+    ===================================================== */
 
     .visual-background {
-        width: 300px;
-        height: 300px;
+        width: 285px;
+        height: 285px;
+
+        max-width: none;
+        max-height: none;
     }
+
+
+    /* =====================================================
+       RUTA
+    ===================================================== */
+
+    .route-path {
+        width: 270px;
+        height: 220px;
+
+        transform: scale(0.9);
+    }
+
+
+    /* =====================================================
+       PAQUETE
+    ===================================================== */
 
     .package {
-        transform: scale(0.82) rotate(-4deg);
+        width: 490px;
+        height: 465px;
+
+        transform:
+            scale(0.68)
+            rotate(-4deg);
+
+        transform-origin: center center;
     }
 
+
+    /* =====================================================
+       LOCATION CARDS
+    ===================================================== */
+
     .origin-card {
-        left: -5px;
-        top: 45px;
+        left: 0;
+        top: 38px;
     }
 
     .destination-card {
-        right: -5px;
-        top: 40px;
+        right: 0;
+        top: 35px;
     }
+
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
 
     .delivery-status {
         right: 0;
-        bottom: 30px;
+        bottom: 20px;
     }
 
 
@@ -2084,12 +2427,17 @@ img {
     .services-section,
     .difference-section,
     .process-section {
-        padding: 80px 0;
+        padding: 75px 0;
     }
 
 
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
     .intro-container {
         grid-template-columns: 1fr;
+
         gap: 18px;
     }
 
@@ -2121,6 +2469,7 @@ img {
 
     .secondary-card {
         width: 180px;
+
         right: 0;
         bottom: 10px;
     }
@@ -2128,7 +2477,6 @@ img {
     .company-icon {
         margin-top: 55px;
     }
-
 
     .company-values {
         grid-template-columns: 1fr;
@@ -2140,7 +2488,10 @@ img {
     ===================================================== */
 
     .service {
-        grid-template-columns: 35px 1fr 30px;
+        grid-template-columns:
+            35px
+            minmax(0, 1fr)
+            30px;
 
         gap: 10px;
     }
@@ -2186,6 +2537,7 @@ img {
 
     .cta-buttons {
         flex-direction: column;
+
         align-items: stretch;
     }
 
@@ -2200,19 +2552,85 @@ img {
 
     .footer-main {
         grid-template-columns: 1fr;
+
         gap: 40px;
 
         padding: 55px 0 45px;
     }
 
-
     .footer-bottom .container {
         min-height: 90px;
 
         flex-direction: column;
+
         justify-content: center;
 
         text-align: center;
     }
+}
 
+
+/* =========================================================
+   MÓVILES PEQUEÑOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: calc(100% - 22px);
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+        padding-top: 45px;
+    }
+
+    .hero h1 {
+        font-size: 33px;
+    }
+
+    .hero-visual {
+        min-height: 320px;
+    }
+
+    .visual-background {
+        width: 250px;
+        height: 250px;
+    }
+
+    .package {
+        transform:
+            scale(0.60)
+            rotate(-4deg);
+    }
+
+
+    /* =====================================================
+       LOCATION CARDS
+    ===================================================== */
+
+    .location-card {
+        padding: 9px 11px;
+    }
+
+    .location-card strong {
+        font-size: 10px;
+    }
+
+    .location-card span {
+        font-size: 8px;
+    }
+
+
+    /* =====================================================
+       DELIVERY STATUS
+    ===================================================== */
+
+    .delivery-status {
+        padding: 10px 12px;
+    }
 }
