@@ -1,0 +1,967 @@
+/* =========================================================
+   ENVIOS YA
+   dashboard.css
+   Estilos globales del Dashboard
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   VARIABLES GLOBALES
+========================================================= */
+
+:root {
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --primary-light: #eff6ff;
+
+    --background: #f5f7fb;
+    --surface: #ffffff;
+
+    --text: #172033;
+    --text-light: #6b7280;
+    --text-muted: #9ca3af;
+
+    --border: #e5e7eb;
+
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+
+    --warning: #d97706;
+    --warning-bg: #fef3c7;
+
+    --danger: #dc2626;
+    --danger-bg: #fee2e2;
+
+    --info: #0284c7;
+    --info-bg: #e0f2fe;
+
+    --sidebar-width: 260px;
+
+    --radius: 14px;
+
+    --shadow:
+        0 4px 20px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   HTML / BODY
+========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   ELEMENTOS GENERALES
+========================================================= */
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app {
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar {
+
+    width: var(--sidebar-width);
+
+    height: 100vh;
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    background: #ffffff;
+
+    border-right:
+        1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    z-index: 1000;
+
+}
+
+
+/* =========================================================
+   SIDEBAR HEADER
+========================================================= */
+
+.sidebar-header {
+
+    padding: 25px 20px;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.brand-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    background: var(--primary);
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+}
+
+
+.brand-info h1 {
+
+    font-size: 18px;
+
+    font-weight: 750;
+
+    color: var(--text);
+
+}
+
+
+.brand-info span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    color: var(--text-muted);
+
+}
+
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+========================================================= */
+
+.sidebar-nav {
+
+    flex: 1;
+
+    padding: 20px 12px;
+
+    overflow-y: auto;
+
+}
+
+
+/* =========================================================
+   NAVIGATION TITLES
+========================================================= */
+
+.nav-title {
+
+    display: block;
+
+    padding: 0 12px;
+
+    margin: 18px 0 8px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+
+    color: var(--text-muted);
+
+}
+
+
+.nav-title:first-child {
+
+    margin-top: 0;
+
+}
+
+
+/* =========================================================
+   NAVIGATION ITEMS
+========================================================= */
+
+.nav-item {
+
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    color: #667085;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 11px 13px;
+
+    margin-bottom: 4px;
+
+    border-radius: 10px;
+
+    text-align: left;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+.nav-item:hover {
+
+    background: #f8fafc;
+
+    color: var(--primary);
+
+}
+
+
+.nav-item.active {
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+
+    font-weight: 650;
+
+}
+
+
+/* =========================================================
+   NAVIGATION ICON
+========================================================= */
+
+.nav-icon {
+
+    width: 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+    font-size: 15px;
+
+}
+
+
+/* =========================================================
+   SIDEBAR FOOTER
+========================================================= */
+
+.sidebar-footer {
+
+    padding: 16px;
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+/* =========================================================
+   USER CARD
+========================================================= */
+
+.user-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.user-avatar {
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    background: #dbeafe;
+
+    color: var(--primary);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+}
+
+
+.user-info {
+
+    min-width: 0;
+
+}
+
+
+.user-info strong {
+
+    display: block;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+}
+
+
+.user-info span {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    color: var(--text-muted);
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-content {
+
+    width:
+        calc(100% - var(--sidebar-width));
+
+    margin-left:
+        var(--sidebar-width);
+
+    min-height: 100vh;
+
+    padding-bottom: 50px;
+
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.topbar {
+
+    height: 76px;
+
+    background:
+        rgba(255, 255, 255, 0.95);
+
+    border-bottom:
+        1px solid var(--border);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 500;
+
+    backdrop-filter: blur(12px);
+
+}
+
+
+/* =========================================================
+   TOPBAR LEFT / RIGHT
+========================================================= */
+
+.topbar-left,
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+.topbar-left {
+
+    gap: 14px;
+
+}
+
+
+.topbar-right {
+
+    gap: 22px;
+
+}
+
+
+/* =========================================================
+   MENU TOGGLE
+========================================================= */
+
+.menu-toggle {
+
+    display: none;
+
+    width: 38px;
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 9px;
+
+    color: var(--text);
+
+}
+
+
+/* =========================================================
+   BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--text-muted);
+
+    font-size: 11px;
+
+}
+
+
+/* =========================================================
+   TOPBAR TITLE
+========================================================= */
+
+.topbar h2 {
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.notification-button {
+
+    position: relative;
+
+    width: 40px;
+    height: 40px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    border-radius: 10px;
+
+    color: #667085;
+
+    font-size: 16px;
+
+}
+
+
+.notification-count {
+
+    position: absolute;
+
+    top: -4px;
+
+    right: -4px;
+
+    min-width: 17px;
+
+    height: 17px;
+
+    padding: 0 4px;
+
+    border-radius: 20px;
+
+    background: var(--danger);
+
+    color: white;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* =========================================================
+   TOPBAR DATE
+========================================================= */
+
+.topbar-date span {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: var(--text-muted);
+
+}
+
+
+.topbar-date strong {
+
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   CONTENT SECTIONS
+========================================================= */
+
+.content-section {
+
+    display: none;
+
+    padding: 34px;
+
+}
+
+
+.content-section.active {
+
+    display: block;
+
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.section-header.compact {
+
+    margin-bottom: 18px;
+
+}
+
+
+.section-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--primary);
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    letter-spacing: 0.08em;
+
+}
+
+
+.section-header h3 {
+
+    font-size: 25px;
+
+    font-weight: 750;
+
+    color: var(--text);
+
+}
+
+
+.section-header p {
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    color: var(--text-light);
+
+}
+
+
+/* =========================================================
+   BOTONES GLOBALES
+========================================================= */
+
+.primary-button,
+.secondary-button,
+.text-button {
+
+    border: none;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    border-radius: 9px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+
+/* =========================================================
+   PRIMARY BUTTON
+========================================================= */
+
+.primary-button {
+
+    min-height: 40px;
+
+    padding: 0 16px;
+
+    background: var(--primary);
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 650;
+
+}
+
+
+.primary-button:hover {
+
+    background: var(--primary-dark);
+
+    transform: translateY(-1px);
+
+}
+
+
+/* =========================================================
+   SECONDARY BUTTON
+========================================================= */
+
+.secondary-button {
+
+    min-height: 40px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid var(--border);
+
+    background: white;
+
+    color: var(--text);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.secondary-button:hover {
+
+    background: #f8fafc;
+
+}
+
+
+/* =========================================================
+   TEXT BUTTON
+========================================================= */
+
+.text-button {
+
+    background: transparent;
+
+    color: var(--primary);
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+    padding: 5px;
+
+}
+
+
+.text-button:hover {
+
+    color: var(--primary-dark);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE TABLET
+========================================================= */
+
+@media (max-width: 1150px) {
+
+    :root {
+
+        --sidebar-width: 225px;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .sidebar {
+
+        transform: translateX(-100%);
+
+        transition:
+            transform 0.25s ease;
+
+    }
+
+
+    .sidebar.open {
+
+        transform: translateX(0);
+
+    }
+
+
+    .main-content {
+
+        width: 100%;
+
+        margin-left: 0;
+
+    }
+
+
+    .menu-toggle {
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+    }
+
+
+    .topbar {
+
+        padding: 0 18px;
+
+    }
+
+
+    .topbar-date {
+
+        display: none;
+
+    }
+
+
+    .content-section {
+
+        padding: 25px 18px;
+
+    }
+
+
+    .section-header {
+
+        flex-direction: column;
+
+    }
+
+
+    .section-header .primary-button,
+    .section-header .secondary-button {
+
+        width: 100%;
+
+    }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE MOBILE PEQUEÑO
+========================================================= */
+
+@media (max-width: 560px) {
+
+    .topbar h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .notification-button {
+
+        width: 36px;
+
+        height: 36px;
+
+    }
+
+}

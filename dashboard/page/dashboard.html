@@ -1,0 +1,390 @@
+<section class="content-section active" id="dashboard">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="section-header">
+
+        <div>
+
+            <span class="section-label">
+                RESUMEN GENERAL
+            </span>
+
+            <h3>
+                Dashboard
+            </h3>
+
+            <p>
+                Consulta el estado general de tus operaciones.
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-button"
+            data-section="registrar">
+
+            <i class="fa-solid fa-plus"></i>
+
+            Nuevo envío
+
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ESTADÍSTICAS
+    ====================================================== -->
+
+    <div class="stats-grid">
+
+
+        <!-- TOTAL DE ENVÍOS -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <span class="stat-label">
+                    Total de envíos
+                </span>
+
+            </div>
+
+            <strong
+                class="stat-value"
+                id="totalEnvios">
+
+                0
+
+            </strong>
+
+            <span class="stat-description">
+                Envíos registrados
+            </span>
+
+        </div>
+
+
+        <!-- EN TRÁNSITO -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+
+                <span class="stat-label">
+                    En tránsito
+                </span>
+
+            </div>
+
+            <strong
+                class="stat-value"
+                id="enviosTransito">
+
+                0
+
+            </strong>
+
+            <span class="stat-description">
+                Envíos en movimiento
+            </span>
+
+        </div>
+
+
+        <!-- EN ADUANA -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-building-shield"></i>
+                </div>
+
+                <span class="stat-label">
+                    En aduana
+                </span>
+
+            </div>
+
+            <strong
+                class="stat-value"
+                id="enviosAduana">
+
+                0
+
+            </strong>
+
+            <span class="stat-description">
+                Pendientes de revisión
+            </span>
+
+        </div>
+
+
+        <!-- ENTREGADOS -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <div class="stat-icon">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <span class="stat-label">
+                    Entregados
+                </span>
+
+            </div>
+
+            <strong
+                class="stat-value"
+                id="enviosEntregados">
+
+                0
+
+            </strong>
+
+            <span class="stat-description">
+                Envíos completados
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ACCIONES RÁPIDAS
+    ====================================================== -->
+
+    <div class="quick-actions">
+
+        <div class="section-header compact">
+
+            <div>
+
+                <h3>
+                    Acciones rápidas
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="quick-actions-grid">
+
+
+            <!-- REGISTRAR ENVÍO -->
+
+            <button
+                class="quick-action"
+                data-section="registrar">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Registrar envío
+                    </strong>
+
+                    <small>
+                        Crear un nuevo envío
+                    </small>
+
+                </div>
+
+            </button>
+
+
+            <!-- SEGUIMIENTO -->
+
+            <button
+                class="quick-action"
+                data-section="seguimiento">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Seguimiento
+                    </strong>
+
+                    <small>
+                        Consultar un envío
+                    </small>
+
+                </div>
+
+            </button>
+
+
+            <!-- CLIENTES -->
+
+            <button
+                class="quick-action"
+                data-section="clientes">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Clientes
+                    </strong>
+
+                    <small>
+                        Administrar clientes
+                    </small>
+
+                </div>
+
+            </button>
+
+
+            <!-- REPORTES -->
+
+            <button
+                class="quick-action"
+                data-section="reportes">
+
+                <div class="quick-action-icon">
+
+                    <i class="fa-solid fa-chart-column"></i>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Reportes
+                    </strong>
+
+                    <small>
+                        Consultar estadísticas
+                    </small>
+
+                </div>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ÚLTIMOS ENVÍOS
+    ====================================================== -->
+
+    <div class="panel">
+
+        <div class="panel-header">
+
+            <h3>
+                Últimos envíos
+            </h3>
+
+
+            <button
+                class="text-button"
+                data-section="envios">
+
+                Ver todos
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Código
+                        </th>
+
+                        <th>
+                            Cliente
+                        </th>
+
+                        <th>
+                            Origen
+                        </th>
+
+                        <th>
+                            Destino
+                        </th>
+
+                        <th>
+                            Operación
+                        </th>
+
+                        <th>
+                            Estado
+                        </th>
+
+                        <th>
+                            Fecha
+                        </th>
+
+                        <th>
+                            Acción
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="recentShipments">
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>

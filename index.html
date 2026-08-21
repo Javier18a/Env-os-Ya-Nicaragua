@@ -2,196 +2,320 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Envíos Ya | Sistema de Gestión</title>
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <link rel="stylesheet" href="dashboard/css/styles.css">
+    <meta name="description"
+        content="Envios Ya - Soluciones de importación, exportación y logística para personas y empresas.">
+    <title>Envios Ya | Importación, Exportación y Logística</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/inicio.css">
 
 </head>
 
 
 <body>
 
-    <div class="app">
+    <header class="site-header">
+
+        <div class="container header-container">
 
 
-        <!-- =====================================================
-             SIDEBAR
-        ====================================================== -->
+            <!-- LOGO -->
 
-        <aside class="sidebar">
+            <a href="#inicio" class="brand">
 
-            <div class="sidebar-header">
+                <div class="brand-symbol">
 
-                <div class="brand">
-
-                    <div class="brand-icon">
-                        EY
-                    </div>
-
-                    <div class="brand-info">
-
-                        <h1>
-                            Envíos Ya
-                        </h1>
-
-                        <span>
-                            Gestión de envíos
-                        </span>
-
-                    </div>
+                    <img src="img/logo.jpeg" alt="">
 
                 </div>
 
-            </div>
+                <div class="brand-name">
+
+                    <span>Envios</span>
+
+                    <strong>Ya</strong>
+
+                </div>
+
+            </a>
 
 
-            <nav class="sidebar-nav">
+            <!-- NAVEGACIÓN -->
 
-                <span class="nav-title">
-                    PRINCIPAL
-                </span>
+            <nav class="main-nav" id="mainNav">
 
+                <a href="inicio.html#inicio" class="nav-item active">
+                    Inicio
+                </a>
 
-                <button class="nav-item active" data-section="dashboard">
+                <a href="inicio.html#empresa" class="nav-item ">
+                    Nosotros
+                </a>
 
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-chart-pie"></i>
-                    </span>
+                <a href="inicio.html#servicios" class="nav-item">
+                    Servicios
+                </a>
 
-                    <span>
-                        Dashboard
-                    </span>
+                <a href="inicio.html#proceso" class="nav-item">
+                    Cómo trabajamos
+                </a>
 
-                </button>
+                <a href="importacion.html" class="nav-item">
+                    Importación
+                </a>
 
+                <a href="exportacion.html" class="nav-item">
+                    Exportación
+                </a>
 
-                <button class="nav-item" data-section="envios">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-box"></i>
-                    </span>
-
-                    <span>
-                        Envíos
-                    </span>
-
-                </button>
-
-
-                <button class="nav-item" data-section="registrar">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-plus"></i>
-                    </span>
-
-                    <span>
-                        Registrar envío
-                    </span>
-
-                </button>
-
-
-                <button class="nav-item" data-section="clientes">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-users"></i>
-                    </span>
-
-                    <span>
-                        Clientes
-                    </span>
-
-                </button>
-
-
-                <span class="nav-title">
-                    OPERACIONES
-                </span>
-
-
-                <button class="nav-item" data-section="seguimiento">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-location-dot"></i>
-                    </span>
-
-                    <span>
-                        Seguimiento
-                    </span>
-
-                </button>
-
-
-                <button class="nav-item" data-section="reportes">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-chart-column"></i>
-                    </span>
-
-                    <span>
-                        Reportes
-                    </span>
-
-                </button>
-
-
-                <span class="nav-title">
-                    ADMINISTRACIÓN
-                </span>
-
-
-                <button class="nav-item" data-section="usuarios">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-user-shield"></i>
-                    </span>
-
-                    <span>
-                        Usuarios
-                    </span>
-
-                </button>
-
-
-                <button class="nav-item" data-section="configuracion">
-
-                    <span class="nav-icon">
-                        <i class="fa-solid fa-gear"></i>
-                    </span>
-
-                    <span>
-                        Configuración
-                    </span>
-
-                </button>
+                <a href="contact.html" class="nav-item">
+                    Contacto
+                </a>
 
             </nav>
 
 
-            <div class="sidebar-footer">
+            <!-- MENÚ MÓVIL -->
 
-                <div class="user-card">
+            <button class="mobile-menu" id="mobileMenu" aria-label="Abrir menú" aria-expanded="false" type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-                    <div class="user-avatar">
-                        JD
-                    </div>
+        </div>
 
-                    <div class="user-info">
+    </header>
 
-                        <strong>
-                            Administrador
-                        </strong>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero" id="inicio">
+
+            <div class="container hero-container">
+
+
+                <!-- HERO TEXTO -->
+
+                <div class="hero-copy">
+
+
+                    <div class="hero-label">
+
+                        <span class="label-line"></span>
 
                         <span>
-                            Administrador del sistema
+                            IMPORTACIÓN · EXPORTACIÓN · LOGÍSTICA
                         </span>
+
+                    </div>
+
+
+                    <h1>
+
+                        Conectamos tus
+                        <span>productos</span>
+                        con nuevos destinos.
+
+                    </h1>
+
+
+                    <p>
+
+                        Facilitamos el movimiento de productos entre
+                        mercados mediante soluciones de importación,
+                        exportación y logística diseñadas para personas,
+                        emprendimientos y empresas.
+
+                    </p>
+
+
+                    <div class="hero-actions">
+
+                        <a href="#servicios" class="btn btn-primary">
+
+                            Conoce nuestros servicios
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <a href="#empresa" class="btn btn-secondary">
+
+                            Conoce Envios Ya
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- INFORMACIÓN RÁPIDA -->
+
+                    <div class="hero-info">
+
+
+                        <div class="hero-info-item">
+
+                            <div class="hero-info-icon">
+
+                                <i class="fa-solid fa-globe"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Conexión internacional
+                                </strong>
+
+                                <span>
+                                    Importación y exportación
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-info-item">
+
+                            <div class="hero-info-icon blue">
+
+                                <i class="fa-solid fa-truck-fast"></i>
+
+                            </div>
+
+                            <div>
+
+                                <strong>
+                                    Soluciones logísticas
+                                </strong>
+
+                                <span>
+                                    De origen a destino
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- HERO VISUAL -->
+
+                <div class="hero-visual">
+
+
+                    <div class="visual-background"></div>
+
+
+                    <!-- RUTA INTERNACIONAL -->
+
+                    <div class="route-path">
+
+                    </div>
+
+
+                    <!-- PAQUETE -->
+
+                    <div class="package">
+
+                        <img src="img/logo-removebg-preview.png" alt="">
+
+                    </div>
+
+
+                    <!-- ORIGEN -->
+
+                    <div class="location-card origin-card">
+
+                        <div class="location-icon">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Origen
+                            </span>
+
+                            <strong>
+                                Proveedor
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DESTINO -->
+
+                    <div class="location-card destination-card">
+
+                        <div class="location-icon blue">
+
+                            <i class="fa-solid fa-flag-checkered"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Destino
+                            </span>
+
+                            <strong>
+                                Cliente
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ESTADO -->
+
+                    <div class="delivery-status">
+
+                        <div class="status-check">
+
+                            <i class="fa-solid fa-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Operación en proceso
+                            </strong>
+
+                            <span>
+                                Gestión logística
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -199,2606 +323,1183 @@
 
             </div>
 
-        </aside>
+        </section>
 
 
 
-        <!-- =====================================================
-             MAIN
-        ====================================================== -->
+        <!-- =================================================
+             INTRODUCCIÓN
+        ================================================== -->
 
-        <main class="main-content">
+        <section class="intro-section">
+
+            <div class="container intro-container">
 
 
-            <!-- =================================================
-                 TOPBAR
-            ================================================== -->
+                <span class="intro-number">
+                    01
+                </span>
 
-            <header class="topbar">
 
-                <div class="topbar-left">
+                <div class="intro-content">
 
-                    <button class="menu-toggle"
-                        id="menuToggle"
-                        aria-label="Abrir menú">
+                    <p class="intro-small">
+                        ENVÍOS YA
+                    </p>
 
-                        <i class="fa-solid fa-bars"></i>
 
-                    </button>
+                    <h2>
 
+                        Más que transportar,
+                        <span>conectamos oportunidades.</span>
+
+                    </h2>
+
+                </div>
+
+
+                <div class="intro-description">
+
+                    <p>
+
+                        El comercio no termina cuando un producto
+                        sale de un lugar. Necesita planificación,
+                        coordinación y una logística capaz de conectar
+                        cada parte del recorrido.
+
+                    </p>
+
+
+                    <p>
+
+                        En Envios Ya trabajamos para facilitar ese
+                        proceso, acompañando operaciones de importación,
+                        exportación y distribución.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NOSOTROS
+        ================================================== -->
+
+        <section class="company-section" id="empresa">
+
+            <div class="container company-container">
+
+
+                <!-- VISUAL -->
+
+                <div class="company-visual">
+
+
+                    <div class="company-card main-card">
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+
+                        <div class="company-icon">
+
+                            <i class="fa-solid fa-globe-americas"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Conectamos mercados.
+                        </h3>
+
+
+                        <p>
+
+                            Facilitamos el movimiento de productos
+                            entre distintos puntos, apoyando a quienes
+                            necesitan comprar, vender o distribuir
+                            más allá de sus fronteras.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="company-card secondary-card">
+
+                        <i class="fa-solid fa-arrows-left-right"></i>
+
+                        <span>
+                            Importación
+                        </span>
+
+                        <strong>
+                            & Exportación
+                        </strong>
+
+                    </div>
+
+
+                    <div class="company-decoration"></div>
+
+                </div>
+
+
+
+                <!-- CONTENIDO -->
+
+                <div class="company-content">
+
+
+                    <div class="section-label">
+
+                        <span>
+                            02
+                        </span>
+
+                        <strong>
+                            Sobre nosotros
+                        </strong>
+
+                    </div>
+
+
+                    <h2>
+
+                        Una empresa para
+                        <span>mover negocios.</span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Envios Ya nace con el propósito de ofrecer
+                        soluciones que faciliten el movimiento de
+                        productos y mercancías, conectando proveedores,
+                        empresas y clientes.
+
+                    </p>
+
+
+                    <p>
+
+                        Nuestro enfoque integra importación, exportación,
+                        transporte y logística para ofrecer una visión
+                        más completa de cada operación.
+
+                    </p>
+
+
+                    <p>
+
+                        Buscamos que nuestros clientes puedan concentrarse
+                        en hacer crecer sus negocios mientras nosotros
+                        ayudamos a gestionar el movimiento de sus productos.
+
+                    </p>
+
+
+                    <!-- MISIÓN / VISIÓN -->
+
+                    <div class="company-values">
+
+
+                        <div class="value">
+
+                            <div class="value-icon">
+
+                                <i class="fa-solid fa-bullseye"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Misión
+                                </strong>
+
+                                <p>
+
+                                    Facilitar operaciones de comercio
+                                    y logística mediante soluciones
+                                    eficientes y confiables.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="value">
+
+                            <div class="value-icon blue">
+
+                                <i class="fa-solid fa-eye"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    Visión
+                                </strong>
+
+                                <p>
+
+                                    Convertirnos en un aliado estratégico
+                                    para empresas que buscan conectar
+                                    productos y mercados.
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SERVICIOS
+        ================================================== -->
+
+        <section class="services-section" id="servicios">
+
+            <div class="container">
+
+
+                <div class="services-heading">
 
                     <div>
 
-                        <span class="breadcrumb">
-                            Envíos Ya / Sistema
-                        </span>
+                        <div class="section-label">
 
-                        <h2 id="pageTitle">
-                            Dashboard
+                            <span>
+                                03
+                            </span>
+
+                            <strong>
+                                Nuestros servicios
+                            </strong>
+
+                        </div>
+
+
+                        <h2>
+
+                            Soluciones para
+                            <span>cada operación.</span>
+
                         </h2>
 
                     </div>
 
-                </div>
 
+                    <p>
 
-                <div class="topbar-right">
+                        Integramos diferentes servicios para acompañar
+                        el recorrido de tus productos, desde su origen
+                        hasta su destino.
 
-                    <button class="notification-button"
-                        title="Notificaciones">
-
-                        <i class="fa-regular fa-bell"></i>
-
-                        <span class="notification-count">
-                            0
-                        </span>
-
-                    </button>
-
-
-                    <div class="topbar-date">
-
-                        <span>
-                            Fecha actual
-                        </span>
-
-                        <strong id="currentDate">
-                            —
-                        </strong>
-
-                    </div>
-
-                </div>
-
-            </header>
-
-
-
-            <!-- =================================================
-                 DASHBOARD
-            ================================================== -->
-
-            <section class="content-section active" id="dashboard">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            RESUMEN GENERAL
-                        </span>
-
-                        <h3>
-                            Dashboard
-                        </h3>
-
-                        <p>
-                            Consulta el estado general de tus operaciones.
-                        </p>
-
-                    </div>
-
-
-                    <button class="primary-button"
-                        data-section="registrar">
-
-                        <i class="fa-solid fa-plus"></i>
-
-                        Nuevo envío
-
-                    </button>
+                    </p>
 
                 </div>
 
 
-
-                <!-- =================================================
-                     ESTADÍSTICAS
-                ================================================== -->
-
-                <div class="stats-grid">
+                <div class="services-list">
 
 
-                    <div class="stat-card">
+                    <!-- IMPORTACIÓN -->
 
-                        <div class="stat-card-top">
+                    <article class="service">
 
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-box"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                Total de envíos
-                            </span>
-
+                        <div class="service-number">
+                            01
                         </div>
 
-                        <strong class="stat-value" id="totalEnvios">
-                            0
-                        </strong>
 
-                        <span class="stat-description">
-                            Envíos registrados
-                        </span>
+                        <div class="service-main">
 
-                    </div>
+                            <div class="service-icon">
 
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
 
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-truck"></i>
                             </div>
 
-                            <span class="stat-label">
-                                En tránsito
-                            </span>
-
-                        </div>
-
-                        <strong class="stat-value" id="enviosTransito">
-                            0
-                        </strong>
-
-                        <span class="stat-description">
-                            Envíos en movimiento
-                        </span>
-
-                    </div>
-
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-building-shield"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                En aduana
-                            </span>
-
-                        </div>
-
-                        <strong class="stat-value" id="enviosAduana">
-                            0
-                        </strong>
-
-                        <span class="stat-description">
-                            Pendientes de revisión
-                        </span>
-
-                    </div>
-
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                Entregados
-                            </span>
-
-                        </div>
-
-                        <strong class="stat-value" id="enviosEntregados">
-                            0
-                        </strong>
-
-                        <span class="stat-description">
-                            Envíos completados
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     ACCIONES RÁPIDAS
-                ================================================== -->
-
-                <div class="quick-actions">
-
-                    <div class="section-header compact">
-
-                        <div>
 
                             <h3>
-                                Acciones rápidas
+                                Importación
                             </h3>
 
                         </div>
 
-                    </div>
 
-
-                    <div class="quick-actions-grid">
-
-
-                        <button class="quick-action"
-                            data-section="registrar">
-
-                            <div class="quick-action-icon">
-                                <i class="fa-solid fa-plus"></i>
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Registrar envío
-                                </strong>
-
-                                <small>
-                                    Crear un nuevo envío
-                                </small>
-
-                            </div>
-
-                        </button>
-
-
-
-                        <button class="quick-action"
-                            data-section="seguimiento">
-
-                            <div class="quick-action-icon">
-                                <i class="fa-solid fa-location-dot"></i>
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Seguimiento
-                                </strong>
-
-                                <small>
-                                    Consultar un envío
-                                </small>
-
-                            </div>
-
-                        </button>
-
-
-
-                        <button class="quick-action"
-                            data-section="clientes">
-
-                            <div class="quick-action-icon">
-                                <i class="fa-solid fa-users"></i>
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Clientes
-                                </strong>
-
-                                <small>
-                                    Administrar clientes
-                                </small>
-
-                            </div>
-
-                        </button>
-
-
-
-                        <button class="quick-action"
-                            data-section="reportes">
-
-                            <div class="quick-action-icon">
-                                <i class="fa-solid fa-chart-column"></i>
-                            </div>
-
-                            <div>
-
-                                <strong>
-                                    Reportes
-                                </strong>
-
-                                <small>
-                                    Consultar estadísticas
-                                </small>
-
-                            </div>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     ÚLTIMOS ENVÍOS
-                ================================================== -->
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Últimos envíos
-                        </h3>
-
-                        <button class="text-button"
-                            data-section="envios">
-
-                            Ver todos
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </button>
-
-                    </div>
-
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Código
-                                    </th>
-
-                                    <th>
-                                        Cliente
-                                    </th>
-
-                                    <th>
-                                        Origen
-                                    </th>
-
-                                    <th>
-                                        Destino
-                                    </th>
-
-                                    <th>
-                                        Operación
-                                    </th>
-
-                                    <th>
-                                        Estado
-                                    </th>
-
-                                    <th>
-                                        Fecha
-                                    </th>
-
-                                    <th>
-                                        Acción
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="recentShipments">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 ENVÍOS
-            ================================================== -->
-
-            <section class="content-section" id="envios">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            OPERACIONES
-                        </span>
-
-                        <h3>
-                            Envíos
-                        </h3>
-
-                        <p>
-                            Administra y actualiza todos los envíos registrados.
-                        </p>
-
-                    </div>
-
-
-                    <button class="primary-button"
-                        data-section="registrar">
-
-                        <i class="fa-solid fa-plus"></i>
-
-                        Registrar envío
-
-                    </button>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     BÚSQUEDA
-                ================================================== -->
-
-                <div class="search-panel">
-
-                    <div class="search-box">
-
-                        <span>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </span>
-
-                        <input type="search"
-                            id="shipmentSearch"
-                            placeholder="Buscar por código, cliente, origen o destino...">
-
-                    </div>
-
-
-                    <select id="statusFilter">
-
-                        <option value="todos">
-                            Todos los estados
-                        </option>
-
-                        <option value="pendiente">
-                            Pendiente
-                        </option>
-
-                        <option value="transito">
-                            En tránsito
-                        </option>
-
-                        <option value="aduana">
-                            En aduana
-                        </option>
-
-                        <option value="entregado">
-                            Entregado
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-
-                <!-- =================================================
-                     TABLA PRINCIPAL DE ENVÍOS
-                ================================================== -->
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <div>
-
-                            <h3>
-                                Registro de envíos
-                            </h3>
-
-                            <span class="section-label">
-                                GESTIÓN DE ENVÍOS
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Código
-                                    </th>
-
-                                    <th>
-                                        Cliente
-                                    </th>
-
-                                    <th>
-                                        Operación
-                                    </th>
-
-                                    <th>
-                                        Transporte
-                                    </th>
-
-                                    <th>
-                                        Paquete
-                                    </th>
-
-                                    <th>
-                                        Peso
-                                    </th>
-
-                                    <th>
-                                        Volumen
-                                    </th>
-
-                                    <th>
-                                        Estado
-                                    </th>
-
-                                    <th>
-                                        Fecha
-                                    </th>
-
-                                    <th>
-                                        Acciones
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="shipmentsTable">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 REGISTRAR ENVÍO
-            ================================================== -->
-
-            <section class="content-section" id="registrar">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            NUEVA OPERACIÓN
-                        </span>
-
-                        <h3>
-                            Registrar envío
-                        </h3>
-
-                        <p>
-                            Ingresa la información necesaria para registrar un nuevo envío.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <form id="shipmentForm" class="form-panel">
-
-
-                    <!-- =================================================
-                         INFORMACIÓN GENERAL
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Información general del envío
-                            </h4>
-
-                            <span>
-                                Campos obligatorios *
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group">
-
-                                <label for="shipmentCode">
-                                    Código del envío *
-                                </label>
-
-                                <input type="text"
-                                    id="shipmentCode"
-                                    readonly>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="shipmentDate">
-                                    Fecha de registro *
-                                </label>
-
-                                <input type="date"
-                                    id="shipmentDate"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="operationType">
-                                    Tipo de operación *
-                                </label>
-
-                                <select id="operationType" required>
-
-                                    <option value="Importación">
-                                        Importación
-                                    </option>
-
-                                    <option value="Exportación">
-                                        Exportación
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="transportMode">
-                                    Modalidad de transporte *
-                                </label>
-
-                                <select id="transportMode" required>
-
-                                    <option value="">
-                                        Seleccionar modalidad
-                                    </option>
-
-                                    <option value="Aire">
-                                        Aéreo
-                                    </option>
-
-                                    <option value="Mar">
-                                        Marítimo
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageQuantity">
-                                    Cantidad de paquetes *
-                                </label>
-
-                                <input type="number"
-                                    id="packageQuantity"
-                                    min="1"
-                                    value="1"
-                                    placeholder="Ej. 2"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageType">
-                                    Tipo de paquete *
-                                </label>
-
-                                <select id="packageType" required>
-
-                                    <option value="">
-                                        Seleccionar tipo
-                                    </option>
-
-                                    <option value="Caja">
-                                        Caja
-                                    </option>
-
-                                    <option value="Sobre">
-                                        Sobre
-                                    </option>
-
-                                    <option value="Bolsa">
-                                        Bolsa
-                                    </option>
-
-                                    <option value="Pallet">
-                                        Pallet
-                                    </option>
-
-                                    <option value="Bulto">
-                                        Bulto
-                                    </option>
-
-                                    <option value="Otro">
-                                        Otro
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group"
-                                id="otherPackageTypeGroup"
-                                style="display:none;">
-
-                                <label for="otherPackageType">
-                                    Especifique el tipo de paquete *
-                                </label>
-
-                                <input type="text"
-                                    id="otherPackageType"
-                                    placeholder="Ej. Maleta, tubo, equipo...">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageCategory">
-                                    Categoría *
-                                </label>
-
-                                <select id="packageCategory" required>
-
-                                    <option value="">
-                                        Seleccionar categoría
-                                    </option>
-
-                                    <option value="Ropa">
-                                        Ropa
-                                    </option>
-
-                                    <option value="Calzado">
-                                        Calzado
-                                    </option>
-
-                                    <option value="Electrónica">
-                                        Electrónica
-                                    </option>
-
-                                    <option value="Hogar">
-                                        Hogar
-                                    </option>
-
-                                    <option value="Repuestos">
-                                        Repuestos
-                                    </option>
-
-                                    <option value="Alimentos">
-                                        Alimentos
-                                    </option>
-
-                                    <option value="Documentos">
-                                        Documentos
-                                    </option>
-
-                                    <option value="Medicamentos">
-                                        Medicamentos
-                                    </option>
-
-                                    <option value="Mercancía general">
-                                        Mercancía general
-                                    </option>
-
-                                    <option value="Otro">
-                                        Otro
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group"
-                                id="otherCategoryGroup"
-                                style="display:none;">
-
-                                <label for="otherCategory">
-                                    Especifique la categoría *
-                                </label>
-
-                                <input type="text"
-                                    id="otherCategory"
-                                    placeholder="Especifique la categoría">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         INFORMACIÓN DEL CONTENIDO
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Información del contenido
-                            </h4>
-
-                            <span>
-                                Detalle de la mercancía
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group form-group-full">
-
-                                <label for="packageDescription">
-                                    Descripción del contenido *
-                                </label>
-
-                                <textarea id="packageDescription"
-                                    placeholder="Describe brevemente el contenido del paquete..."
-                                    required></textarea>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="weight">
-                                    Peso total (lb) *
-                                </label>
-
-                                <input type="number"
-                                    id="weight"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Ej. 15.50"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="declaredValue">
-                                    Valor declarado
-                                </label>
-
-                                <input type="number"
-                                    id="declaredValue"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Ej. 250.00">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="currency">
-                                    Moneda
-                                </label>
-
-                                <select id="currency">
-
-                                    <option value="USD">
-                                        USD - Dólares
-                                    </option>
-
-                                    <option value="NIO">
-                                        NIO - Córdobas
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         DIMENSIONES
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Dimensiones del paquete
-                            </h4>
-
-                            <span>
-                                Medidas y volumen total
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group">
-
-                                <label for="dimensionUnit">
-                                    Unidad de medida
-                                </label>
-
-                                <select id="dimensionUnit">
-
-                                    <option value="pulgadas">
-                                        Pulgadas (in)
-                                    </option>
-
-                                    <option value="centimetros">
-                                        Centímetros (cm)
-                                    </option>
-
-                                    <option value="pies">
-                                        Pies (ft)
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageLength">
-                                    Largo
-                                </label>
-
-                                <input type="number"
-                                    id="packageLength"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Ej. 20">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageWidth">
-                                    Ancho
-                                </label>
-
-                                <input type="number"
-                                    id="packageWidth"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Ej. 15">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="packageHeight">
-                                    Alto
-                                </label>
-
-                                <input type="number"
-                                    id="packageHeight"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Ej. 12">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="cubicFeet">
-                                    Volumen total (pie³)
-                                </label>
-
-                                <input type="number"
-                                    id="cubicFeet"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Calculado automáticamente">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         INFORMACIÓN DEL CLIENTE
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Información del cliente
-                            </h4>
-
-                            <span>
-                                Datos del cliente
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group">
-
-                                <label for="clientName">
-                                    Nombre completo *
-                                </label>
-
-                                <input type="text"
-                                    id="clientName"
-                                    placeholder="Nombre completo"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="clientPhone">
-                                    Teléfono *
-                                </label>
-
-                                <input type="tel"
-                                    id="clientPhone"
-                                    placeholder="+505 8888 8888"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="clientEmail">
-                                    Correo electrónico
-                                </label>
-
-                                <input type="email"
-                                    id="clientEmail"
-                                    placeholder="cliente@correo.com">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="clientDocument">
-                                    Documento de identidad
-                                </label>
-
-                                <input type="text"
-                                    id="clientDocument"
-                                    placeholder="Número de identificación">
-
-                            </div>
-
-
-
-                            <div class="form-group form-group-full">
-
-                                <label for="clientAddress">
-                                    Dirección del cliente
-                                </label>
-
-                                <input type="text"
-                                    id="clientAddress"
-                                    placeholder="Dirección completa">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         RUTA
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Ruta del envío
-                            </h4>
-
-                            <span>
-                                Origen y destino
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group">
-
-                                <label for="origin">
-                                    Origen *
-                                </label>
-
-                                <input type="text"
-                                    id="origin"
-                                    placeholder="Ej. Miami, USA"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="destination">
-                                    Destino *
-                                </label>
-
-                                <input type="text"
-                                    id="destination"
-                                    placeholder="Ej. Managua, Nicaragua"
-                                    required>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="senderName">
-                                    Remitente
-                                </label>
-
-                                <input type="text"
-                                    id="senderName"
-                                    placeholder="Nombre del remitente">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="recipientName">
-                                    Destinatario
-                                </label>
-
-                                <input type="text"
-                                    id="recipientName"
-                                    placeholder="Nombre del destinatario">
-
-                            </div>
-
-
-
-                            <div class="form-group form-group-full">
-
-                                <label for="deliveryAddress">
-                                    Dirección de entrega
-                                </label>
-
-                                <input type="text"
-                                    id="deliveryAddress"
-                                    placeholder="Dirección donde será entregado el paquete">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         INFORMACIÓN ADICIONAL
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Información adicional
-                            </h4>
-
-                            <span>
-                                Opcional
-                            </span>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-
-                            <div class="form-group">
-
-                                <label for="specialHandling">
-                                    Manejo especial
-                                </label>
-
-                                <select id="specialHandling">
-
-                                    <option value="Ninguno">
-                                        Ninguno
-                                    </option>
-
-                                    <option value="Frágil">
-                                        Frágil
-                                    </option>
-
-                                    <option value="Requiere cuidado">
-                                        Requiere cuidado
-                                    </option>
-
-                                    <option value="No apilar">
-                                        No apilar
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="insurance">
-                                    Seguro
-                                </label>
-
-                                <select id="insurance">
-
-                                    <option value="No">
-                                        No
-                                    </option>
-
-                                    <option value="Sí">
-                                        Sí
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group form-group-full">
-
-                                <label for="notes">
-                                    Observaciones
-                                </label>
-
-                                <textarea id="notes"
-                                    placeholder="Agrega observaciones, instrucciones o información adicional..."></textarea>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         ACCIONES
-                    ================================================== -->
-
-                    <div class="form-actions">
-
-                        <button type="reset"
-                            class="secondary-button">
-
-                            <i class="fa-solid fa-rotate-left"></i>
-
-                            Limpiar
-
-                        </button>
-
-
-                        <button type="submit"
-                            class="primary-button">
-
-                            <i class="fa-solid fa-box"></i>
-
-                            Registrar envío
-
-                        </button>
-
-                    </div>
-
-                </form>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 CLIENTES
-            ================================================== -->
-
-            <section class="content-section" id="clientes">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            CLIENTES
-                        </span>
-
-                        <h3>
-                            Clientes
-                        </h3>
-
-                        <p>
-                            Consulta los clientes asociados a tus envíos.
-                        </p>
-
-                    </div>
-
-
-                    <button class="primary-button"
-                        id="newClientButton">
-
-                        <i class="fa-solid fa-user-plus"></i>
-
-                        Nuevo cliente
-
-                    </button>
-
-                </div>
-
-
-
-                <div class="search-panel">
-
-                    <div class="search-box">
-
-                        <span>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </span>
-
-                        <input type="search"
-                            id="clientSearch"
-                            placeholder="Buscar cliente o teléfono...">
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Lista de clientes
-                        </h3>
-
-                    </div>
-
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Cliente
-                                    </th>
-
-                                    <th>
-                                        Teléfono
-                                    </th>
-
-                                    <th>
-                                        Total envíos
-                                    </th>
-
-                                    <th>
-                                        En tránsito
-                                    </th>
-
-                                    <th>
-                                        Entregados
-                                    </th>
-
-                                    <th>
-                                        Acción
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="clientsTable">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 SEGUIMIENTO
-            ================================================== -->
-
-            <section class="content-section" id="seguimiento">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            TRACKING
-                        </span>
-
-                        <h3>
-                            Seguimiento
-                        </h3>
-
-                        <p>
-                            Consulta el estado y recorrido de un envío.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Consultar envío
-                        </h3>
-
-                    </div>
-
-
-                    <div class="modal-body">
-
-
-                        <div class="search-panel">
-
-                            <div class="search-box">
-
-                                <span>
-                                    <i class="fa-solid fa-box"></i>
-                                </span>
-
-                                <input type="text"
-                                    id="trackingCode"
-                                    placeholder="Ingresa el código. Ej. ENV-00001">
-
-                            </div>
-
-
-                            <button class="primary-button"
-                                id="trackingButton">
-
-                                <i class="fa-solid fa-magnifying-glass"></i>
-
-                                Consultar
-
-                            </button>
-
-                        </div>
-
-
-
-                        <!-- =================================================
-                             RESULTADO
-                        ================================================== -->
-
-                        <div id="trackingResult"
-                            style="display:none;">
-
-
-                            <div class="shipment-summary">
-
-
-                                <div>
-
-                                    <span>
-                                        Código
-                                    </span>
-
-                                    <strong id="trackingResultTitle">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Cliente
-                                    </span>
-
-                                    <strong id="trackingResultClient">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Estado
-                                    </span>
-
-                                    <strong>
-
-                                        <span id="trackingResultStatus"
-                                            class="status">
-                                            —
-                                        </span>
-
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Operación
-                                    </span>
-
-                                    <strong id="trackingOperation">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Transporte
-                                    </span>
-
-                                    <strong id="trackingTransport">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Paquetes
-                                    </span>
-
-                                    <strong id="trackingPackages">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Peso
-                                    </span>
-
-                                    <strong id="trackingWeight">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Volumen
-                                    </span>
-
-                                    <strong id="trackingVolume">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Origen
-                                    </span>
-
-                                    <strong id="trackingOrigin">
-                                        —
-                                    </strong>
-
-                                </div>
-
-
-
-                                <div>
-
-                                    <span>
-                                        Destino
-                                    </span>
-
-                                    <strong id="trackingDestination">
-                                        —
-                                    </strong>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="tracking">
-
-                                <h4>
-                                    Historial del envío
-                                </h4>
-
-                                <div class="tracking-timeline"
-                                    id="trackingTimeline">
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <!-- =================================================
-                             ESTADO VACÍO
-                        ================================================== -->
-
-                        <div class="empty-state"
-                            id="trackingEmpty">
-
-                            <div class="empty-icon">
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                            </div>
-
-                            <h3>
-                                Consulta un envío
-                            </h3>
+                        <div class="service-description">
 
                             <p>
-                                Introduce el código de seguimiento para consultar su estado.
+
+                                Facilitamos el ingreso de productos
+                                provenientes de otros mercados,
+                                apoyando la coordinación y gestión
+                                necesaria para su traslado.
+
                             </p>
 
                         </div>
 
-                    </div>
 
-                </div>
+                        <div class="service-arrow">
 
-            </section>
-
-
-
-            <!-- =================================================
-                 REPORTES
-            ================================================== -->
-
-            <section class="content-section" id="reportes">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            ANÁLISIS
-                        </span>
-
-                        <h3>
-                            Reportes
-                        </h3>
-
-                        <p>
-                            Resumen estadístico de las operaciones.
-                        </p>
-
-                    </div>
-
-
-                    <button class="primary-button"
-                        id="exportReportButton">
-
-                        <i class="fa-solid fa-file-export"></i>
-
-                        Exportar CSV
-
-                    </button>
-
-                </div>
-
-
-
-                <div class="stats-grid">
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-box"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                Total
-                            </span>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
                         </div>
 
-                        <strong class="stat-value"
-                            id="reportTotal">
-                            0
-                        </strong>
-
-                    </div>
+                    </article>
 
 
 
-                    <div class="stat-card">
+                    <!-- EXPORTACIÓN -->
 
-                        <div class="stat-card-top">
+                    <article class="service">
 
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                Importaciones
-                            </span>
-
+                        <div class="service-number">
+                            02
                         </div>
 
-                        <strong class="stat-value"
-                            id="reportImports">
-                            0
-                        </strong>
 
-                    </div>
+                        <div class="service-main">
 
+                            <div class="service-icon blue">
 
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
                             </div>
 
-                            <span class="stat-label">
-                                Exportaciones
-                            </span>
 
-                        </div>
-
-                        <strong class="stat-value"
-                            id="reportExports">
-                            0
-                        </strong>
-
-                    </div>
-
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-card-top">
-
-                            <div class="stat-icon">
-                                <i class="fa-solid fa-weight-hanging"></i>
-                            </div>
-
-                            <span class="stat-label">
-                                Peso total
-                            </span>
-
-                        </div>
-
-                        <strong class="stat-value"
-                            id="reportWeight">
-                            0 lb
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Resumen de operaciones
-                        </h3>
-
-                    </div>
-
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Categoría
-                                    </th>
-
-                                    <th>
-                                        Cantidad
-                                    </th>
-
-                                    <th>
-                                        Porcentaje
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="reportTable">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 USUARIOS
-            ================================================== -->
-
-            <section class="content-section" id="usuarios">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            ADMINISTRACIÓN
-                        </span>
-
-                        <h3>
-                            Usuarios
-                        </h3>
-
-                        <p>
-                            Administración de usuarios y permisos del sistema.
-                        </p>
-
-                    </div>
-
-
-                    <button class="primary-button"
-                        id="newUserButton">
-
-                        <i class="fa-solid fa-user-plus"></i>
-
-                        Nuevo usuario
-
-                    </button>
-
-                </div>
-
-
-
-                <div class="panel">
-
-                    <div class="panel-header">
-
-                        <h3>
-                            Usuarios del sistema
-                        </h3>
-
-                    </div>
-
-
-                    <div class="table-container">
-
-                        <table>
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Usuario
-                                    </th>
-
-                                    <th>
-                                        Nombre
-                                    </th>
-
-                                    <th>
-                                        Rol
-                                    </th>
-
-                                    <th>
-                                        Estado
-                                    </th>
-
-                                    <th>
-                                        Acción
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody id="usersTable">
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- =================================================
-                 CONFIGURACIÓN
-            ================================================== -->
-
-            <section class="content-section" id="configuracion">
-
-
-                <div class="section-header">
-
-                    <div>
-
-                        <span class="section-label">
-                            SISTEMA
-                        </span>
-
-                        <h3>
-                            Configuración
-                        </h3>
-
-                        <p>
-                            Configura los parámetros generales del sistema.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-
-                <div class="form-panel">
-
-
-                    <!-- =================================================
-                         EMPRESA
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Información de la empresa
-                            </h4>
-
-                            <span>
-                                Datos generales
-                            </span>
+                            <h3>
+                                Exportación
+                            </h3>
 
                         </div>
 
 
-                        <div class="form-grid">
+                        <div class="service-description">
 
+                            <p>
 
-                            <div class="form-group">
+                                Apoyamos el envío de productos hacia
+                                nuevos mercados, coordinando el proceso
+                                logístico desde el origen hasta su destino.
 
-                                <label for="companyName">
-                                    Nombre de la empresa
-                                </label>
-
-                                <input type="text"
-                                    id="companyName"
-                                    value="Envíos Ya">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="companyPhone">
-                                    Teléfono
-                                </label>
-
-                                <input type="tel"
-                                    id="companyPhone"
-                                    placeholder="+505">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="companyEmail">
-                                    Correo electrónico
-                                </label>
-
-                                <input type="email"
-                                    id="companyEmail"
-                                    placeholder="correo@empresa.com">
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="companyAddress">
-                                    Dirección
-                                </label>
-
-                                <input type="text"
-                                    id="companyAddress"
-                                    placeholder="Managua, Nicaragua">
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <!-- =================================================
-                         PREFERENCIAS
-                    ================================================== -->
-
-                    <div class="form-section">
-
-                        <div class="form-section-header">
-
-                            <h4>
-                                Preferencias
-                            </h4>
-
-                            <span>
-                                Configuración general
-                            </span>
+                            </p>
 
                         </div>
 
 
-                        <div class="form-grid">
+                        <div class="service-arrow">
 
-
-                            <div class="form-group">
-
-                                <label for="defaultOperation">
-                                    Tipo de operación predeterminado
-                                </label>
-
-                                <select id="defaultOperation">
-
-                                    <option value="Importación">
-                                        Importación
-                                    </option>
-
-                                    <option value="Exportación">
-                                        Exportación
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="form-group">
-
-                                <label for="timezone">
-                                    Zona horaria
-                                </label>
-
-                                <select id="timezone">
-
-                                    <option value="America/Managua">
-                                        Nicaragua
-                                    </option>
-
-                                </select>
-
-                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
 
                         </div>
 
-                    </div>
+                    </article>
 
 
 
-                    <div class="form-actions">
+                    <!-- LOGÍSTICA -->
 
-                        <button type="button"
-                            class="secondary-button">
+                    <article class="service">
 
-                            Cancelar
+                        <div class="service-number">
+                            03
+                        </div>
 
-                        </button>
+
+                        <div class="service-main">
+
+                            <div class="service-icon">
+
+                                <i class="fa-solid fa-truck-fast"></i>
+
+                            </div>
 
 
-                        <button type="button"
-                            class="primary-button"
-                            id="saveSettingsButton">
+                            <h3>
+                                Transporte y logística
+                            </h3>
 
-                            <i class="fa-solid fa-floppy-disk"></i>
+                        </div>
 
-                            Guardar configuración
 
-                        </button>
+                        <div class="service-description">
 
-                    </div>
+                            <p>
+
+                                Coordinamos el movimiento de mercancías
+                                para conectar diferentes etapas de la
+                                cadena logística de manera organizada.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="service-arrow">
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- DISTRIBUCIÓN -->
+
+                    <article class="service">
+
+                        <div class="service-number">
+                            04
+                        </div>
+
+
+                        <div class="service-main">
+
+                            <div class="service-icon blue">
+
+                                <i class="fa-solid fa-boxes-stacked"></i>
+
+                            </div>
+
+
+                            <h3>
+                                Distribución
+                            </h3>
+
+                        </div>
+
+
+                        <div class="service-description">
+
+                            <p>
+
+                                Ayudamos a llevar productos desde sus
+                                puntos de origen hasta los lugares donde
+                                realmente se necesitan.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="service-arrow">
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- SOLUCIONES EMPRESARIALES -->
+
+                    <article class="service">
+
+                        <div class="service-number">
+                            05
+                        </div>
+
+
+                        <div class="service-main">
+
+                            <div class="service-icon blue">
+
+                                <i class="fa-solid fa-building"></i>
+
+                            </div>
+
+
+                            <h3>
+                                Soluciones empresariales
+                            </h3>
+
+                        </div>
+
+
+                        <div class="service-description">
+
+                            <p>
+
+                                Diseñamos alternativas adaptadas a las
+                                necesidades logísticas y comerciales
+                                de empresas y emprendimientos.
+
+                            </p>
+
+                        </div>
+
+
+                        <div class="service-arrow">
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </div>
+
+                    </article>
 
                 </div>
-
-            </section>
-
-        </main>
-
-    </div>
-
-
-
-    <!-- =========================================================
-         MODAL DETALLE DEL ENVÍO
-    ========================================================== -->
-
-    <div class="modal-overlay"
-        id="shipmentModal"
-        aria-hidden="true">
-
-
-        <div class="modal">
-
-
-            <!-- =================================================
-                 HEADER
-            ================================================== -->
-
-            <div class="modal-header">
-
-                <div>
-
-                    <span class="section-label">
-                        DETALLE DEL ENVÍO
-                    </span>
-
-                    <h3 id="modalShipmentTitle">
-                        —
-                    </h3>
-
-                </div>
-
-
-                <button class="modal-close"
-                    id="closeModal"
-                    aria-label="Cerrar">
-
-                    &times;
-
-                </button>
 
             </div>
 
+        </section>
 
 
-            <!-- =================================================
-                 INFORMACIÓN
-            ================================================== -->
 
-            <div class="modal-body">
+        <!-- =================================================
+             DIFERENCIA
+        ================================================== -->
 
-
-                <div class="shipment-summary">
+        <section class="difference-section">
 
 
-                    <div>
+            <div class="container difference-container">
+
+
+                <div class="difference-content">
+
+
+                    <div class="section-label light">
 
                         <span>
-                            Cliente
+                            04
                         </span>
 
-                        <strong id="modalClient">
-                            —
+                        <strong>
+                            Nuestra diferencia
                         </strong>
 
                     </div>
 
 
+                    <h2>
 
-                    <div>
+                        Tu operación necesita
+                        más que transporte.
+                        <span>Necesita coordinación.</span>
 
-                        <span>
-                            Estado
-                        </span>
+                    </h2>
 
-                        <strong id="modalStatus">
-                            —
-                        </strong>
 
-                    </div>
+                    <p>
 
+                        Entendemos que una operación de comercio
+                        internacional involucra diferentes etapas.
+                        Nuestro objetivo es ayudarte a conectar
+                        esas etapas de una manera más clara y organizada.
 
-
-                    <div>
-
-                        <span>
-                            Operación
-                        </span>
-
-                        <strong id="modalOperation">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Transporte
-                        </span>
-
-                        <strong id="modalTransport">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Paquetes
-                        </span>
-
-                        <strong id="modalPackageQuantity">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Peso
-                        </span>
-
-                        <strong id="modalWeight">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Volumen
-                        </span>
-
-                        <strong id="modalVolume">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Tipo de paquete
-                        </span>
-
-                        <strong id="modalPackageType">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Categoría
-                        </span>
-
-                        <strong id="modalCategory">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Origen
-                        </span>
-
-                        <strong id="modalOrigin">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Destino
-                        </span>
-
-                        <strong id="modalDestination">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Remitente
-                        </span>
-
-                        <strong id="modalSender">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Destinatario
-                        </span>
-
-                        <strong id="modalRecipient">
-                            —
-                        </strong>
-
-                    </div>
-
-
-
-                    <div>
-
-                        <span>
-                            Fecha
-                        </span>
-
-                        <strong id="modalDate">
-                            —
-                        </strong>
-
-                    </div>
+                    </p>
 
                 </div>
 
 
 
-                <!-- =================================================
-                     HISTORIAL
-                ================================================== -->
+                <!-- PILARES -->
 
-                <div class="tracking">
+                <div class="difference-grid">
 
-                    <h4>
-                        Historial del envío
-                    </h4>
 
-                    <div class="tracking-timeline"
-                        id="modalTrackingTimeline">
+                    <div class="difference-item">
+
+                        <span>
+                            01
+                        </span>
+
+                        <i class="fa-solid fa-globe"></i>
+
+                        <h3>
+                            Conexión
+                        </h3>
+
+                        <p>
+
+                            Facilitamos la conexión entre proveedores,
+                            empresas y destinos.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="difference-item">
+
+                        <span>
+                            02
+                        </span>
+
+                        <i class="fa-solid fa-route"></i>
+
+                        <h3>
+                            Logística
+                        </h3>
+
+                        <p>
+
+                            Coordinamos el recorrido de los productos
+                            de manera organizada.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="difference-item">
+
+                        <span>
+                            03
+                        </span>
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <h3>
+                            Confianza
+                        </h3>
+
+                        <p>
+
+                            Buscamos construir relaciones duraderas
+                            con nuestros clientes.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="difference-item">
+
+                        <span>
+                            04
+                        </span>
+
+                        <i class="fa-solid fa-handshake"></i>
+
+                        <h3>
+                            Acompañamiento
+                        </h3>
+
+                        <p>
+
+                            Trabajamos como un aliado para cada
+                            operación y necesidad.
+
+                        </p>
+
                     </div>
 
                 </div>
 
             </div>
 
+        </section>
 
 
-            <!-- =================================================
-                 FOOTER
-            ================================================== -->
 
-            <div class="modal-footer">
+        <!-- =================================================
+             PROCESO
+        ================================================== -->
 
-                <button class="secondary-button"
-                    id="closeModalButton">
+        <section class="process-section" id="proceso">
 
-                    Cerrar
+            <div class="container">
 
-                </button>
+
+                <div class="process-heading">
+
+
+                    <div class="section-label">
+
+                        <span>
+                            05
+                        </span>
+
+                        <strong>
+                            Nuestro proceso
+                        </strong>
+
+                    </div>
+
+
+                    <h2>
+
+                        Del origen
+                        al destino,
+                        <span>juntos.</span>
+
+                    </h2>
+
+                </div>
+
+
+
+                <div class="process-track">
+
+
+                    <!-- PASO 01 -->
+
+                    <div class="process-card">
+
+                        <div class="process-card-top">
+
+                            <span>
+                                01
+                            </span>
+
+                            <i class="fa-solid fa-comments"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Analizamos
+                        </h3>
+
+
+                        <p>
+
+                            Conocemos el producto, origen,
+                            destino y las necesidades de
+                            la operación.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"></div>
+
+
+                    <!-- PASO 02 -->
+
+                    <div class="process-card">
+
+                        <div class="process-card-top">
+
+                            <span>
+                                02
+                            </span>
+
+                            <i class="fa-solid fa-file-circle-check"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Gestionamos
+                        </h3>
+
+
+                        <p>
+
+                            Organizamos la operación y coordinamos
+                            los elementos necesarios para el proceso.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"></div>
+
+
+                    <!-- PASO 03 -->
+
+                    <div class="process-card">
+
+                        <div class="process-card-top">
+
+                            <span>
+                                03
+                            </span>
+
+                            <i class="fa-solid fa-ship"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Movemos
+                        </h3>
+
+
+                        <p>
+
+                            Coordinamos el traslado de los productos
+                            durante su recorrido logístico.
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="process-connector"></div>
+
+
+                    <!-- PASO 04 -->
+
+                    <div class="process-card">
+
+                        <div class="process-card-top">
+
+                            <span>
+                                04
+                            </span>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                        </div>
+
+
+                        <h3>
+                            Entregamos
+                        </h3>
+
+
+                        <p>
+
+                            Completamos el recorrido para que
+                            los productos lleguen a su destino.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CTA
+        ================================================== -->
+
+        <section class="cta-section" id="contacto">
+
+            <div class="container">
+
+
+                <div class="cta">
+
+
+                    <div class="cta-content">
+
+
+                        <span>
+                            HABLEMOS DE TU OPERACIÓN
+                        </span>
+
+
+                        <h2>
+
+                            ¿Quieres llevar
+                            tus productos
+                            más lejos?
+
+                        </h2>
+
+
+                        <p>
+
+                            Cuéntanos qué necesitas importar,
+                            exportar o transportar y encontremos
+                            juntos la mejor manera de hacerlo.
+
+                        </p>
+
+
+                        <div class="cta-buttons">
+
+
+                            <a href="mailto:ventas@enviosyanicaragua.com" class="cta-button white">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                                Escríbenos
+
+                            </a>
+
+
+                            <a href="tel:+50557275727" class="cta-button outline">
+
+                                <i class="fa-solid fa-phone"></i>
+
+                                Contáctanos
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- VISUAL CTA -->
+
+                    <div class="cta-visual">
+
+                        <div class="cta-circle circle-one"></div>
+
+                        <div class="cta-circle circle-two"></div>
+
+
+                        <div class="cta-box">
+
+                            <i class="fa-solid fa-globe"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+
+        <div class="container footer-main">
+
+
+            <!-- MARCA -->
+
+            <div class="footer-brand">
+
+
+                <a href="#inicio" class="brand">
+
+                    <div class="brand-symbol">
+
+                        <i class="fa-solid fa-box"></i>
+
+                    </div>
+
+
+                    <div class="brand-name">
+
+                        <span>
+                            Envios
+                        </span>
+
+                        <strong>
+                            Ya
+                        </strong>
+
+                    </div>
+
+                </a>
+
+
+                <p>
+                    Conectamos productos, mercados y destinos.
+                </p>
+
+
+                <div class="footer-social">
+
+                    <a href="https://www.facebook.com/profile.php?id=61583441199696" aria-label="Facebook">
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+
+                    <a href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr"
+                        aria-label="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+
+                    <a href="https://wa.me/50557275727" aria-label="WhatsApp">
+
+                        <i class="fa-brands fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- NAVEGACIÓN -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Navegación
+                </h3>
+
+
+                <a href="#inicio">
+                    Inicio
+                </a>
+
+
+                <a href="#empresa">
+                    Nosotros
+                </a>
+
+
+                <a href="#servicios">
+                    Servicios
+                </a>
+
+
+                <a href="#proceso">
+                    Cómo trabajamos
+                </a>
+
+            </div>
+
+
+
+            <!-- SERVICIOS -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Servicios
+                </h3>
+
+
+                <a href="#servicios">
+                    Importación
+                </a>
+
+
+                <a href="#servicios">
+                    Exportación
+                </a>
+
+
+                <a href="#servicios">
+                    Transporte y logística
+                </a>
+
+
+                <a href="#servicios">
+                    Distribución
+                </a>
+
+
+                <a href="#servicios">
+                    Soluciones empresariales
+                </a>
+
+            </div>
+
+
+
+            <!-- CONTACTO -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Contacto
+                </h3>
+
+
+                <span>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    Managua, Nicaragua
+
+                </span>
+
+
+                <a href="tel:+50500000000">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    +505 5727-5727
+
+                </a>
+
+
+                <a href="mailto:ventas@enviosyanicaragua.com">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    ventas@enviosyanicaragua.com
+
+                </a>
 
             </div>
 
         </div>
 
-    </div>
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <span>
+                    © 2026 Envios Ya. Todos los derechos reservados.
+                </span>
+
+
+                <span>
+                    Importación · Exportación · Logística
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
 
 
 
-    <!-- =========================================================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================================================== -->
+    ====================================================== -->
 
-    <script src="dashboard/js/app.js"></script>
+    <script src="inicio.js"></script>
+    <script src="js/menu.js"></script>
 
 </body>
 
