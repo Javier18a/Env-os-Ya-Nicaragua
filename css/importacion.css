@@ -324,18 +324,486 @@ img {
 
 
 /* =========================================================
-   MENÚ MÓVIL ABIERTO
+   TARIFAS DE IMPORTACIÓN
 ========================================================= */
 
-/*
-   Estas clases permiten que el mismo JS del menú
-   pueda controlar la navegación.
+.tarifas-importacion {
+    padding: 95px 0;
+    width: 80%;
+    margin: auto;
+    background: #ffffff;
+}
 
-   Se soportan tanto:
-   .main-nav.active
-   como:
-   .main-nav.open
-*/
+.tarifas-header {
+    max-width: 760px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.tarifas-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.tarifas-header h2 {
+    margin-bottom: 15px;
+
+    color: var(--secondary);
+
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 800;
+
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+}
+
+.tarifas-header p {
+    color: var(--text-light);
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   FILTROS
+========================================================= */
+
+.tarifas-filtros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 30px;
+}
+
+.tarifa-filtro {
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    background: #ffffff;
+    color: var(--text-light);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.tarifa-filtro:hover {
+    border-color: var(--primary);
+
+    color: var(--primary);
+
+    transform: translateY(-1px);
+}
+
+.tarifa-filtro.active {
+    background: var(--primary);
+    border-color: var(--primary);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   TARIFAS CARD
+========================================================= */
+
+.tarifas-card {
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.tabla-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.tabla-tarifas {
+    width: 100%;
+
+    min-width: 850px;
+
+    border-collapse: collapse;
+}
+
+
+/* =========================================================
+   TABLA - HEADER
+========================================================= */
+
+.tabla-tarifas thead {
+    background: var(--background-soft);
+}
+
+.tabla-tarifas th {
+    padding: 17px 20px;
+
+    color: #475569;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: .7px;
+    text-align: left;
+
+    text-transform: uppercase;
+
+    border-bottom: 1px solid var(--border);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   TABLA - FILAS
+========================================================= */
+
+.tabla-tarifas tbody tr {
+    transition: background 0.2s ease;
+}
+
+.tabla-tarifas tbody tr:hover {
+    background: var(--background-soft);
+}
+
+.tabla-tarifas td {
+    padding: 18px 20px;
+
+    color: var(--text-light);
+
+    font-size: 14px;
+
+    border-bottom: 1px solid var(--border);
+
+    white-space: nowrap;
+}
+
+.tabla-tarifas tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   MODALIDAD
+========================================================= */
+
+.tabla-tarifas td:first-child {
+    color: var(--secondary);
+}
+
+.modalidad-icon {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    margin-right: 9px;
+
+    border-radius: 10px;
+
+    background: var(--primary-light);
+
+    vertical-align: middle;
+}
+
+.tabla-tarifas td strong {
+    font-weight: 750;
+}
+
+
+/* =========================================================
+   PRECIO
+========================================================= */
+
+.tabla-tarifas .precio {
+    color: var(--primary);
+
+    font-size: 18px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   NOTA
+========================================================= */
+
+.tarifas-nota {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    margin-top: 22px;
+
+    padding: 18px 20px;
+
+    background: var(--primary-light);
+
+    border: 1px solid #dbeafe;
+    border-radius: var(--radius-sm);
+}
+
+.nota-icon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: var(--primary);
+}
+
+.tarifas-nota strong {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: var(--secondary);
+
+    font-size: 13px;
+}
+
+.tarifas-nota p {
+    margin: 0;
+
+    color: var(--text-light);
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   CTA TARIFAS
+========================================================= */
+
+.tarifas-cta {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 35px;
+
+    margin-top: 40px;
+
+    padding: 30px 35px;
+
+    background: var(--secondary);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-md);
+}
+
+.tarifas-cta > div {
+    max-width: 700px;
+}
+
+.tarifas-cta > div span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+.tarifas-cta h3 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 23px;
+    font-weight: 750;
+
+    line-height: 1.3;
+}
+
+.btn-cotizar {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    min-height: 46px;
+
+    padding: 0 20px;
+
+    background: #ffffff;
+
+    border-radius: 9px;
+
+    color: var(--primary);
+
+    font-size: 13px;
+    font-weight: 750;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.btn-cotizar:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-cotizar span {
+    margin: 0 !important;
+
+    color: inherit !important;
+
+    font-size: 17px !important;
+
+    transition: transform 0.2s ease;
+}
+
+.btn-cotizar:hover span {
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   TARIFAS - TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .tarifas-cta {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .btn-cotizar {
+        width: auto;
+    }
+}
+
+
+/* =========================================================
+   TARIFAS - MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .tarifas-importacion {
+        padding: 70px 0;
+    }
+
+    .tarifas-header {
+        margin-bottom: 35px;
+    }
+
+    .tarifas-header h2 {
+        font-size: 32px;
+    }
+
+    .tarifas-header p {
+        font-size: 15px;
+    }
+
+    .tarifas-filtros {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        padding-bottom: 5px;
+    }
+
+    .tarifa-filtro {
+        flex-shrink: 0;
+    }
+
+    .tarifas-card {
+        border-radius: var(--radius-sm);
+    }
+
+    .tabla-tarifas th,
+    .tabla-tarifas td {
+        padding: 15px;
+    }
+
+    .tarifas-cta {
+        padding: 25px;
+    }
+
+    .btn-cotizar {
+        width: 100%;
+    }
+}
+
+
+/* =========================================================
+   TARIFAS - MOBILE PEQUEÑO
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .tarifas-importacion {
+        padding: 60px 0;
+    }
+
+    .tarifas-header h2 {
+        font-size: 30px;
+    }
+
+    .tarifas-header p {
+        font-size: 14px;
+    }
+
+    .tarifas-cta h3 {
+        font-size: 20px;
+    }
+}
 
 @media (max-width: 750px) {
 

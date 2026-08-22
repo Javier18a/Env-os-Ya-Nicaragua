@@ -2,52 +2,30 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Importación | Envíos Ya</title>
-
     <meta name="description"
         content="Servicios de importación de Envíos Ya entre Estados Unidos y Nicaragua. Servicio aéreo, marítimo, encomiendas, carga comercial y entrega en Nicaragua.">
-
-    <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="css/importacion.css">
-
 </head>
 
-
 <body>
-
-
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
 
     <header class="site-header">
 
         <div class="container header-container">
 
-
-            <!-- LOGO -->
-
-            <a href="#inicio" class="brand">
+            <a href="index.html" class="brand">
 
                 <div class="brand-symbol">
-
                     <img src="img/logo.jpeg" alt="">
-
                 </div>
 
                 <div class="brand-name">
-
                     <span>Envios</span>
-
                     <strong>Ya</strong>
-
                 </div>
 
             </a>
@@ -57,19 +35,19 @@
 
             <nav class="main-nav" id="mainNav">
 
-                <a href="inicio.html#inicio" class="nav-item active">
+                <a href="index.html#inicio" class="nav-item">
                     Inicio
                 </a>
 
-                <a href="inicio.html#empresa" class="nav-item ">
+                <a href="index.html#empresa" class="nav-item ">
                     Nosotros
                 </a>
 
-                <a href="inicio.html#servicios" class="nav-item">
+                <a href="index.html#servicios" class="nav-item">
                     Servicios
                 </a>
 
-                <a href="inicio.html#proceso" class="nav-item">
+                <a href="index.html#proceso" class="nav-item">
                     Cómo trabajamos
                 </a>
 
@@ -133,7 +111,7 @@
 
                     <div class="hero-actions">
 
-                        <a href="inicio.html#cotizar" class="primary-button">
+                        <a href="index.html#cotizar" class="primary-button">
 
                             Solicitar cotización
 
@@ -149,10 +127,6 @@
 
                 </div>
 
-
-
-                <!-- IMAGEN PRINCIPAL -->
-
                 <div class="hero-card">
 
                     <img src="img/logo.jpeg" alt="Servicio de importación Envíos Ya">
@@ -163,11 +137,211 @@
 
         </section>
 
+        <!-- =========================================================
+     SECCIÓN DE TARIFAS DE IMPORTACIÓN
+========================================================= -->
+
+        <section class="tarifas-importacion" id="tarifas-importacion">
+
+            <div class="tarifas-container">
+
+                <!-- ENCABEZADO -->
+                <div class="tarifas-header">
+
+                    <span class="tarifas-label">
+                        ENVIOS YA
+                    </span>
+
+                    <h2>
+                        Tarifas de Importación
+                    </h2>
+
+                    <p>
+                        Consulta nuestras tarifas para importar mercancías
+                        de forma rápida, segura y eficiente.
+                    </p>
+
+                </div>
 
 
-        <!-- =====================================================
-             SERVICIOS DE IMPORTACIÓN
-        ====================================================== -->
+                <!-- FILTROS -->
+                <div class="tarifas-filtros">
+
+                    <button class="tarifa-filtro" data-tipo="aereo">
+                        ✈️ Aéreo
+                    </button>
+
+                    <button class="tarifa-filtro" data-tipo="maritimo">
+                        🚢 Marítimo
+                    </button>
+
+                </div>
+
+
+                <!-- TABLA DE TARIFAS -->
+                <div class="tarifas-card">
+
+                    <div class="tabla-responsive">
+
+                        <table class="tabla-tarifas">
+
+                            <thead>
+
+                                <tr>
+                                    <th>Modalidad</th>
+                                    <th>Origen</th>
+                                    <th>Destino</th>
+                                    <th>Tarifa</th>
+                                    <th>Unidad</th>
+                                    <th>Tiempo estimado</th>
+                                </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                                <!-- AÉREO -->
+                                <tr data-tipo="aereo">
+
+                                    <td>
+                                        <span class="modalidad-icon">
+                                            ✈️
+                                        </span>
+
+                                        <strong>Aéreo</strong>
+                                    </td>
+
+                                    <td>Miami, USA</td>
+
+                                    <td>Managua, Nicaragua</td>
+
+                                    <td class="precio">
+                                        $6.30
+                                    </td>
+
+                                    <td>Por libra</td>
+
+                                    <td>
+                                        3 - 7 días
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- <tr data-tipo="aereo">
+
+                                    <td>
+                                        <span class="modalidad-icon">
+                                            ✈️
+                                        </span>
+
+                                        <strong>Aéreo</strong>
+                                    </td>
+
+                                    <td>China</td>
+
+                                    <td>Managua, Nicaragua</td>
+
+                                    <td class="precio">
+                                        $6.70
+                                    </td>
+
+                                    <td>Por libra</td>
+
+                                    <td>
+                                        7 - 12 días
+                                    </td>
+
+                                </tr> -->
+
+
+                                <!-- MARÍTIMO -->
+                                <tr data-tipo="maritimo">
+
+                                    <td>
+                                        <span class="modalidad-icon">
+                                            🚢
+                                        </span>
+
+                                        <strong>Marítimo</strong>
+                                    </td>
+
+                                    <td>Miami, USA</td>
+
+                                    <td>Managua, Nicaragua</td>
+
+                                    <td class="precio">
+                                        $2.70
+                                    </td>
+
+                                    <td>Por libra</td>
+
+                                    <td>
+                                        12 - 15 días
+                                    </td>
+
+                                </tr>
+
+
+                                <!-- <tr data-tipo="maritimo">
+
+                                    <td>
+                                        <span class="modalidad-icon">
+                                            🚢
+                                        </span>
+
+                                        <strong>Marítimo</strong>
+                                    </td>
+
+                                    <td>China</td>
+
+                                    <td>Managua, Nicaragua</td>
+
+                                    <td class="precio">
+                                        $2.80
+                                    </td>
+
+                                    <td>Por libra</td>
+
+                                    <td>
+                                        30 - 45 días
+                                    </td>
+
+                                </tr> -->
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <!-- CTA -->
+                <div class="tarifas-cta">
+
+                    <div>
+
+                        <span>
+                            ¿Tienes una mercancía que deseas importar?
+                        </span>
+
+                        <h3>
+                            Cotiza con nosotros para tarifas especiales en Envíos Ya Nicaragua.
+                        </h3>
+
+                    </div>
+
+                    <a href="contact.html" class="btn-cotizar">
+                        Solicitar cotización
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
         <section id="servicios-importacion" class="import-services">
 
@@ -192,9 +366,6 @@
 
 
             <div class="services-grid">
-
-
-                <!-- SERVICIO AÉREO -->
 
                 <article class="service-card">
 
@@ -448,69 +619,33 @@
 
                 <div class="gallery-grid">
 
-
-                    <!-- FOTO 1 -->
-
                     <div class="gallery-item gallery-large">
-
                         <img src="img/WhatsApp Image 2026-08-19 at 09.33.57 (1).jpeg"
                             alt="Operaciones de importación Envíos Ya">
-
                     </div>
 
-
-
-                    <!-- FOTO 2 -->
-
                     <div class="gallery-item">
-
                         <img src="img/WhatsApp Image 2026-08-19 at 09.33.57 (2).jpeg"
                             alt="Servicio de importación Envíos Ya">
-
                     </div>
 
-
-
-                    <!-- FOTO 3 -->
-
                     <div class="gallery-item">
-
                         <img src="img/WhatsApp Image 2026-08-19 at 09.33.57.jpeg" alt="Carga de Envíos Ya">
-
                     </div>
 
-
-
-                    <!-- FOTO 4 -->
-
                     <div class="gallery-item">
-
                         <img src="img/WhatsApp Image 2026-08-19 at 11.05.51.jpeg" alt="Mercancía Envíos Ya">
-
                     </div>
-
-
-
-                    <!-- FOTO 5 -->
 
                     <div class="gallery-item">
-
                         <img src="img/logo.jpeg" alt="Envíos Ya Nicaragua">
-
                     </div>
-
 
                 </div>
 
             </div>
 
         </section>
-
-
-
-        <!-- =====================================================
-             COMO FUNCIONA
-        ====================================================== -->
 
         <section id="como-funciona" class="process-section">
 
@@ -654,11 +789,6 @@
         </section>
 
 
-
-        <!-- =====================================================
-             CTA
-        ====================================================== -->
-
         <section class="cta-section">
 
             <div class="cta-container">
@@ -686,24 +816,17 @@
                 <div class="cta-actions">
 
                     <a href="index.html#cotizar" class="primary-button">
-
                         Solicitar cotización
-
                     </a>
 
                     <a href="#contacto" class="secondary-button">
-
                         Contactarnos
-
                     </a>
 
                 </div>
 
-
             </div>
-
         </section>
-
 
     </main>
 
@@ -717,7 +840,7 @@
 
         <div class="footer-container">
             <div class="footer-brand">
-                <a href="inicio.html" class="logo">
+                <a href="index.html" class="logo">
                     <img src="img/logo.png" alt="Envíos Ya">
                 </a>
                 <p>
@@ -753,11 +876,11 @@
                     Enlaces
                 </h3>
 
-                <a href="inicio.html">
+                <a href="index.html">
                     Inicio
                 </a>
 
-                <a href="inicio.html#cotizar">
+                <a href="index.html#cotizar">
                     Cotizar envío
                 </a>
 
@@ -775,7 +898,7 @@
                     ¿Necesitas más información?
                 </p>
 
-                <a href="inicio.html#contacto">
+                <a href="index.html#contacto">
                     Contáctanos
                 </a>
 
