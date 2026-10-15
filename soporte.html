@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Soporte | Envíos Ya</title>
+    <meta name="description" content="Contacta al equipo de soporte de Envíos Ya para consultar paquetes, reportar incidencias, gestionar pagos y recibir asistencia.">
+
+    <link rel="stylesheet" href="css/soporte.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container header-container">
+
+            <a href="index.html" class="brand">
+                <div class="brand-symbol">
+                    <img src="img/logo.jpeg" alt="Logo de Envíos Ya">
+                </div>
+
+                <div class="brand-name">
+                    <span>Envios</span>
+                    <strong>Ya</strong>
+                </div>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html#inicio" class="nav-item">Inicio</a>
+                <a href="index.html#empresa" class="nav-item">Nosotros</a>
+                <a href="index.html#servicios" class="nav-item">Servicios</a>
+                <a href="index.html#proceso" class="nav-item">Cómo trabajamos</a>
+                <a href="importacion.html" class="nav-item">Importación</a>
+                <a href="exportacion.html" class="nav-item">Exportación</a>
+                <a href="politicas.html" class="nav-item">Políticas</a>
+                <a href="contact.html" class="nav-item">Contacto</a>
+                <a href="soporte.html" class="nav-item active" aria-current="page">Soporte</a>
+            </nav>
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="mainNav"
+                type="button">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="hero-support">
+            <div class="hero-container">
+
+                <div class="hero-content">
+                    <span class="section-tag">CENTRO DE SOPORTE</span>
+
+                    <h1>
+                        Estamos aquí para
+                        <span>ayudarte.</span>
+                    </h1>
+
+                    <p>
+                        ¿Tienes dudas sobre tu paquete, necesitas reportar
+                        un inconveniente o consultar un pago? Selecciona
+                        el motivo de tu solicitud y comunícate directamente
+                        con nuestro equipo por WhatsApp.
+                    </p>
+
+                    <a href="#categorias" class="primary-button">
+                        <i class="fa-solid fa-headset"></i>
+                        Obtener asistencia
+                    </a>
+                </div>
+
+                <div class="hero-card">
+                    <div class="hero-card-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+
+                    <span class="hero-card-label">ATENCIÓN DIRECTA</span>
+
+                    <h2>Tu solicitud, más sencilla.</h2>
+
+                    <p>
+                        Preparamos un mensaje con los datos de tu caso
+                        para facilitar la atención de nuestro equipo.
+                    </p>
+
+                    <div class="hero-contact-number">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+505 5727-5727</span>
+                    </div>
+
+                    <small>
+                        Deberás confirmar el envío del mensaje desde WhatsApp.
+                    </small>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="categories-section" id="categorias">
+            <div class="section-container">
+
+                <div class="section-heading">
+                    <span class="section-tag">¿EN QUÉ PODEMOS AYUDARTE?</span>
+
+                    <h2>Selecciona el tipo de soporte.</h2>
+
+                    <p>
+                        Elige una categoría para mostrar el formulario
+                        adecuado para tu solicitud.
+                    </p>
+                </div>
+
+                <div class="support-categories">
+
+                    <button type="button" class="category-card" data-category="seguimiento" aria-pressed="false">
+                        <span class="category-icon blue">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Seguimiento de paquetes</strong>
+                            <small>Consulta el estado y ubicación de tu envío.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="problema" aria-pressed="false">
+                        <span class="category-icon orange">
+                            <i class="fa-solid fa-box-open"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Problemas con un paquete</strong>
+                            <small>Reporta retrasos, daños u otras incidencias.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="reclamo" aria-pressed="false">
+                        <span class="category-icon red">
+                            <i class="fa-solid fa-comment-dots"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Reclamos y quejas</strong>
+                            <small>Comunica una inconformidad o presenta un reclamo.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="pagos" aria-pressed="false">
+                        <span class="category-icon green">
+                            <i class="fa-solid fa-receipt"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Pagos y facturación</strong>
+                            <small>Consulta cobros, pagos o comprobantes.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="entrega" aria-pressed="false">
+                        <span class="category-icon purple">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Entrega de paquetes</strong>
+                            <small>Consulta entregas, recepción y coordinación.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="actualizacion" aria-pressed="false">
+                        <span class="category-icon cyan">
+                            <i class="fa-solid fa-address-card"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Actualización de información</strong>
+                            <small>Solicita corregir o actualizar tus datos.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                    <button type="button" class="category-card" data-category="otras" aria-pressed="false">
+                        <span class="category-icon slate">
+                            <i class="fa-solid fa-circle-question"></i>
+                        </span>
+                        <span class="category-content">
+                            <strong>Otras consultas</strong>
+                            <small>Estamos disponibles para orientarte.</small>
+                        </span>
+                        <i class="fa-solid fa-arrow-right category-arrow"></i>
+                    </button>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="support-form-section" id="formulario">
+            <div class="section-container">
+
+                <div class="support-grid">
+
+                    <div class="support-aside">
+                        <span class="section-tag">SOLICITUD DE ASISTENCIA</span>
+
+                        <h2>Cuéntanos qué sucede.</h2>
+
+                        <p>
+                            Completa la información solicitada para que
+                            nuestro equipo pueda comprender mejor tu caso.
+                        </p>
+
+                        <div class="aside-step">
+                            <span class="step-number">01</span>
+                            <div>
+                                <strong>Selecciona una categoría</strong>
+                                <p>Indica el motivo de tu consulta.</p>
+                            </div>
+                        </div>
+
+                        <div class="aside-step">
+                            <span class="step-number">02</span>
+                            <div>
+                                <strong>Completa los datos</strong>
+                                <p>Incluye la información relevante de tu caso.</p>
+                            </div>
+                        </div>
+
+                        <div class="aside-step">
+                            <span class="step-number">03</span>
+                            <div>
+                                <strong>Confirma en WhatsApp</strong>
+                                <p>Revisa el mensaje y pulsa enviar en WhatsApp.</p>
+                            </div>
+                        </div>
+
+                        <div class="support-warning">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <p>
+                                Comparte únicamente la información necesaria.
+                                No incluyas contraseñas, PIN ni datos completos
+                                de tarjetas bancarias.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="support-form-wrapper">
+
+                        <div class="form-header">
+                            <span class="section-tag">FORMULARIO DE SOPORTE</span>
+
+                            <h2 id="formTitle">Selecciona un tipo de solicitud</h2>
+
+                            <p id="formDescription">
+                                Selecciona una de las categorías anteriores
+                                para personalizar tu formulario.
+                            </p>
+                        </div>
+
+                        <div class="selected-category" id="selectedCategory" hidden>
+                            <span class="selected-category-icon">
+                                <i class="fa-solid fa-headset" id="selectedCategoryIcon"></i>
+                            </span>
+                            <div>
+                                <small>CATEGORÍA SELECCIONADA</small>
+                                <strong id="selectedCategoryName">Soporte</strong>
+                            </div>
+                            <button type="button" id="changeCategory" class="change-category">
+                                Cambiar
+                            </button>
+                        </div>
+
+                        <form id="supportForm" novalidate>
+
+                            <div class="form-fields" id="formFields">
+                                <div class="empty-form-state">
+                                    <i class="fa-solid fa-list-check"></i>
+                                    <h3>Elige cómo podemos ayudarte</h3>
+                                    <p>
+                                        Al seleccionar una categoría,
+                                        aquí aparecerán los campos correspondientes.
+                                    </p>
+                                    <button type="button" class="text-button" id="chooseCategory">
+                                        Ver categorías
+                                        <i class="fa-solid fa-arrow-up"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-feedback" id="formFeedback" role="alert" aria-live="polite" hidden></div>
+
+                            <div class="form-footer" id="formFooter" hidden>
+                                <p class="form-disclaimer">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    Este formulario no envía información automáticamente.
+                                    WhatsApp se abrirá para que revises y confirmes tu mensaje.
+                                </p>
+
+                                <button type="submit" class="form-submit" id="submitButton">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    Preparar mensaje en WhatsApp
+                                </button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="support-contact-section">
+            <div class="section-container">
+                <div class="support-contact-card">
+                    <div class="support-contact-icon">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </div>
+
+                    <div class="support-contact-text">
+                        <span class="section-tag">¿PREFIERES ESCRIBIR DIRECTAMENTE?</span>
+                        <h2>Comunícate con Envíos Ya.</h2>
+                        <p>
+                            También puedes abrir una conversación con nuestro
+                            número de atención y escribir tu consulta.
+                        </p>
+                    </div>
+
+                    <a
+                        href="https://wa.me/50557275727"
+                        class="primary-button"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Abrir WhatsApp
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+
+            <div class="footer-brand">
+                <a href="index.html" class="logo">Envíos Ya</a>
+
+                <p>
+                    Facilitamos tus envíos para que puedas recibir
+                    y enviar lo que necesitas.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Servicios</h3>
+                <a href="importacion.html">Importación</a>
+                <a href="exportacion.html">Exportación</a>
+                <a href="politicas.html">Políticas</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Enlaces</h3>
+                <a href="index.html">Inicio</a>
+                <a href="index.html#cotizar">Cotizar envío</a>
+                <a href="contact.html">Contacto</a>
+                <a href="soporte.html">Soporte</a>
+            </div>
+
+            <div class="footer-contact">
+                <h3>Redes sociales</h3>
+
+                <div class="footer-socials">
+                    <a
+                        href="https://www.instagram.com/enviosya_nic?igsh=MWlqaHNoeTBpcGF3MA%3D%3D&utm_source=qr"
+                        aria-label="Instagram"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                    <a
+                        href="https://www.tiktok.com/@enviosya_nicaragua?_r=1&_t=ZS-98y91aq6XHV"
+                        aria-label="TikTok"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+
+                    <a
+                        href="https://wa.me/50557275727"
+                        aria-label="WhatsApp"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/profile.php?id=61583441199696"
+                        aria-label="Facebook"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Envíos Ya. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/soporte.js"></script>
+
+</body>
+</html>
