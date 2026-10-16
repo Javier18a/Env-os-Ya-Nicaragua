@@ -9,6 +9,7 @@
         content="Servicios de importación de Envíos Ya entre Estados Unidos y Nicaragua. Servicio aéreo, marítimo, encomiendas, carga comercial y entrega en Nicaragua.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="css/importacion.css">
+    <link rel="stylesheet" href="css/calculadora.css">
 </head>
 
 <body>
@@ -224,7 +225,7 @@
                                     <td>Managua, Nicaragua</td>
 
                                     <td class="precio">
-                                        $6.30
+                                        $6.50
                                     </td>
 
                                     <td>Por libra</td>
@@ -350,6 +351,112 @@
             </div>
 
         </section>
+
+        
+<section class="calculadora-importacion" id="calculadora-importacion">
+    <div class="calculadora-container">
+
+        <div class="calculadora-header">
+            <span class="calculadora-label">CALCULA TU IMPORTACIÓN</span>
+            <h2>¿Cuánto te costaría traer tu paquete?</h2>
+            <p>
+                Selecciona tu modalidad e ingresa el peso de tu mercancía
+                para obtener un estimado del costo de importación.
+            </p>
+        </div>
+
+        <div class="calculadora-card">
+
+            <div class="calculadora-modalidades">
+                <button type="button"
+                        class="calculadora-tab activa"
+                        data-modalidad="aereo"
+                        aria-pressed="true">
+                    <i class="fas fa-plane"></i>
+                    <span>Aéreo</span>
+                </button>
+
+                <button type="button"
+                        class="calculadora-tab"
+                        data-modalidad="maritimo"
+                        aria-pressed="false">
+                    <i class="fas fa-ship"></i>
+                    <span>Marítimo</span>
+                </button>
+            </div>
+
+            <div class="calculadora-tarifa">
+                <span>Tarifa por libra</span>
+                <div class="calculadora-precio">
+                    <span id="calculadoraTarifa">$6.50</span>
+                    <small>USD / lb</small>
+                </div>
+                <p id="calculadoraDescripcion">
+                    Modalidad aérea · Miami, USA → Managua, Nicaragua
+                </p>
+            </div>
+
+            <div class="calculadora-campo">
+                <label for="pesoPaquete">¿Cuántas libras deseas importar?</label>
+
+                <div class="calculadora-input-wrap">
+                    <input
+                        type="number"
+                        id="pesoPaquete"
+                        min="0.01"
+                        max="100000"
+                        step="0.01"
+                        placeholder="Ej. 10"
+                        inputmode="decimal"
+                        autocomplete="off"
+                    >
+                    <span>libras (lb)</span>
+                </div>
+
+                <small>Ingresa el peso aproximado de tu mercancía.</small>
+            </div>
+
+            <div class="calculadora-resultado" aria-live="polite">
+                <span>Tu costo estimado</span>
+                <strong id="calculadoraTotal">$0.00</strong>
+                <p id="calculadoraDetalle">
+                    Ingresa el peso para calcular el costo aproximado.
+                </p>
+            </div>
+
+            <p class="calculadora-aviso">
+                <i class="fas fa-info-circle"></i>
+                Este cálculo es únicamente referencial y no constituye una
+                cotización definitiva. El precio final puede variar según
+                las características de la mercancía y las condiciones del servicio.
+            </p>
+
+            <div class="calculadora-separador"></div>
+
+            <div class="calculadora-preferencial">
+                <span class="preferencial-etiqueta">TARIFAS ESPECIALES</span>
+                <h3>¿Quieres pagar una tarifa mucho mejor?</h3>
+                <p>
+                    Contáctanos por WhatsApp y consulta por nuestras tarifas
+                    preferenciales para negocios y clientes según su volumen
+                    y frecuencia de importación.
+                </p>
+
+                <a
+                    href="https://wa.me/50557275727?text=Hola%2C%20Envíos%20Ya.%20Me%20gustaría%20cotizar%20una%20tarifa%20preferencial%20para%20importar%20mercancía."
+                    class="calculadora-whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <i class="fab fa-whatsapp"></i>
+                    Cotizar tarifa preferencial por WhatsApp
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
 
         <section id="servicios-importacion" class="import-services">
 
@@ -935,6 +1042,7 @@
 
     <script src="js/importacion.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/calculadora.js"></script>
 
 </body>
 

@@ -1061,7 +1061,7 @@ img {
 
     border-radius: 11px;
 
-    background: var(--primary);
+    background: rgb(21, 216, 21);
 
     color: #ffffff;
 
@@ -1084,7 +1084,7 @@ img {
 
 .form-submit:hover {
 
-    background: var(--primary-dark);
+    background: green;
 
     transform: translateY(-2px);
 
